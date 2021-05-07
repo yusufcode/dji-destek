@@ -21,9 +21,11 @@ const indexRoute = require('./routes/indexRoute')
 app.use('/', indexRoute)
 
 //DB
+/*
 mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
     console.log('Connected to DB!')
 });
+*/
 
 //SERVER
 const port = process.env.port || 8080
