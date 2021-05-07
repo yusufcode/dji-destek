@@ -20,7 +20,7 @@ router.post('/teknik-servis', (req, res) => {
 
 
     const transporter = nodeMailer.createTransport({
-        service: "webmail",
+        service: "mail.djidestek.com",
         port: 587,
         secure: true,
         auth: {
