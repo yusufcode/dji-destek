@@ -20,12 +20,12 @@ router.post('/teknik-servis', (req, res) => {
 
 
     const transporter = nodeMailer.createTransport({
-        service: "gmail",
-        port: 465,
+        service: "webmail",
+        port: 587,
         secure: true,
         auth: {
-            user: "yusuf1code@gmail.com",
-            pass: "312YC46757274yc1"
+            user: "admin@djidestek.com",
+            pass: "beratakdmrMAIL58"
         }
     })
 
@@ -54,7 +54,7 @@ router.post('/teknik-servis', (req, res) => {
             console.log(err)
         } else {
             const mail = {
-                from: "yusuf1code@gmail.com",
+                from: "admin@djidestek.com",
                 to: "yusuf1akbaba@gmail.com",
                 subject: "Teknik Servis Başvurusu",
                 html: data
