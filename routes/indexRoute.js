@@ -24,7 +24,7 @@ router.post('/teknik-servis', (req, res) => {
         port:587,
         secure: false,
         auth: {
-            user: "iletisim@djidestek.com",
+            user: "admin@djidestek.com",
             pass: "beratakdmrMAIL58"
         },
         tls: {rejectUnauthorized: false}
