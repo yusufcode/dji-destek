@@ -26,7 +26,8 @@ router.post('/teknik-servis', (req, res) => {
         auth: {
             user: "admin@djidestek.com",
             pass: "beratakdmrMAIL58"
-        }
+        },
+        tls: {rejectUnauthorized: false}
     })
 
     let droneSerialName = req.body.droneSerialName
