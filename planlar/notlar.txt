@@ -1,0 +1,8 @@
+-hizmet kategorileri olacak
+-yedek parça satışları olacak
+-before after servis içerikleri
+-makaleler olacak
+-timelapse olacak
+-bilgilendirme videoları olabilir
+-youtube içeriği sunulabilir
+-navbar'da modelin üzerine gelince resim değişme

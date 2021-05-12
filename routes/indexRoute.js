@@ -14,40 +14,27 @@ router.get('/teknik-servis', (req, res) => {
 })
 
 router.post('/teknik-servis', (req, res) => {
-    /*
-    console.log(req.body.contactName)
-    */
-
-
+ 
     const transporter = nodeMailer.createTransport({
-        host: "mail.djidestek.com",
-        port:587,
-        secure: false,
+        host: "djidestek.com",
+        port:465,
+        secure: true,
         auth: {
-            user: "admin@djidestek.com",
-            pass: "beratakdmrMAIL58"
+            user: "teknikservis@djidestek.com",
+            pass: "teknikservis1907.-"
         },
         tls: {rejectUnauthorized: false}
     })
 
-    let droneSerialName = req.body.droneSerialName
-    let droneModelName = req.body.droneModelName
-    let droneAltModelName = req.body.droneAltModelName
-    let problemTitle = req.body.problemTitle
-    let problemText = req.body.problemText
-    let contactName = req.body.contactName
-    let contactNumber = req.body.contactNumber
-    let contactEmail = req.body.contactEmail
-
     let mailInfo = [{
-        droneSerialName: droneSerialName,
-        droneModelName: droneModelName,
-        droneAltModelName: droneAltModelName,
-        problemTitle: problemTitle,
-        problemText: problemText,
-        contactName: contactName,
-        contactNumber: contactNumber,
-        contactEmail: contactEmail
+        droneSerialName: req.body.droneSerialName,
+        droneModelName: req.body.droneModelName,
+        droneAltModelName: req.body.droneAltModelName,
+        problemTitle: req.body.problemTitle,
+        problemText: req.body.problemText,
+        contactName: req.body.contactName,
+        contactNumber: req.body.contactNumber,
+        contactEmail: req.body.contactEmail
     }]
     
     ejs.renderFile("./views/layout-mail.ejs", { mailInfo: mailInfo }, (err, data) => {
@@ -55,7 +42,7 @@ router.post('/teknik-servis', (req, res) => {
             console.log(err)
         } else {
             const mail = {
-                from: "admin@djidestek.com",
+                from: "teknikservis@djidestek.com",
                 to: "yusuf1akbaba@gmail.com",
                 subject: "Teknik Servis Başvurusu",
                 html: data
@@ -72,7 +59,7 @@ router.post('/teknik-servis', (req, res) => {
         }
     });
 
-    res.redirect('/teknik-servis')
+    location.href = '/';
     
 })
 
