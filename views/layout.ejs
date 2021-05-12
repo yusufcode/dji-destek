@@ -1,10 +1,3 @@
-<!--
-<script>
-    if (location.protocol !== 'https:') {
-    location.replace(`https:${location.href.substring(location.protocol.length)}`);
-}
-</script>
--->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,7 +28,7 @@
     <meta name="author" content="Berat Akdemir">
 
     <!-- WEBSITE ICON -->
-    <link rel="icon" href="assets/img/logo/logo-black.svg" sizes="16x16">
+    <link rel="icon" href="assets/img/logo/favicon.svg" sizes="16x16">
 
     <!-- WEBSITE STYLE -->
     <link rel="stylesheet" href="assets/css/style.css?v=1.3">
@@ -208,15 +201,15 @@
                     </li>
 
                     <li class="navbar-menu-item">
-                        <a href="magaza.php">Yedek Parça & Aksesuar </a>
+                        <a href="/magaza">Yedek Parça & Aksesuar</a>
                     </li>
 
                     <li class="navbar-menu-item">
-                        <a href="blog.php">Blog</a>
+                        <a href="/blog">Blog</a>
                     </li>
 
                     <li class="navbar-menu-item">
-                        <a href="iletisim.php">İletişim</a>
+                        <a href="/iletisim">İletişim</a>
                     </li>
                 </ul>
             </div>
@@ -230,101 +223,106 @@
 
     <%- body %>
 
-        <!-- FOOTER -->
-        <footer class="footer">
-            <div class="footer-top">
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-top">
 
-                <div class="footer-top-menus">
-                    <div class="footer-top-part ">
-                        <h3>Teknik Servis</h3>
-                        <ul>
-                            <li><a href="">Inspire</a></li>
-                            <li><a href="">Phantom</a></li>
-                            <li><a href="">Mavic</a></li>
-                            <li><a href="">Spark</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-top-part ">
-                        <h3>Yedek Parça & Aksesuar</h3>
-                        <ul>
-                            <li><a href="">Batarya</a></li>
-                            <li><a href="">Renkli Pervaneler</a></li>
-                            <li><a href="">Menzil Arttırıcı Anten</a></li>
-                            <li><a href="">VR Gözlük</a></li>
-                            <li><a href="">Zoom Kamera</a></li>
-                            <li><a href="">Özel Drone Çantası</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-top-part ">
-                        <h3>Blog</h3>
-                        <ul>
-                            <li><a href="">Drone Nasıl Uçar?</a></li>
-                            <li><a href="">Drone Uçurma İpuçları</a></li>
-                            <li><a href="">Drone Tarihi</a></li>
-                            <li><a href="">Drone'larınızı Nasıl Tamir Ediyoruz?</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-top-part ">
-                        <h3>İletişim</h3>
-                        <ul>
-                            <li><i class="fas fa-phone-alt"></i><a href="tel:+90 (533) 735 7895">+90 (533) 735 7895</a></li>
-                            <li><i class="fas fa-phone-alt"></i><a href="tel:+90 (216) 123 4567">+90 (216) 123 4567</a></li>
-                            <li><i class="fas fa-envelope"></i><a href="mailto:iletisim@djidestek.com">iletisim@djidestek.com</a></li>
-                            <li><i class="fas fa-map-marker-alt"></i><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit KADIKÖY/İSTANBUL</span></li>
-                        </ul>
-                    </div>
+            <div class="footer-top-menus">
+                <div class="footer-top-part ">
+                    <h3>Teknik Servis</h3>
+                    <ul>
+                        <li><a href="">Inspire</a></li>
+                        <li><a href="">Phantom</a></li>
+                        <li><a href="">Mavic</a></li>
+                        <li><a href="">Spark</a></li>
+                    </ul>
                 </div>
 
-                <div class="footer-top-bottom">
-                    <div class="footer-logo">
-                        <a href="/"><img src="assets/img/logo/logo-white.svg" alt=""></a>
-                    </div>
-
-                    <ul class="footer-top-bottom-list">
-                        <li><a href="teknik-servis.php">Teknik Servis</a></li>
-                        <li><a href="magaza.php">Yedek Parça ve Aksesuar</a></li>
-                        <li><a href="blog.php">Blog</a></li>
-                        <li><a href="iletisim.php">İletişim</a></li>
+                <div class="footer-top-part ">
+                    <h3>Yedek Parça & Aksesuar</h3>
+                    <ul>
+                        <li><a href="">Batarya</a></li>
+                        <li><a href="">Menzil Arttırıcı Anten</a></li>
+                        <li><a href="">VR Gözlük</a></li>
+                        <li><a href="">Özel Drone Çantası</a></li>
                     </ul>
-
-                    <ul class="footer-top-bottom-social">
-                        <li><a href=""><i class="fab fa-instagram"></i></a></li>
-                        <li><a href=""><i class="fab fa-youtube"></i></a></li>
-                    </ul>
-
                 </div>
+
+                <div class="footer-top-part ">
+                    <h3>Blog</h3>
+                    <ul>
+                        <li><a href="">Drone Nasıl Uçar?</a></li>
+                        <li><a href="">Drone Uçurma İpuçları</a></li>
+                        <li><a href="">Drone Tarihi</a></li>
+                        <li><a href="">Drone'larınızı Nasıl Tamir Ediyoruz?</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-top-part ">
+                    <h3>İletişim</h3>
+                    <ul>
+                        <li><i class="fas fa-phone-alt"></i><a href="tel:+90 (533) 735 7895">+90 (533) 735 7895</a></li>
+                        <li><i class="fas fa-envelope"></i><a href="mailto:iletisim@djidestek.com">iletisim@djidestek.com</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i><span>Caferağa Mah. Nail Bey Sk. No:7/A KADIKÖY/İSTANBUL</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-top-bottom">
+                <div class="footer-logo">
+                    <a href="/"><img src="assets/img/logo/logo-white.svg" alt=""></a>
+                </div>
+
+                <ul class="footer-top-bottom-list">
+                    <li><a href="/teknik-servis">Teknik Servis</a></li>
+                    <li><a href="/magaza">Yedek Parça ve Aksesuar</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/iletisim">İletişim</a></li>
+                </ul>
+
+                <ul class="footer-top-bottom-social">
+                    <li><a href="https://instagram.com/dji.destek" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="https://youtube.com/djidestek" target="_blank"><i class="fab fa-youtube"></i></a></li>
+                </ul>
 
             </div>
 
-            <div class="footer-bottom">
-                <div class="copyright-text">
-                    <p>Tüm Hakları Saklıdır © Dji Destek</p>
-                </div>
+        </div>
 
-                <div class="developer-logo">
-                    <a href="https://yusufcode.com" target="_blank">
-                        <img src="https://yusufcode.com/assets/img/logo/logo.png" alt="">
-                    </a>
-                </div>
+        <div class="footer-bottom">
+            <div class="copyright-text">
+                <p>Tüm Hakları Saklıdır &copy; Dji Destek</p>
             </div>
-        </footer>
 
-        <!-- JQUERY -->
-        <script src="assets/js/jquery/jquery-3.5.1.min.js"></script>
-        <script src="assets/js/jquery/jquery-ui-1.12.1.min.js"></script>
+            <div class="developer-logo">
+                <a href="https://yusufcode.com" target="_blank">
+                    <img src="https://yusufcode.com/src/img/logo/logo.png" alt="">
+                </a>
+            </div>
+        </div>
+    </footer>
 
-        <!-- BOOTSTRAP -->
-        <script src="assets/js/bootstrap/popper-1.14.7.min.js"></script>
-        <script src="assets/js/bootstrap/bootstrap-4.3.1.min.js"></script>
+    <!--
+    <script>
+    if (location.protocol !== 'https:') {
+        location.replace(`https:${location.href.substring(location.protocol.length)}`);
+    }
+    </script>
+    -->
 
-        <!-- COOKIES -->
-        <script src="assets/js/cookies.js"></script>
+    <!-- JQUERY -->
+    <script src="assets/js/jquery/jquery-3.5.1.min.js"></script>
+    <script src="assets/js/jquery/jquery-ui-1.12.1.min.js"></script>
 
-        <!-- SCRIPTS -->
-        <script src="assets/js/scripts.js?v=1.0"></script>
+    <!-- BOOTSTRAP -->
+    <script src="assets/js/bootstrap/popper-1.14.7.min.js"></script>
+    <script src="assets/js/bootstrap/bootstrap-4.3.1.min.js"></script>
+
+    <!-- COOKIES -->
+    <script src="assets/js/cookies.js"></script>
+
+    <!-- SCRIPTS -->
+    <script src="assets/js/scripts.js?v=1.0"></script>
 
 
 </body>
