@@ -807,8 +807,15 @@ html {}
 
 /* navbar-backgrounded */
 
+.navbar-backgrounded {
+    background-color: #f2f2f2;
+}
+
 .navbar-backgrounded .content {
     padding-top: 85px;
+}
+.navbar-backgrounded .content .container {
+    padding: 25px 0;
 }
 
 @media (max-width: 768px) {
@@ -818,15 +825,14 @@ html {}
     }
 }
 
+/* not-found */
+
+.not-found .footer{
+    position: fixed;
+    bottom: 0;
+}
+
 /* technic-service-page */
-
-.technic-service-page {
-    background-color: #f2f2f2;
-}
-
-.technic-service-page .content .container {
-    padding: 25px 0;
-}
 
 .technic-service-page .contact-card {
     max-width: 600px;
