@@ -59,7 +59,7 @@ router.post('/teknik-servis', (req, res) => {
         }
     });
 
-    location.replace = '/';
+    location.replace = 'https://djidestek.com';
     
 })
 
