@@ -58,8 +58,6 @@ router.post('/teknik-servis', (req, res) => {
 
         }
     });
-
-    //res.redirect('/');
     
 })
 
