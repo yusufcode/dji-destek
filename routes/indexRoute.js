@@ -21,7 +21,7 @@ router.post('/teknik-servis', (req, res) => {
         secure: true,
         auth: {
             user: "teknikservis@djidestek.com",
-            pass: "dji.destek.teknik.servis.1907.-"
+            pass: process.env.MAIL_1_PASSWORD
         },
         tls: {rejectUnauthorized: false}
     })
