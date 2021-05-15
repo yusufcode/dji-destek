@@ -51,15 +51,15 @@ router.post('/teknik-servis', (req, res) => {
             transporter.sendMail(mail, (err) => {
                 if (err) {
                     console.log('Mail could not send! Error:' + err)
+                    res.redirect('/?mail=failed')
                 } else {
                     console.log('Mail sent!')
+                    res.redirect('/?mail=sent')
                 }
             })
 
         }
     });
-
-    res.redirect('/')
     
 })
 
