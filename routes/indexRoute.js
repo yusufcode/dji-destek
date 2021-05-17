@@ -5,12 +5,28 @@ const ejs = require('ejs')
 const fs = require("fs");
 const nodeMailer = require('nodemailer')
 
+const DroneSeries = require('../models/DroneSeries')
+const DroneModels = require('../models/DroneModels')
+const DroneAltModels = require('../models/DroneAltModels')
+
 router.get('/', (req, res) => {
     res.render('index', { title: "", bodyClass: "" })
 })
 
-router.get('/teknik-servis', (req, res) => {
-    res.render('teknik-servis', { title: "Teknik Servis", bodyClass: "technic-service-page navbar-backgrounded" })
+router.get('/teknik-servis/:droneSerial?/:droneModel?/:droneAltModel?', (req, res) => {
+
+    const droneSerial = req.params.droneSerial
+    const droneModel = req.params.droneModel
+    const droneAltModel = req.params.droneAltModel
+
+    DroneSeries.findOne({url: droneSerial}, (err, droneSeries) => {
+        DroneModels.findOne({url: droneModel}, (err, droneModels) => {
+            DroneAltModels.findOne({url: droneAltModel}, (err, droneAltModels) => {
+                res.render('teknik-servis', { title: "Teknik Servis", bodyClass: "technic-service-page navbar-backgrounded", params: req.params, droneSerial: droneSeries, droneModel: droneModels, droneAltModel: droneAltModels })
+            })    
+        })
+    })
+
 })
 
 router.post('/teknik-servis', (req, res) => {
@@ -36,6 +52,8 @@ router.post('/teknik-servis', (req, res) => {
         contactNumber: req.body.contactNumber,
         contactEmail: req.body.contactEmail
     }]
+
+    console.log(mailInfo)
     
     ejs.renderFile("./views/layout-mail.ejs", { mailInfo: mailInfo }, (err, data) => {
         if (err) {

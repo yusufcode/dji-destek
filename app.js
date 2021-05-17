@@ -5,6 +5,10 @@ const mongoose = require('mongoose')
 require('dotenv/config')
 const bodyParser = require('body-parser')
 
+//MODELS
+require('./models/DroneSeries')
+require('./models/DroneModels')
+
 //SET
 app.set('view engine', 'ejs')
 
@@ -21,11 +25,15 @@ const indexRoute = require('./routes/indexRoute')
 app.use('/', indexRoute)
 
 //DB
-/*
-mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
-    console.log('Connected to DB!')
+
+mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true }, (err) => {
+    if(err) {
+        console.log('ERROR! DB Connection is fault!')
+    } else {
+        console.log('Connected to DB!')
+    }
 });
-*/
+
 
 //SERVER
 const port = process.env.PORT || 5001

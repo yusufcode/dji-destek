@@ -142,13 +142,12 @@ html {}
     content: '\f078';
     color: white;
     font-size: 12px;
-    padding-top: 4.5px;
-    padding-right: 5px;
-    transition: 0.2s all;
+    display: inline-block;
+    transition: 0.3s all;
 }
 
 .navbar-menu-item.dropable.hovered::after {
-    content: '\f077';
+    transform: rotate(180deg);
 }
 
 .navbar.background .navbar-menu-item.dropable::after,
@@ -841,16 +840,6 @@ html {}
     border: 1px solid #999;
     border-radius: 15px;
     background-color: white;
-}
-
-.technic-service-page .contact-card .select2 option:not(:first-child),
-.technic-service-page .contact-card .select3 option:not(:first-child) {
-    display: none;
-}
-
-.technic-service-page .contact-card .select2 option.selectable,
-.technic-service-page .contact-card .select3 option.selectable {
-    display: block;
 }
 
 @media (max-width: 768px) {

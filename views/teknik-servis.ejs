@@ -2,7 +2,6 @@
 <div class="content">
     <div class="container">
         
-
         <div class="contact-card">
             <form action="/teknik-servis" method="POST">
 
@@ -11,63 +10,27 @@
                 </div>
 
                 <div class="card-body">
+
+                    <% if(params.droneSerial && droneSerial) {%>
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Drone Serisi</label>
-                        <select name="droneSerialName" class="form-control select1" id="exampleFormControlSelect1" >
-                            <option name="droneSerialName" value="Seçilmedi" catId="0" disabled hidden selected="selected">Seri Seçiniz...</option>
-                            <option name="droneSerialName" value="Inspire" catId="1">Inspire</option>
-                            <option name="droneSerialName" value="Phantom" catId="2">Phantom</option>
-                            <option name="droneSerialName" value="Mavic" catId="3">Mavic</option>
-                            <option name="droneSerialName" value="Spark" catId="4">Spark</option>
-                        </select>
+                        <input type="text" name="droneSerialName" class="form-control" value="<%=droneSerial.name%>" readonly="readonly">
                     </div>
+                    <% } %>
 
-                    <div class="form-group">
-                        <label for="exampleFormControlSelect2">Drone Modeli</label>
-                        <select name="droneModelName" class="form-control select2" id="exampleFormControlSelect2" >
-                            <option name="droneModelName" value="Seçilmedi" catId="0" disabled hidden selected="selected">Model Seçiniz...</option>
-                            <option name="droneModelName" value="Inspire 1" catId="1-1">Inspire 1</option>
-                            <option name="droneModelName" value="Inspire 2" catId="1-2">Inspire 2</option>
-                            <option name="droneModelName" value="Phantom 3" catId="2-1">Phantom 3</option>
-                            <option name="droneModelName" value="Phantom 4" catId="2-2">Phantom 4</option>
-                            <option name="droneModelName" value="Mavic 1" catId="3-1">Mavic 1</option>
-                            <option name="droneModelName" value="Mavic 2" catId="3-2">Mavic 2</option>
-                            <option name="droneModelName" value="Mavic Enterprise" catId="3-3">Mavic Enterprise</option>
-                            <option name="droneModelName" value="Mavic Mini" catId="3-4">Mavic Mini</option>
-                            <option name="droneModelName" value="Spark" catId="4-1">Spark</option>
-                        </select>
-                    </div>
+                    <% if(params.droneModel && droneModel) {%>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Drone Modeli</label>
+                            <input type="text" name="droneModelName" class="form-control" value="<%=droneModel.name%>" readonly="readonly">
+                        </div>
+                    <% } %>
 
-                    <div class="form-group">
-                        <label for="exampleFormControlSelect3">Drone Alt Modeli</label>
-                        <select name="droneAltModelName" class="form-control select3" id="exampleFormControlSelect3" >
-                            <option name="droneAltModelName" value="Seçilmedi" catId="0" disabled hidden selected="selected">Alt Model Seçiniz...</option>
-                            <option name="droneAltModelName" value="Inspire 1" catId="1-1">Inspire 1</option>
-                            <option name="droneAltModelName" value="Inspire 2" catId="1-2">Inspire 2</option>
-                            <option name="droneAltModelName" value="Standard" catId="2-1">Standard</option>
-                            <option name="droneAltModelName" value="Advanced" catId="2-1">Advanced</option>
-                            <option name="droneAltModelName" value="Pro" catId="2-1">Pro</option>
-                            <option name="droneAltModelName" value="Standard" catId="2-2">Standard</option>
-                            <option name="droneAltModelName" value="Advanced" catId="2-2">Advanced</option>
-                            <option name="droneAltModelName" value="Pro" catId="2-2">Pro</option>
-                            <option name="droneAltModelName" value="Obcidian Black" catId="2-2">Obcidian Black</option>
-                            <option name="droneAltModelName" value="V2" catId="2-2">V2</option>
-                            <option name="droneAltModelName" value="Air"catId="3-1">Air</option>
-                            <option name="droneAltModelName" value="Air 2" catId="3-1">Air 2</option>
-                            <option name="droneAltModelName" value="Pro" catId="3-1">Pro</option>
-                            <option name="droneAltModelName" value="Pro Platinum" catId="3-1">Pro Platinum</option>
-                            <option name="droneAltModelName" value="Zoom" catId="3-2">Zoom</option>
-                            <option name="droneAltModelName" value="Pro" catId="3-2">Pro</option>
-                            <option name="droneAltModelName" value="Dual" catId="3-2">Dual</option>
-                            <option name="droneAltModelName" value="Advanced" catId="3-2">Advanced</option>
-                            <option name="droneAltModelName" value="Dual"catId="3-3">Dual</option>
-                            <option name="droneAltModelName" value="Zoom" catId="3-3">Zoom</option>
-                            <option name="droneAltModelName" value="Advanced" catId="3-3">Advanced</option>
-                            <option name="droneAltModelName" value="Mini 1" catId="3-4">Mini 1</option>
-                            <option name="droneAltModelName" value="Mini 2" catId="3-4">Mini 2</option>
-                            <option name="droneAltModelName" value="Spark" catId="4-1">Spark</option>
-                        </select>
-                    </div>
+                    <% if(params.droneAltModel && droneAltModel) {%>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Drone Alt Modeli</label>
+                            <input type="text" name="droneAltModelName" class="form-control" value="<%=droneAltModel.name%>" readonly="readonly">
+                        </div>
+                    <% } %>
 
                     <div class="form-group">
                         <label for="exampleFormControlSelect3">Problem Başlığı</label>

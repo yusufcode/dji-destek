@@ -94,71 +94,8 @@ timer = setInterval(function () {
 
 $(document).on('change', '.technic-service-page .select1', function () {
 
-    /* selected select1 */
-    var Cat1Id = $(this).children('option:selected').attr('catId');
-
-    /* remove old selectable options */
-    $('.technic-service-page .select2 option')
-        .removeClass('selectable');
-
-    /* show selectable options */
-    $('.technic-service-page .select2 option[catId^="' + Cat1Id + '"]')
-        .addClass('selectable');
-
-    /* unselect the selected option when select1 changed */
-    $('.technic-service-page .select2 option[selected="selected"]')
-        .first()
-        .removeAttr('selected');
-
-    /* select the first select2 option when select1 changed */
-    $('.technic-service-page .select2 option.selectable')
-        .first()
-        .attr('selected', 'selected');
-
-
-    /* selected select2 */
-    var Cat2Id = $(this).closest('.contact-card').find('.select2').children('option:selected').attr('catId');
-
-    /* remove old selectable options */
-    $('.technic-service-page .select3 option')
-        .removeClass('selectable');
-
-    /* show selectable options */
-    $('.technic-service-page .select3 option[catId="' + Cat2Id + '"]')
-        .addClass('selectable');
-
-    /* unselect the selected option when select2 changed */
-    $('.technic-service-page .select3 option[selected="selected"]')
-        .first()
-        .removeAttr('selected');
-
-    /* select the first select3 option when select2 changed */
-    $('.technic-service-page .select3 option.selectable')
-        .first()
-        .attr('selected', 'selected');
+    
 
 });
 
-$(document).on('change', '.technic-service-page .select2', function () {
 
-    /* selected select2 */
-    var Cat2Id = $(this).children('option:selected').attr('catId');
-
-    /* remove old selectable options */
-    $('.technic-service-page .select3 option')
-        .removeClass('selectable');
-
-    /* show selectable options */
-    $('.technic-service-page .select3 option[catId="' + Cat2Id + '"]')
-        .addClass('selectable');
-
-    /* unselect the selected option when select2 changed */
-    $('.technic-service-page .select3 option[selected="selected"]')
-        .first()
-        .removeAttr('selected');
-
-    /* select the first select3 option when select2 changed */
-    $('.technic-service-page .select3 option.selectable')
-        .first()
-        .attr('selected', 'selected');
-});
