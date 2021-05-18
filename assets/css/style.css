@@ -826,9 +826,17 @@ html {}
 
 /* not-found */
 
-.not-found .footer{
-    position: fixed;
-    bottom: 0;
+@media (max-height: 768px) {
+    .not-found .content{
+        min-height: 500px;
+    }
+}
+
+@media (min-height: 768px) {
+    .not-found .footer{
+        position: fixed;
+        bottom: 0;
+    }
 }
 
 /* technic-service-page */
