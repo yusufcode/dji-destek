@@ -59,43 +59,15 @@ $(document).on('click', '.navbar-menu-item.dropable', function () {
 
 /* SLIDER */
 
-$(".slider-item").click(function () {
-    $(".slider-item.active-item").removeClass("active-item");
-    $(this).addClass("active-item");
-});
-
-$(".slider-after").click(function () {
-
-    if ($(".slider-item.active-item").next().attr("class") === "slider-item") {
-        $(".slider-item.active-item").removeClass("active-item").next().addClass("active-item");
-    }
-
-});
-
-$(".slider-before").click(function () {
-
-    if ($(".slider-item.active-item").prev().attr("class") === "slider-item") {
-        $(".slider-item.active-item").removeClass("active-item").prev().addClass("active-item");
-    }
-
-});
-
-timer = setInterval(function () {
-    if ($(".slider-item.active-item").next().attr("class") === "slider-item") {
-        $(".slider-item.active-item").removeClass("active-item").next().addClass("active-item");
-
-    } else if ($(".slider-item.active-item").next().attr("class") !== "slider-item") {
-        $(".slider-item.active-item").removeClass("active-item");
-        $(".slider-navbar .slider-item").first().addClass("active-item");
-    }
-}, 2500)
-
-/* SUB-SELECTS */
-
-$(document).on('change', '.technic-service-page .select1', function () {
-
+const swiper = new Swiper('.swiper-container', {
     
-
-});
+    direction: 'horizontal',
+    autoplay: {
+        delay: 3000
+      },
+    scrollbar: {
+      el: '.swiper-scrollbar',
+    }
+  });
 
 

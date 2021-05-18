@@ -19,15 +19,6 @@
     <!-- RESPONSIVE -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- BOOTSTRAP -->
-    <link rel="stylesheet" href="/assets/css/bootstrap/bootstrap-4.3.1.min.css">
-
-    <!-- FEATHER ICONS -->
-    <link rel="stylesheet" href="/assets/css/feather/feather.css">
-
-    <!-- FONTAWESOME ICONS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-
     <!-- WEBSITE DESCRIPTION -->
     <meta name="description" content="Dji ürünleri için teknik servis, bakım ve onarım hizmeti vermekteyiz. Yeni Dji ürünleri satışı, yedek parça ve aksesuar teminimiz de bulunmaktadır.">
 
@@ -40,8 +31,20 @@
     <!-- WEBSITE ICON -->
     <link rel="icon" href="/assets/img/logo/favicon.svg" sizes="16x16">
 
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="/assets/css/bootstrap/bootstrap-4.3.1.min.css">
+
+    <!-- FEATHER -->
+    <link rel="stylesheet" href="/assets/css/feather/feather.css">
+
+    <!-- FONTAWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+    <!-- SWIPER -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
     <!-- WEBSITE STYLE -->
-    <link rel="stylesheet" href="/assets/css/style.css?v=1.7">
+    <link rel="stylesheet" href="/assets/css/style.css?v=1.8">
 
     <!-- TITLE -->
     <% if (title) { %>
@@ -232,8 +235,10 @@
     </nav>
 
     <!-- CONTENT -->
-    <%- body %>
-
+    <div class="content">
+        <%- body %>
+    </div>
+    
     <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
@@ -331,11 +336,14 @@
     <script src="/assets/js/bootstrap/popper-1.14.7.min.js"></script>
     <script src="/assets/js/bootstrap/bootstrap-4.3.1.min.js"></script>
 
+    <!-- SWIPER -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
     <!-- COOKIES -->
     <script src="/assets/js/cookies.js"></script>
 
     <!-- SCRIPTS -->
-    <script src="/assets/js/scripts.js?v=1.0"></script>
+    <script src="/assets/js/scripts.js?v=1.1"></script>
 
 
 </body>

@@ -1,80 +1,79 @@
-<div class="content">
-    <div class="container">
-        
-        <div class="contact-card">
-            <form action="/teknik-servis" method="POST">
 
-                <div class="card-header">
-                    Teknik Servis Bilgileri
+<div class="container">
+    
+    <div class="contact-card">
+        <form action="/teknik-servis" method="POST">
+
+            <div class="card-header">
+                Teknik Servis Bilgileri
+            </div>
+
+            <div class="card-body">
+
+                <% if(params.droneSerial && droneSerial) {%>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Drone Serisi</label>
+                    <input type="text" name="droneSerialName" class="form-control" value="<%=droneSerial.name%>" readonly="readonly">
+                </div>
+                <% } %>
+
+                <% if(params.droneModel && droneModel) {%>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Drone Modeli</label>
+                        <input type="text" name="droneModelName" class="form-control" value="<%=droneModel.name%>" readonly="readonly">
+                    </div>
+                <% } %>
+
+                <% if(params.droneAltModel && droneAltModel) {%>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Drone Alt Modeli</label>
+                        <input type="text" name="droneAltModelName" class="form-control" value="<%=droneAltModel.name%>" readonly="readonly">
+                    </div>
+                <% } %>
+
+                <div class="form-group">
+                    <label for="exampleFormControlSelect3">Problem Başlığı</label>
+                    <select name="problemTitle" class="form-control select4" id="exampleFormControlSelect3" >
+                        <option name="problemTitle" value="Spark" catId="0" disabled hidden selected="selected">Problem Seçiniz...</option>
+                        <option name="problemTitle" value="Drone Çalışmıyor">Drone Çalışmıyor</option>
+                        <option name="problemTitle" value="Uyduya Bağlanamıyor">Uyduya Bağlanamıyor</option>
+                        <option name="problemTitle" value="Kalibrasyon Yapılmıyor">Kalibrasyon Yapılamıyor</option>
+                        <option name="problemTitle" value="Diğer">Diğer</option>
+                    </select>
                 </div>
 
-                <div class="card-body">
-
-                    <% if(params.droneSerial && droneSerial) {%>
-                    <div class="form-group">
-                        <label for="exampleFormControlSelect1">Drone Serisi</label>
-                        <input type="text" name="droneSerialName" class="form-control" value="<%=droneSerial.name%>" readonly="readonly">
-                    </div>
-                    <% } %>
-
-                    <% if(params.droneModel && droneModel) {%>
-                        <div class="form-group">
-                            <label for="exampleFormControlSelect1">Drone Modeli</label>
-                            <input type="text" name="droneModelName" class="form-control" value="<%=droneModel.name%>" readonly="readonly">
-                        </div>
-                    <% } %>
-
-                    <% if(params.droneAltModel && droneAltModel) {%>
-                        <div class="form-group">
-                            <label for="exampleFormControlSelect1">Drone Alt Modeli</label>
-                            <input type="text" name="droneAltModelName" class="form-control" value="<%=droneAltModel.name%>" readonly="readonly">
-                        </div>
-                    <% } %>
-
-                    <div class="form-group">
-                        <label for="exampleFormControlSelect3">Problem Başlığı</label>
-                        <select name="problemTitle" class="form-control select4" id="exampleFormControlSelect3" >
-                            <option name="problemTitle" value="Spark" catId="0" disabled hidden selected="selected">Problem Seçiniz...</option>
-                            <option name="problemTitle" value="Drone Çalışmıyor">Drone Çalışmıyor</option>
-                            <option name="problemTitle" value="Uyduya Bağlanamıyor">Uyduya Bağlanamıyor</option>
-                            <option name="problemTitle" value="Kalibrasyon Yapılmıyor">Kalibrasyon Yapılamıyor</option>
-                            <option name="problemTitle" value="Diğer">Diğer</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Problem Açıklaması</label>
-                        <textarea name="problemText" class="form-control" id="exampleFormControlTextarea1" placeholder="Probleminizi Anlatınız..." rows="5" ></textarea>
-                    </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Problem Açıklaması</label>
+                    <textarea name="problemText" class="form-control" id="exampleFormControlTextarea1" placeholder="Probleminizi Anlatınız..." rows="5" ></textarea>
                 </div>
+            </div>
 
-                <div class="card-header">
-                    İletişim Bilgileriniz
+            <div class="card-header">
+                İletişim Bilgileriniz
+            </div>
+
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Ad Soyad</label>
+                    <input name="contactName" type="text" class="form-control" id="exampleFormControlInput1"  placeholder="Adınızı ve Soyadınızı Giriniz...">
                 </div>
-
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="exampleFormControlInput1">Ad Soyad</label>
-                        <input name="contactName" type="text" class="form-control" id="exampleFormControlInput1"  placeholder="Adınızı ve Soyadınızı Giriniz...">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="exampleFormControlInput1">Telefon Numarası</label>
-                        <input name="contactNumber" type="tel" class="form-control" id="exampleFormControlInput1"  placeholder="Telefon Numaranızı Giriniz...">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="exampleFormControlInput1">Email Adresi (İsteğe Bağlı)</label>
-                        <input name="contactEmail" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Email Adresinizi Giriniz...">
-                    </div>
+                
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Telefon Numarası</label>
+                    <input name="contactNumber" type="tel" class="form-control" id="exampleFormControlInput1"  placeholder="Telefon Numaranızı Giriniz...">
                 </div>
-
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Gönder</button>
+                
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Email Adresi (İsteğe Bağlı)</label>
+                    <input name="contactEmail" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Email Adresinizi Giriniz...">
                 </div>
-            </form>
-        </div>
+            </div>
 
-
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Gönder</button>
+            </div>
+        </form>
     </div>
+
+
 </div>
