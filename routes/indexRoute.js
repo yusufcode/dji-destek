@@ -13,6 +13,17 @@ router.get('/', (req, res) => {
     res.render('index', { title: "", bodyClass: "" })
 })
 
+router.get('/sitemap', (req, res) => {
+    fs.readFile('./views/sitemap.html', (err, data) => {
+        if (err) {
+            console.log(err)
+        } else{
+            res.write(data)
+        }
+        res.end()
+    })
+})
+
 router.get('/teknik-servis/:droneSerial?/:droneModel?/:droneAltModel?', (req, res) => {
 
     const droneSerial = req.params.droneSerial
