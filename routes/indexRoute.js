@@ -13,8 +13,8 @@ router.get('/', (req, res) => {
     res.render('index', { title: "", bodyClass: "" })
 })
 
-router.get('/sitemap', (req, res) => {
-    fs.readFile('./views/sitemap.html', (err, data) => {
+router.get('/sitemap.xml', (req, res) => {
+    fs.readFile('./views/sitemap.xml', (err, data) => {
         if (err) {
             console.log(err)
         } else{
