@@ -92,8 +92,13 @@ router.post('/teknik-servis', (req, res) => {
     
 })
 
-router.get('*', (req, res) => {
-    res.render('404', { title: "404", bodyClass: "not-found navbar-backgrounded" })
+router.get('/404', (req, res) => {
+    res.render('404', { title: "Sayfa Bulunamadı", bodyClass: "not-found navbar-backgrounded" })
 })
+
+router.get('*', (req, res) => {
+    res.redirect('/404')
+})
+
 
 module.exports = router;
