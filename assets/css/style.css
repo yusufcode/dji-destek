@@ -465,7 +465,7 @@ html {}
 .footer {
     width: 100%;
     background-color: #272727;
-    padding: 0 100px;
+    /*padding: 0 100px;*/
 }
 
 /* footer-top */
@@ -804,42 +804,34 @@ html {}
     }
 }
 
-/* navbar-backgrounded */
+/* INNER PAGE */
 
-.navbar-backgrounded {
+.inner-page {
     background-color: #f2f2f2;
 }
 
-.navbar-backgrounded .content {
-    padding-top: 85px;
+.inner-page .content {
+    margin-top: 90px;
+    min-height: calc(100vh - (90px + 260px));
 }
-.navbar-backgrounded .content .container {
-    padding: 25px 0;
+
+.inner-page .content .container,
+.inner-page .content .container-fluid {
+    padding: 15px;
 }
 
 @media (max-width: 768px) {
-    .navbar-backgrounded .content {
-        padding: 0 10px;
-        padding-top: 50px;
+    .inner-page .content {
+        margin-top: 65px;
+        min-height: calc(110vh - (90px + 260px));
     }
 }
 
-/* not-found */
+/* 404 */
 
-@media (max-height: 768px) {
-    .not-found .content{
-        min-height: 500px;
-    }
-}
 
-@media (min-height: 768px) {
-    .not-found .footer{
-        position: fixed;
-        bottom: 0;
-    }
-}
 
-/* technic-service-page */
+/* TECHNIC SERVICE PAGE */
 
 .technic-service-page .contact-card {
     max-width: 600px;
@@ -854,34 +846,4 @@ html {}
     .technic-service-page .contact-card {
         width: 100%;
     }
-}
-
-/* shop-page */
-
-.shop-page {
-    background-color: #f2f2f2;
-}
-
-.shop-page .content .container {
-    height: 600px;
-}
-
-/* blog-page */
-
-.blog-page {
-    background-color: #f2f2f2;
-}
-
-.blog-page .content .container {
-    height: 600px;
-}
-
-/* contact-page */
-
-.contact-page {
-    background-color: #f2f2f2;
-}
-
-.contact-page .content .container {
-    height: 600px;
 }

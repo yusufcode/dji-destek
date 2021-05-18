@@ -13,17 +13,6 @@ router.get('/', (req, res) => {
     res.render('index', { title: "", bodyClass: "" })
 })
 
-router.get('/sitemap.xml', (req, res) => {
-    fs.readFile('./views/sitemap.xml', (err, data) => {
-        if (err) {
-            console.log(err)
-        } else{
-            res.write(data)
-        }
-        res.end()
-    })
-})
-
 router.get('/teknik-servis/:droneSerial?/:droneModel?/:droneAltModel?', (req, res) => {
 
     const droneSerial = req.params.droneSerial
@@ -33,7 +22,7 @@ router.get('/teknik-servis/:droneSerial?/:droneModel?/:droneAltModel?', (req, re
     DroneSeries.findOne({url: droneSerial}, (err, droneSeries) => {
         DroneModels.findOne({url: droneModel}, (err, droneModels) => {
             DroneAltModels.findOne({url: droneAltModel}, (err, droneAltModels) => {
-                res.render('teknik-servis', { title: "Teknik Servis", bodyClass: "technic-service-page navbar-backgrounded", params: req.params, droneSerial: droneSeries, droneModel: droneModels, droneAltModel: droneAltModels })
+                res.render('teknik-servis', { title: "Teknik Servis", bodyClass: "technic-service-page navbar-backgrounded inner-page", params: req.params, droneSerial: droneSeries, droneModel: droneModels, droneAltModel: droneAltModels })
             })    
         })
     })
@@ -93,7 +82,18 @@ router.post('/teknik-servis', (req, res) => {
 })
 
 router.get('/404', (req, res) => {
-    res.render('404', { title: "Sayfa Bulunamadı", bodyClass: "not-found navbar-backgrounded" })
+    res.render('404', { title: "Sayfa Bulunamadı", bodyClass: "not-found navbar-backgrounded inner-page" })
+})
+
+router.get('/sitemap.xml', (req, res) => {
+    fs.readFile('./views/sitemap.xml', (err, data) => {
+        if (err) {
+            console.log(err)
+        } else{
+            res.write(data)
+        }
+        res.end()
+    })
 })
 
 router.get('*', (req, res) => {
