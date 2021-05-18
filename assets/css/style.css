@@ -683,13 +683,60 @@ html {}
 .three-card {
     width: 100%;
     height: 100%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
 }
 
-.three-card img {
+.three-card a{
+    display: block;
+    height: 100%;
+}
+
+.three-card a:hover .texts{
+    background-color: rgba(0,0,0,0.75);
+}
+
+.three-card .texts{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.55);
+    transition: 0.2s all;
+}
+
+.three-card .texts-inside{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 100%;
+    padding: 10px;
+}
+
+.three-card .texts-inside h2{
+    font-size: 24px;
+    color: white;
+    text-align: center;
+    font-weight: 500;
+}
+
+.three-card .texts-inside p{
+    font-size: 14px;
+    color: rgba(256,256,256,0.95);
+    text-align: center;
+    font-weight: 600;
+}
+
+.three-card .image{
+    height: 100%;
+    width: 100%;
+}
+
+.three-card .image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 20px;
 }
 
 @media (max-width: 768px) {
