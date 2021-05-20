@@ -114,7 +114,9 @@ router.post('/teknik-servis', (req, res) => {
 })
 
 router.get('/404', (req, res) => {
-    res.render('404', { title: "Sayfa Bulunamadı", bodyClass: "not-found navbar-backgrounded inner-page" })
+    Pages.findOne({page: "404"}, (err, page) => {
+        res.render('404', { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass })
+    })
 })
 
 router.get('/sitemap.xml', (req, res) => {
