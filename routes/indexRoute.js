@@ -23,11 +23,15 @@ router.get('/teknik-servis/:droneSerial?/:droneModel?/:droneAltModel?', (req, re
     const droneSerial = req.params.droneSerial
     const droneModel = req.params.droneModel
     const droneAltModel = req.params.droneAltModel
+    let droneSerialCode = ""
     let droneModelCode = ""
 
     Pages.findOne({page: "teknik-servis"}, (err, page) => {
         DroneSeries.findOne({url: droneSerial}, (err, droneSeries) => {
-            DroneModels.findOne({url: droneModel}, (err, droneModels) => {
+
+            if(droneAltModel) {droneSerialCode = new RegExp('^' + droneSeries.code)}
+            DroneModels.findOne({url: droneModel, code: droneSerialCode}, (err, droneModels) => {
+                
                 if(droneAltModel) {droneModelCode = new RegExp('^' + droneModels.code)}
                 DroneAltModels.findOne({url: droneAltModel, code: droneModelCode}, (err, droneAltModels) => {
                     
