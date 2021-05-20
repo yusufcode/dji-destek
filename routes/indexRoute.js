@@ -5,12 +5,17 @@ const ejs = require('ejs')
 const fs = require("fs");
 const nodeMailer = require('nodemailer')
 
+const Pages = require('../models/Pages')
 const DroneSeries = require('../models/DroneSeries')
 const DroneModels = require('../models/DroneModels')
 const DroneAltModels = require('../models/DroneAltModels')
 
 router.get('/', (req, res) => {
-    res.render('index', { title: "", bodyClass: "" })
+
+    Pages.findOne({page: "index"}, (err, page) => {
+        res.render('index', { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass })
+    })
+
 })
 
 router.get('/teknik-servis/:droneSerial?/:droneModel?/:droneAltModel?', (req, res) => {
@@ -18,11 +23,32 @@ router.get('/teknik-servis/:droneSerial?/:droneModel?/:droneAltModel?', (req, re
     const droneSerial = req.params.droneSerial
     const droneModel = req.params.droneModel
     const droneAltModel = req.params.droneAltModel
+    let droneModelCode = ""
 
-    DroneSeries.findOne({url: droneSerial}, (err, droneSeries) => {
-        DroneModels.findOne({url: droneModel}, (err, droneModels) => {
-            DroneAltModels.findOne({url: droneAltModel}, (err, droneAltModels) => {
-                res.render('teknik-servis', { title: "Teknik Servis", bodyClass: "technic-service-page navbar-backgrounded inner-page", params: req.params, droneSerial: droneSeries, droneModel: droneModels, droneAltModel: droneAltModels })
+    Pages.findOne({page: "teknik-servis"}, (err, page) => {
+        DroneSeries.findOne({url: droneSerial}, (err, droneSeries) => {
+            DroneModels.findOne({url: droneModel}, (err, droneModels) => {
+                if(droneAltModel) {droneModelCode = new RegExp('^' + droneModels.code)}
+                DroneAltModels.findOne({url: droneAltModel, code: droneModelCode}, (err, droneAltModels) => {
+                    
+                    if(droneSerial && droneSeries) {
+                        page.title = droneSeries.title
+                        page.description = droneSeries.description
+                        page.keywords = droneSeries.keywords
+                    }
+                    if(droneModel && droneModels) {
+                        page.title = droneModels.title
+                        page.description = droneModels.description
+                        page.keywords = droneModels.keywords
+                    }
+                    if(droneAltModel && droneAltModels) {
+                        page.title = droneAltModels.title
+                        page.description = droneAltModels.description
+                        page.keywords = droneAltModels.keywords
+                    }
+                
+                    res.render('teknik-servis', { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass, params: req.params, droneSerial: droneSeries, droneModel: droneModels, droneAltModel: droneAltModels })
+                })
             })    
         })
     })

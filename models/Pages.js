@@ -1,12 +1,12 @@
 const mongoose = require('mongoose')
 
 const Schema = new mongoose.Schema({
-    name: {type:String},
-    url: {type:String},
+    page: {type:String},
     title: {type:String},
     description: {type:String},
     keywords: {type:String},
-    code: {type:String}
+    author: {type:String},
+    bodyClass: {type:String}
 }, {timestamps:true})
 
-module.exports = mongoose.model('dronemodels', Schema)
+module.exports = mongoose.model('pages', Schema)
