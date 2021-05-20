@@ -28,12 +28,14 @@ router.get('/teknik-servis/:droneSerial?/:droneModel?/:droneAltModel?', (req, re
 
     Pages.findOne({page: "teknik-servis"}, (err, page) => {
         DroneSeries.findOne({url: droneSerial}, (err, droneSeries) => {
-
-            if(droneAltModel) {droneSerialCode = new RegExp('^' + droneSeries.code)}
+            
+            if(droneModel) {droneSerialCode = new RegExp('^' + droneSeries.code)}
             DroneModels.findOne({url: droneModel, code: droneSerialCode}, (err, droneModels) => {
-                
+                if(droneModel && !droneModels) {res.redirect('/teknik-servis/'+droneSerial)}
+
                 if(droneAltModel) {droneModelCode = new RegExp('^' + droneModels.code)}
                 DroneAltModels.findOne({url: droneAltModel, code: droneModelCode}, (err, droneAltModels) => {
+                    if(droneAltModel && !droneAltModels) {res.redirect('/teknik-servis/'+droneSerial+'/'+droneModel)}
                     
                     if(droneSerial && droneSeries) {
                         page.title = droneSeries.title
