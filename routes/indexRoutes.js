@@ -214,9 +214,9 @@ router.get('/blog/:blogUrl', (req, res) => {
 
     const blogUrl = req.params.blogUrl
 
-    Blogs.findOne({url: blogUrl, blogStatus: 1}, (err, blog) => {
-        Blogs.findOne({url: {$lt: blogUrl}, blogStatus: 1}, (err, previousBlog) => {
-            Blogs.findOne({url: {$gt: blogUrl}, blogStatus: 1}, (err, nextBlog) => {
+    Blogs.findOne({url: blogUrl, blogGeneralStatus: 1}, (err, blog) => {
+        Blogs.findOne({url: {$lt: blogUrl}, blogGeneralStatus: 1}, (err, previousBlog) => {
+            Blogs.findOne({url: {$gt: blogUrl}, blogGeneralStatus: 1}, (err, nextBlog) => {
                 
                 if (!blog) {
                     res.redirect('/404')

@@ -32,7 +32,9 @@ Schema.statics.login = async function(email, password) {
 
     const user = await this.findOne({email})
 
-    if (user) {
+    if (user.status == false) {
+        throw 'Admin paneline giriş için izniniz bulunmuyor.'
+    } else if (user) {
         const auth = await bcrypt.compare(password,user.password)
         if (auth) {
             return user
