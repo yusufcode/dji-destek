@@ -57,6 +57,7 @@
                     </td>  
                     <td class="blog-status">
                         <input type="checkbox" class="blog-status-edit" blog-id="<%-blog._id%>" <% if(blog.blogStatus){%> checked <%}%>>
+                        <input type="checkbox" class="blog-general-status-edit" blog-id="<%-blog._id%>" <% if(blog.blogGeneralStatus){%> checked <%}%>>
                     </td>
                     <td class="blog-action">
                         <a href="/admin/blog-duzenle/<%- blog._id %>" class="blog-edit"><i class="far fa-edit"></i></a>

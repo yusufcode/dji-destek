@@ -61,7 +61,8 @@ router.post('/blog-duzenle/', (req, res) => {
             blogTitle: req.body.blogTitle,
             blogText: req.body.blogText,
             blogImage: req.body.blogImage,
-            blogStatus: req.body.blogStatus
+            blogStatus: req.body.blogStatus,
+            blogGeneralStatus: req.body.blogGeneralStatus
         },
         (err,data) => {
             if(data.n == 1){
@@ -129,6 +130,39 @@ router.post('/blog-durum/:blogId', (req, res) => {
                 blogId, 
                 {
                     blogStatus: true
+                },
+                (err,data) => {
+                    if(data) {res.send('trued')}
+                }
+            )
+        }
+
+        
+    })
+
+})
+
+router.post('/blog-genel-durum/:blogId', (req, res) => {
+
+    const blogId = req.params.blogId
+
+    Blogs.findById(blogId, (err,data) => {
+
+        if(data.blogGeneralStatus) {
+            Blogs.findByIdAndUpdate(
+                blogId, 
+                {
+                    blogGeneralStatus: false
+                },
+                (err,data) => {
+                    if(data) {res.send('falsed')}
+                }
+            )
+        } else {
+            Blogs.findByIdAndUpdate(
+                blogId, 
+                {
+                    blogGeneralStatus: true
                 },
                 (err,data) => {
                     if(data) {res.send('trued')}

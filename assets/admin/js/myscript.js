@@ -373,7 +373,8 @@ $(document).on('click', '.blog-edit-page .blog-edit-button', function(event) {
             blogTitle: $('.blog-edit-page input[name="blogTitle"]').val(),
             blogText: CKEDITOR.instances.ckeditor.getData(),
             blogImage: $('.blog-edit-page input[name="blogImage"]').val(),
-            blogStatus: $('.blog-edit-page input[name="blogStatus"]').prop('checked') ? 1 : 0
+            blogStatus: $('.blog-edit-page input[name="blogStatus"]').prop('checked') ? 1 : 0,
+            blogGeneralStatus: $('.blog-edit-page input[name="blogGeneralStatus"]').prop('checked') ? 1 : 0
         }),
         success: function(res){
 
@@ -429,6 +430,36 @@ $(document).on('click', '.blog-page .blog-status-edit', function(event) {
 
     $.ajax({
         url: '/admin/blog-durum/'+id+'',
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            _id: id
+        }),
+        success: function(res){
+
+            if(res == "trued") {
+                $this.prop('checked', true)
+            } else {
+                $this.prop('checked', false)
+            }
+
+        },
+        error: function(){
+            
+        }
+
+    })
+
+})
+
+/* EDIT-BLOG-GENERAL-STATUS AJAX */
+$(document).on('click', '.blog-page .blog-general-status-edit', function(event) {
+
+    $this = $(this)
+    const id = $this.attr('blog-id')
+
+    $.ajax({
+        url: '/admin/blog-genel-durum/'+id+'',
         method: 'POST',
         contentType: 'application/json',
         data: JSON.stringify({

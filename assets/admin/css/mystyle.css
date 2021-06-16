@@ -243,7 +243,8 @@ input.bad-form{
     text-align: center;
 }
 
-.blog-page table .blog-status-edit{
+.blog-page table .blog-status-edit,
+.blog-page table .blog-general-status-edit{
     outline: none;
 }
 
