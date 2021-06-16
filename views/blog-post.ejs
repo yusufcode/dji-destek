@@ -1,0 +1,51 @@
+<div class="container">
+
+    <div class="blog-post">
+        <h1><%- blog.blogTitle %></h1>
+        <p><%- blog.blogText %></p> 
+    </div>
+
+    <div class="blog-info-parter">
+        <div class="blog-posted-date">
+            <p>Yayınlanma Tarihi: <%- blogCreated %></p>
+            <% if (blogEdited) { %>
+            <p>Düzenlenme Tarihi: <%- blogEdited %></p>
+            <% } %>
+        </div>
+    
+        <div class="blog-author">
+            <p>Yazar: <%- blog.author %></p>
+        </div>
+    </div>
+
+    <% if(previousBlog || nextBlog) { %>
+    <div class="blog-change-buttons">
+
+        <% if (previousBlog) { %>
+        <div class="move-button left">
+            <a href="/blog/<%- previousBlog.url%>">
+                <i class="fas fa-arrow-left"></i>
+                <div class="button-texts">
+                    <p class="move-text">Önceki Blog</p>
+                    <p class="blog-name"><%- previousBlog.blogTitle %></p>
+                </div>
+            </a>
+        </div>
+        <% } %>
+
+        <% if (nextBlog) { %>
+        <div class="move-button right">
+            <a href="/blog/<%- nextBlog.url%>">
+                <div class="button-texts">
+                    <p class="move-text">Sonraki Blog</p>
+                    <p class="blog-name"><%- nextBlog.blogTitle %></p>
+                </div>
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+        <% } %>
+
+    </div>
+    <% } %>
+
+</div>

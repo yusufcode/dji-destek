@@ -1,0 +1,57 @@
+<div class="form-group">
+    <label>Sayfaya Git</label>
+    <p class="form-control-plaintext"><a href="/blog/<%- blog.url %>" target="_blank">https://www.djidestek.com/blog/<%- blog.url %></a></p>
+</div>
+
+<div class="form-group" style="display: block;">
+    <label>ID</label>
+    <input type="text" class="form-control" name="_id" value="<%- blog._id %>" readonly />
+</div>
+
+<div class="form-group">
+    <label>Sayfa URL</label>
+    <input type="text" class="form-control" name="url" value="<%- blog.url %>"/>
+</div>
+
+<div class="form-group">
+    <label>Sayfa Başlığı</label>
+    <input type="text" class="form-control" name="title" value="<%- blog.title %>"/>
+</div>
+
+<div class="form-group">
+    <label>Sayfa Açıklaması</label>
+    <input type="text" class="form-control" name="description" value="<%- blog.description %>"/>
+</div>
+
+<div class="form-group">
+    <label>Sayfa Anahtar Kelimeleri</label>
+    <input type="text" class="form-control" name="keywords" value="<%- blog.keywords %>"/>
+</div>
+
+<div class="form-group">
+    <label>Blog Yazarı</label>
+    <input type="text" class="form-control" name="author" value="<%- blog.author %>"/>
+</div>
+
+<div class="form-group">
+    <label>Blog Adı</label>
+    <input type="text" class="form-control" name="blogTitle" value="<%- blog.blogTitle %>"/>
+</div>
+
+<div class="form-group">
+    <label>Blog Görseli</label>
+    <input type="text" class="form-control" name="blogImage" value="<%- blog.blogImage %>"/>
+</div>
+
+<div class="form-group">
+    <label>Blog Metni</label>
+    <textarea class="form-control" id="ckeditor" name="blogText"><%- blog.blogText %></textarea>
+</div>
+
+<div class="form-group">
+    <label>Blog Durumu</label><br>
+    <input type="checkbox" name="blogStatus" <%if(- blog.blogStatus ) {%> checked <% } %>/>
+</div>
+
+<a href="/admin/blog" class="btn btn-light">Geri</a>
+<button class="btn btn-primary blog-edit-button">Güncelle</button>

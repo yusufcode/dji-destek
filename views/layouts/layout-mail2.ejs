@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        p{
+            margin: 0px;
+            margin-bottom: 2.5px;
+        }
+    </style>
+</head>
+<body>
+
+    <% mailInfo.forEach(info => { %>
+
+        <p><b>Ad Soyad: </b><%= info.contactName%></p>
+        <p><b>Numara: </b><%= info.contactNumber%></p>
+        <p><b>Email: </b><%= info.contactEmail%></p>
+        <p><b>Mesaj: </b><%= info.contactMessage%></p>
+
+    <%})%>
+    
+</body>
+</html>

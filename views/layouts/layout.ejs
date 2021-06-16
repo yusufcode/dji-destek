@@ -3,73 +3,7 @@
 
 <head>
 
-    <script>
-        if (window.location.host !== 'localhost:5001') {
-            if (location.protocol !== 'https:') {
-                location.replace(`https:${location.href.substring(location.protocol.length)}`);
-            }
-        }
-    </script>
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HKY90DJ47R"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'G-HKY90DJ47R');
-    </script>
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-196847632-1">
-    </script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-196847632-1');
-    </script>
-
-    <!-- TITLE -->
-    <title><%- title %></title>
-
-    <!-- WEBSITE DESCRIPTION -->
-    <meta name="description" content="<%-description%>">
-
-    <!-- WEBSITE KEYWORDS -->
-    <meta name="keywords" content="<%-keywords%>">
-
-    <!-- WEBSITE AUTHOR -->
-    <meta name="author" content="<%-author%>">
-
-    <!-- META TAGS -->
-    <meta charset="UTF-8">
-
-    <!-- RESPONSIVE -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- WEBSITE ICON -->
-    <link rel="icon" href="/assets/img/logo/favicon.svg" sizes="16x16">
-
-    <!-- APPLE TOUCH ICON -->
-    <link rel="apple-touch-icon" href="/assets/img/logo/favicon.png">
-
-    <!-- BOOTSTRAP -->
-    <link rel="stylesheet" href="/assets/css/bootstrap/bootstrap-4.3.1.min.css">
-
-    <!-- FEATHER -->
-    <link rel="stylesheet" href="/assets/css/feather/feather.css">
-
-    <!-- FONTAWESOME -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-
-    <!-- SWIPER -->
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-
-    <!-- WEBSITE STYLE -->
-    <link rel="stylesheet" href="/assets/css/style.css?v=1.9">
+    <%- include('../partials/head') %>
 
 </head>
 
@@ -330,31 +264,15 @@
     
                 <div class="developer-logo">
                     <a href="https://yusufcode.com" target="_blank">
-                        <img src="https://yusufcode.com/src/img/logo/logo.png" alt="yusufcode-logo">
+                        <img src="https://yusufcode.com/assets/img/logo/logo.png" alt="yusufcode-logo">
                     </a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- JQUERY -->
-    <script src="/assets/js/jquery/jquery-3.5.1.min.js"></script>
-    <script src="/assets/js/jquery/jquery-ui-1.12.1.min.js"></script>
-
-    <!-- BOOTSTRAP -->
-    <script src="/assets/js/bootstrap/popper-1.14.7.min.js"></script>
-    <script src="/assets/js/bootstrap/bootstrap-4.3.1.min.js"></script>
-
-    <!-- SWIPER -->
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
-    <!-- COOKIES -->
-    <script src="/assets/js/cookies.js"></script>
-
-    <!-- SCRIPTS -->
-    <script src="/assets/js/scripts.js?v=1.1"></script>
-
-
+    <%- include('../partials/foot') %>
+    
 </body>
 
 </html>

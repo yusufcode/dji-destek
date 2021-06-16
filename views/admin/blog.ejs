@@ -1,0 +1,70 @@
+<div class="blogs row" style="display: none;">
+
+    <% blog.forEach(blog => { %>
+
+    <div class="blog-resizer col-md-3 col-xs-12">
+        <div class="blog">
+            <a href="/admin/blog-duzenle/<%- blog.url %>">
+
+            <div class="blog-image">
+                <img src="/assets/img/blog/<%- blog.blogImage %>" alt="<%- blog.blogImage %>">
+            </div>
+
+            <div class="blog-texts">
+                <h2 class="blog-title"><%- blog.blogTitle %></h2>
+                <div class="blog-text"><%- blog.blogText %></div>
+            </div>
+            </a>
+        </div>  
+    </div>
+
+    <% }) %>
+
+</div>
+
+<div class="card card-custom">
+    <div class="card-header flex-wrap py-5">
+        <div class="card-title">
+            <h3 class="card-label">Bloglar
+            <div class="text-muted pt-2 font-size-sm">Bütün blog kayıtları</div></h3>
+        </div>
+        <div class="card-toolbar">
+            
+            <a href="/admin/blog-ekle" class="btn btn-primary font-weight-bolder">
+                <i class="fas fa-plus"></i>Yeni Blog
+            </a>
+
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-separate table-head-custom table-checkable" id="kt_datatable">
+            <thead>
+                <tr>
+                    <th>_id</th>
+                    <th>Görsel</th>
+                    <th>Ad</th>
+                    <th>Durum</th>
+                    <th>Aksiyon</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% blog.forEach(blog => { %>
+                <tr>
+                    <td class="blog-id"><span><%- blog._id %></span></td>
+                    <td class="blog-image"><img src="/assets/img/blog/<%- blog.blogImage %>" alt=""></td>
+                    <td class="blog-title">
+                        <a href="/blog/<%- blog.url %>" target="_blank"><%- blog.blogTitle %></a>
+                    </td>  
+                    <td class="blog-status">
+                        <input type="checkbox" class="action edit" <% if(blog.blogStatus){%> checked <%}%>>
+                    </td>
+                    <td class="blog-action">
+                        <a href="/admin/blog-duzenle/<%- blog._id %>" class="action edit"><i class="far fa-edit"></i></a>
+                        <span class="action remove"><i class="fas fa-trash-alt"></i></span>
+                    </td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>

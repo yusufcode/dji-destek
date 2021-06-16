@@ -1,0 +1,27 @@
+<div class="container">
+    
+    <div class="blogs row">
+
+        <% blog.forEach(blog => { %>
+
+        <div class="blog-resizer col-md-3 col-xs-12">
+            <div class="blog">
+                <a href="/blog/<%- blog.url %>">
+
+                <div class="blog-image">
+                    <img src="/assets/img/blog/<%- blog.blogImage %>" alt="<%- blog.blogImage %>">
+                </div>
+
+                <div class="blog-texts">
+                    <h2 class="blog-title"><%- blog.blogTitle %></h2>
+                    <div class="blog-text"><%- blog.blogText %></div>
+                </div>
+                </a>
+            </div>  
+        </div>
+
+        <% }) %>
+
+    </div>
+
+</div>
