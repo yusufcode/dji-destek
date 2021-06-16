@@ -56,11 +56,11 @@
                         <a href="/blog/<%- blog.url %>" target="_blank"><%- blog.blogTitle %></a>
                     </td>  
                     <td class="blog-status">
-                        <input type="checkbox" class="action edit" <% if(blog.blogStatus){%> checked <%}%>>
+                        <input type="checkbox" class="blog-status-edit" blog-id="<%-blog._id%>" <% if(blog.blogStatus){%> checked <%}%>>
                     </td>
                     <td class="blog-action">
-                        <a href="/admin/blog-duzenle/<%- blog._id %>" class="action edit"><i class="far fa-edit"></i></a>
-                        <span class="action remove"><i class="fas fa-trash-alt"></i></span>
+                        <a href="/admin/blog-duzenle/<%- blog._id %>" class="blog-edit"><i class="far fa-edit"></i></a>
+                        <span class="blog-remove" blog-id="<%-blog._id%>"><i class="fas fa-trash-alt"></i></span>
                     </td>
                 </tr>
                 <% }) %>

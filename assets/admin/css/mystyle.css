@@ -43,6 +43,18 @@ body{
 
 }
 
+/* datatable scroll */
+
+.dataTables_wrapper table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child:before{
+    color: rgb(0,135,145);
+}
+
+/* datatable sort */
+
+.dataTables_wrapper .dataTable th.sorting_asc:before, .dataTables_wrapper .dataTable td.sorting_asc:before{
+    color: rgb(0,135,145)!important;
+}
+
 .btn.btn-primary{
     background-color: rgb(0,135,145);
     border-color: rgb(0,135,145);
@@ -204,7 +216,9 @@ input.bad-form{
 }
 
 .dataTables_wrapper .child .dtr-details > li .dtr-data img{
-    width: 50px;
+    width: 50px!important;
+    height: 40px!important;
+    object-fit: cover;
 }
 
 .blog-page table td.blog-title{
@@ -225,7 +239,7 @@ input.bad-form{
     text-align: center;
 }
 
-.blog-page table td.blog-status .action{
+.blog-page table .blog-status-edit{
     outline: none;
 }
 
@@ -236,22 +250,24 @@ input.bad-form{
     text-align: center;
 }
 
-.blog-page table td.blog-action .action{
+.blog-page table .blog-edit,
+.blog-page table .blog-remove{
     display: inline-block;
     padding: 3px;
     margin: 1px;
     cursor: pointer;
 }
 
-.blog-page table td.blog-action .action i{
+.blog-page table .blog-edit i,
+.blog-page table .blog-remove i{
     font-size: 14px;
 }
 
-.blog-page table td.blog-action .action.edit:hover i{
+.blog-page table .blog-edit:hover i{
     color: #ffae00;
 }
 
-.blog-page table td.blog-action .action.remove:hover i{
+.blog-page table .blog-remove:hover i{
     color: #e85050;
 }
 

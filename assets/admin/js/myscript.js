@@ -392,12 +392,12 @@ $(document).on('click', '.blog-edit-page .blog-edit-button', function(event) {
 })
 
 /* REMOVE-BLOG AJAX */
-$(document).on('click', '.blog-page .blog-action .action.remove', function(event) {
+$(document).on('click', '.blog-page .blog-remove', function(event) {
 
     event.preventDefault()
 
-    $this = $(this).closest('tr')
-    const id = $this.find('.blog-id span').text()
+    $this = $(this)
+    const id = $this.attr('blog-id')
 
     if(confirm('Blog silinecek. Onaylıyor musunuz?')){
 
@@ -409,7 +409,7 @@ $(document).on('click', '.blog-page .blog-action .action.remove', function(event
                 _id: id
             }),
             success: function(res){
-                $this.fadeOut(500, function() {$this.remove()})
+                $this.closest('tr').fadeOut(500, function() {$this.closest('tr').remove()})
             },
             error: function(){
                 alert('Blog Silinemedi...');
@@ -422,10 +422,10 @@ $(document).on('click', '.blog-page .blog-action .action.remove', function(event
 })
 
 /* EDIT-BLOG-STATUS AJAX */
-$(document).on('click', '.blog-page .blog-status .action.edit', function(event) {
+$(document).on('click', '.blog-page .blog-status-edit', function(event) {
 
-    $this = $(this).closest('tr')
-    const id = $this.find('.blog-id span').text()
+    $this = $(this)
+    const id = $this.attr('blog-id')
 
     $.ajax({
         url: '/admin/blog-durum/'+id+'',
@@ -437,9 +437,9 @@ $(document).on('click', '.blog-page .blog-status .action.edit', function(event) 
         success: function(res){
 
             if(res == "trued") {
-                $this.find('.blog-status').prop('checked', true)
+                $this.prop('checked', true)
             } else {
-                $this.find('.blog-status').prop('checked', false)
+                $this.prop('checked', false)
             }
 
         },
