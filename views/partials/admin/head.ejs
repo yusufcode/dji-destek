@@ -1,3 +1,11 @@
+    <script>
+        if (window.location.host !== 'localhost:5001') {
+            if (location.protocol !== 'https:') {
+                location.replace(`https:${location.href.substring(location.protocol.length)}`);
+            }
+        }
+    </script>
+    
     <!--TITLE-->
     <title><%- title %></title>
 
