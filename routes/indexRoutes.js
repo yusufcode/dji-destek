@@ -152,7 +152,7 @@ router.post('/teknik-servis', (req, res) => {
 
     console.log(mailInfo)
     
-    ejs.renderFile("./views/layout-mail.ejs", { mailInfo: mailInfo }, (err, data) => {
+    ejs.renderFile("./views/layouts/layout-mail.ejs", { mailInfo: mailInfo }, (err, data) => {
         if (err) {
             console.log(err)
         } else {
@@ -261,7 +261,7 @@ router.post('/iletisim', (req, res) => {
 
     console.log(mailInfo)
     
-    ejs.renderFile("./views/layout-mail2.ejs", { mailInfo: mailInfo }, (err, data) => {
+    ejs.renderFile("./views/layouts/layout-mail2.ejs", { mailInfo: mailInfo }, (err, data) => {
         if (err) {
             console.log(err)
         } else {
