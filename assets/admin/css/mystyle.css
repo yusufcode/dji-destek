@@ -49,6 +49,10 @@ body{
     color: rgb(0,135,145);
 }
 
+.dataTables_wrapper table.dataTable.dtr-inline.collapsed > tbody > tr.parent > td:first-child:before{
+    color: rgb(0,135,145)!important;
+}
+
 /* datatable sort */
 
 .dataTables_wrapper .dataTable th.sorting_asc:before, .dataTables_wrapper .dataTable td.sorting_asc:before{
