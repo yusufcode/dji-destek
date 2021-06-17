@@ -929,6 +929,17 @@ html {}
     overflow: hidden;
 }
 
+@media(max-width: 768px) {
+    .blog-page .blogs .blog-resizer.mobile-type-2 .blog-image{
+        width: 35%;
+        height: 100%;
+    }
+    
+    .blog-page .blogs .blog-resizer.mobile-type-2 .blog-texts{
+        width: 65%;
+    }
+}
+
 /* BLOG POST PAGE */
 
 .blog-post-page{

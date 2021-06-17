@@ -14,11 +14,11 @@ const nodeMailer = require('nodemailer')
 
 const Users = require('../models/Users')
 const Pages = require('../models/Pages')
+const PageBlog = require('../models/PageBlog')
 const Blogs = require('../models/Blogs')
 const DroneSeries = require('../models/DroneSeries')
 const DroneModels = require('../models/DroneModels')
 const DroneAltModels = require('../models/DroneAltModels')
-const { exit } = require('process')
 
 router.get('/', (req, res) => {
 
@@ -186,26 +186,11 @@ router.get('/magaza', (req, res) => {
 
 router.get('/blog', (req, res) => {
 
-    /*const newBlog = new Blogs({
-        url: "dronelar-nasil-ucar",
-        title: "Drone'lar Nasıl Uçar? - DJI Destek",
-        description: "Bu blogumuzda drone'ların nasıl uçtuğundan bahsettik, keyifli okumalar.",
-        keywords: "drone'lar nasıl uçar, drone uçma tekniği, drone'lar hakkında bilgiler, dji blog, dji destek",
-        author: "Berat Akdemir",
-        bodyClass: "inner-page navbar-backgrounded blog-post-page"
-    })
-
-    newBlog.save((err,data) => {
-        if (err) {
-            console.log(err)
-        } else {
-            console.log(data)
-        }
-    })*/
-
     Pages.findOne({page: "blog"}, (err, page) => {
-        Blogs.find({blogStatus: 1}, (err, blogData) => {
-            res.render(page.page, { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass, blog: blogData })
+        PageBlog.findOne({ }, (err, pageBlog) => {
+            Blogs.find({blogStatus: 1}, (err, blogData) => {
+                res.render(page.page, { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass, blog: blogData, blogColumnType: pageBlog.blogColumnType, blogMobileType: pageBlog.blogMobileType })
+            }) 
         }) 
     })
 })
@@ -230,7 +215,7 @@ router.get('/blog/:blogUrl', (req, res) => {
                 
                 }).sort({_id: 1}).limit(1)
             }).sort({_id: -1}).limit(1)
-            
+
         }
 
     })

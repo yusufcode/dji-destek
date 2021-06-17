@@ -1,4 +1,44 @@
 <div class="card card-custom">
+    
+    <div class="card-header">
+        <div class="card-title">
+            <h3 class="card-label">Blog Sayfası Ayarları
+            <div class="text-muted pt-2 font-size-sm">Bütün blogların gösterildiği sayfanın ayarları</div></h3>
+        </div>
+    </div>
+
+    <div class="card-body">
+        <div class="form-group">
+            <label>Blog Sütun</label><br>
+
+            <input type="radio" name="blogColumnType" id="blogColumnType2" value="col-md-6" <% if(pageBlog.blogColumnType == "col-md-6") { %> checked <% } %>/>
+            <label for="blogColumnType2" class="forRadio">2 Sütun</label>
+
+            <input type="radio" name="blogColumnType" id="blogColumnType3" value="col-md-4" <% if(pageBlog.blogColumnType == "col-md-4") { %> checked <% } %>/>
+            <label for="blogColumnType3" class="forRadio">3 Sütun</label>
+
+            <input type="radio" name="blogColumnType" id="blogColumnType4" value="col-md-3" <% if(pageBlog.blogColumnType == "col-md-3") { %> checked <% } %>/>
+            <label for="blogColumnType4" class="forRadio">4 Sütun</label>
+        </div>
+
+        <div class="form-group">
+            <label>Blog Mobil Sütun</label><br>
+
+            <input type="radio" name="blogMobileType" id="blogMobileType1" value="" <% if(pageBlog.blogMobileType == "") { %> checked <% } %>/>
+            <label for="blogMobileType1" class="forRadio">Büyük Resim</label>
+
+            <input type="radio" name="blogMobileType" id="blogMobileType2" value="mobile-type-2" <% if(pageBlog.blogMobileType == "mobile-type-2") { %> checked <% } %>/>
+            <label for="blogMobileType2" class="forRadio">Küçük Resim</label>
+        </div>
+    </div>
+
+    <div class="card-footer">
+        <button class="btn btn-primary blog-page-edit-button">Güncelle</button>
+    </div>
+
+</div>
+
+<div class="card card-custom">
     <div class="card-header flex-wrap py-5">
         <div class="card-title">
             <h3 class="card-label">Bloglar
@@ -16,7 +56,6 @@
         <table class="table table-separate table-head-custom table-checkable" id="kt_datatable">
             <thead>
                 <tr>
-                    <th>_id</th>
                     <th>Görsel</th>
                     <th>Ad</th>
                     <th>Durum</th>
@@ -26,7 +65,6 @@
             <tbody>
                 <% blog.forEach(blog => { %>
                 <tr>
-                    <td class="blog-id"><span><%- blog._id %></span></td>
                     <td class="blog-image"><img src="/assets/img/blog/<%- blog.blogImage %>" alt=""></td>
                     <td class="blog-title">
                         <a href="/blog/<%- blog.url %>" target="_blank"><%- blog.blogTitle %></a>

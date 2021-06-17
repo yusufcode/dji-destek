@@ -6,6 +6,11 @@ body{
     background: rgb(0,135,145);
 }
 
+/* ALL ITEMS GENERAL STYLE */
+input{
+    outline: none;
+}
+
 /* navbar mobile menu collapser */
 
 @media(max-width:991px){
@@ -200,6 +205,18 @@ input.bad-form{
 }
 
 /* BLOG PAGE */
+
+.blog-page .card-custom{
+    margin-bottom: 15px;
+}
+
+.blog-page label.forRadio{
+    margin-right: 10px;
+}
+
+.blog-page label.forRadio::selection{
+    background-color: transparent;
+}
 
 .blog-page table td{
     font-size: 12px!important;

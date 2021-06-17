@@ -320,6 +320,42 @@ $(document).on('click', '.admin-login-page .sign-in-button', function(event) {
 
 })
 
+/* EDIT BLOG PAGE AJAX */
+$(document).on('click', '.blog-page .blog-page-edit-button', function(event) {
+
+    event.preventDefault()
+
+    $.ajax({
+        url: '/admin/blog-sayfasi-duzenle/',
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            blogColumnType: $('.blog-page input[name="blogColumnType"]:checked').val(),
+            blogMobileType: $('.blog-page input[name="blogMobileType"]:checked').val()
+        }),
+        success: function(res){
+
+            if(res.status == true){
+                alert(res.message)
+            } else {
+                alert(res.message)
+            }
+
+        },
+        error: function(res){
+
+            if(res.status == true){
+                alert(res.message)
+            } else {
+                alert(res.message)
+            }
+
+        }
+
+    })
+
+})
+
 /* ADD-BLOG AJAX*/
 $(document).on('click', '.blog-add-page .blog-add-button', function(event) {
 

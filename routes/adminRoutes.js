@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const PagesAdmin = require('../models/PagesAdmin')
+const PageBlog = require('../models/PageBlog')
 const Blogs = require('../models/Blogs')
 const Users = require('../models/Users')
 
@@ -27,8 +28,10 @@ router.get('/', (req, res) => {
 router.get('/blog', (req, res) => {
     
     PagesAdmin.findOne({page: 'admin/blog'}, (err,page) => {
-        Blogs.find((err, blogFind) => {
-         res.render(page.page, {title: page.title, pageName: page.pageName, layout: page.layout, bodyClass: page.bodyClass, blog: blogFind})
+        PageBlog.findOne({ }, (err,pageBlog) => {
+            Blogs.find((err, blogFind) => {
+                res.render(page.page, {title: page.title, pageName: page.pageName, layout: page.layout, bodyClass: page.bodyClass, blog: blogFind, pageBlog: pageBlog})
+            })
         })
     })
 
@@ -43,6 +46,31 @@ router.get('/blog-duzenle/:blogId', (req, res) => {
             res.render(page.page, {title: page.title, pageName: page.pageName, layout: page.layout, bodyClass: page.bodyClass, blog: blogFind})
         })
     })
+
+})
+
+router.post('/blog-sayfasi-duzenle/', (req, res) => {
+
+    PageBlog.updateOne(
+        { },
+        {
+            blogColumnType: req.body.blogColumnType,
+            blogMobileType: req.body.blogMobileType
+        },
+        (err,data) => {
+            if(data.n == 1){
+                res.send({
+                    status: true,
+                    message: "Blog sayfası ayarları güncellendi."
+                })
+            }
+            else {
+                res.send({
+                    status: false,
+                    message: "Blog sayfası ayarları güncellendi."
+                })
+            }
+        })
 
 })
 

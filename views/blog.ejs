@@ -4,7 +4,7 @@
 
         <% blog.forEach(blog => { %>
 
-        <div class="blog-resizer col-md-3 col-xs-12">
+        <div class="blog-resizer <%- blogColumnType %> <%- blogMobileType %> col-xs-12">
             <div class="blog">
                 <a href="/blog/<%- blog.url %>">
 
