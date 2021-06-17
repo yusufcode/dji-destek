@@ -458,6 +458,9 @@ html {}
         border-bottom: 0 !important;
     }
 
+    .navbar-drop-menu-part-image-side a img {
+        position: relative;
+    }
 
 }
 
@@ -1049,7 +1052,7 @@ html {}
     font-weight: 600;
 }
 
-@media(max-width:600px){
+@media(max-width:768px){
     .blog-post-page .blog-posted-date,
     .blog-post-page .blog-author{
         width: 100%;
