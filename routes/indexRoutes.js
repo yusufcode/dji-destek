@@ -215,20 +215,24 @@ router.get('/blog/:blogUrl', (req, res) => {
     const blogUrl = req.params.blogUrl
 
     Blogs.findOne({url: blogUrl, blogGeneralStatus: 1}, (err, blog) => {
-        Blogs.findOne({_id: {$lt: blog._id}, blogGeneralStatus: 1}, (err, previousBlog) => {
-            Blogs.findOne({_id: {$gt: blog._id}, blogGeneralStatus: 1}, (err, nextBlog) => {
-                
-                if (!blog) {
-                    res.redirect('/404')
-                } else {
+
+        if (!blog) {
+            res.redirect('/404')
+        } else {
+
+            Blogs.findOne({_id: {$lt: blog._id}, blogGeneralStatus: 1}, (err, previousBlog) => {
+                Blogs.findOne({_id: {$gt: blog._id}, blogGeneralStatus: 1}, (err, nextBlog) => {
+                    
                     const blogCreated = moment(blog.createdAt.getTime()).locale('tr').format('DD MMMM YYYY')
                     let blogEdited = moment(blog.updatedAt.getTime()).locale('tr').format('DD MMMM YYYY')
                     if(blogCreated == blogEdited) {blogEdited = 0}
                     res.render('blog-post', { title: blog.title, description: blog.description, keywords: blog.keywords, author: blog.author, bodyClass: blog.bodyClass, blog: blog, previousBlog: previousBlog, nextBlog: nextBlog, blogCreated: blogCreated, blogEdited: blogEdited })
-                }
+                
+                }).sort({_id: 1}).limit(1)
+            }).sort({_id: -1}).limit(1)
+            
+        }
 
-            }).sort({_id: 1}).limit(1)
-        }).sort({_id: -1}).limit(1)
     })
 
 })

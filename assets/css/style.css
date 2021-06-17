@@ -858,6 +858,11 @@ html {}
     background: #fefefe;
 }
 
+.blog-page .blogs{
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .blog-page .blogs .blog-resizer{
     margin-bottom: 15px;
     padding-left: 7.5px;
@@ -870,12 +875,18 @@ html {}
     border: 1px solid #d5d5d5;
     border-radius: 10px;
     overflow: hidden;
-    margin-bottom: 15px;
+    transition: 0.3s all;
+}
+
+.blog-page .blogs .blog:hover{
+    box-shadow: 0 2.5px 10px -7px rgba(0,0,0,0.5);
 }
 
 .blog-page .blogs .blog a{
     display: block;
     height: 100%;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .blog-page .blogs .blog a:hover,
@@ -896,6 +907,7 @@ html {}
 
 .blog-page .blogs .blog .blog-texts{
     padding: 10px;
+    width: 100%;
 }
 
 .blog-page .blogs .blog .blog-texts .blog-title{
