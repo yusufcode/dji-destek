@@ -215,8 +215,8 @@ router.get('/blog/:blogUrl', (req, res) => {
     const blogUrl = req.params.blogUrl
 
     Blogs.findOne({url: blogUrl, blogGeneralStatus: 1}, (err, blog) => {
-        Blogs.findOne({url: {$lt: blogUrl}, blogGeneralStatus: 1}, (err, previousBlog) => {
-            Blogs.findOne({url: {$gt: blogUrl}, blogGeneralStatus: 1}, (err, nextBlog) => {
+        Blogs.findOne({_id: {$lt: blog._id}, blogGeneralStatus: 1}, (err, previousBlog) => {
+            Blogs.findOne({_id: {$gt: blog._id}, blogGeneralStatus: 1}, (err, nextBlog) => {
                 
                 if (!blog) {
                     res.redirect('/404')
@@ -227,8 +227,8 @@ router.get('/blog/:blogUrl', (req, res) => {
                     res.render('blog-post', { title: blog.title, description: blog.description, keywords: blog.keywords, author: blog.author, bodyClass: blog.bodyClass, blog: blog, previousBlog: previousBlog, nextBlog: nextBlog, blogCreated: blogCreated, blogEdited: blogEdited })
                 }
 
-            }).sort({Id: -1}).limit(1)
-        }).sort({Id: 1}).limit(1)
+            }).sort({_id: 1}).limit(1)
+        }).sort({_id: -1}).limit(1)
     })
 
 })
