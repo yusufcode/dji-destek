@@ -376,10 +376,12 @@ $(document).on('click', '.blog-add-page .blog-add-button', function(event) {
             blogTitle: $('.blog-add-page input[name="blogTitle"]').val(),
             blogText: CKEDITOR.instances.ckeditor.getData(),
             blogImage: $('.blog-add-page input[name="blogImage"]').val(),
-            blogStatus: $('.blog-add-page input[name="blogStatus"]').prop('checked') ? 1 : 0
+            blogStatus: $('.blog-add-page input[name="blogStatus"]').prop('checked') ? 1 : 0,
+            blogGeneralStatus: $('.blog-edit-page input[name="blogGeneralStatus"]').prop('checked') ? 1 : 0
         }),
         success: function(res){
             alert('Blog Eklendi!')
+            window.location.replace("/admin/blog");
         },
         error: function(){
             alert('Blog Eklenemedi...');
