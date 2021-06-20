@@ -70,4 +70,46 @@ const swiper = new Swiper('.swiper-container', {
     }
   });
 
+/* SEO TEXT */
+
+$(document).ready(function() {
+
+    const firstH1 = $('.footer .footer-top-seo-text').children('h1').text()
+    const firstText = $('.footer .footer-top-seo-text').children('p').first().text()
+    $('.footer .footer-top-seo-text').children('h1').remove()
+    $('.footer .footer-top-seo-text').children('p').first().remove()
+
+    const otherTexts = $('.footer .footer-top-seo-text').html()
+    $('.footer .footer-top-seo-text > *').remove()
+
+    $('<div class="constantSeoText"><h1>'+firstH1+'</h1><p>'+firstText+'</p><p class="slideSeoText">Devamını oku...</p></div>').appendTo('.footer .footer-top-seo-text')
+    $('<div class="slidingSeoText">'+otherTexts+'</div>').appendTo('.footer .footer-top-seo-text')
+
+    $('.footer .slidingSeoText').slideUp(0)
+
+    
+})
+
+function slideSeoTextButton () {
+
+    if(!$('.footer .slidingSeoText').hasClass('show')){
+        $('.footer .slidingSeoText').slideDown(500)
+        $('.footer .slidingSeoText').addClass('show')
+        $('.footer .slideSeoText').text('Devamını gizle...')
+        $('.footer .slideSeoText').appendTo('.slidingSeoText')
+
+    } else {
+        $('.footer .slidingSeoText').slideUp(500)
+        $('.footer .slidingSeoText').removeClass('show')
+        $('.footer .slideSeoText').text('Devamını göster...')
+        $('.footer .slideSeoText').appendTo('.constantSeoText')
+    }
+
+}
+
+$(document).on('click', '.footer .slideSeoText', slideSeoTextButton)
+
+
+
+
 

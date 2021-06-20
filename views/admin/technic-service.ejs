@@ -1,0 +1,38 @@
+<div class="card card-custom">
+    <div class="card-header flex-wrap py-5">
+        <div class="card-title">
+            <h3 class="card-label">Drone'lar
+            <div class="text-muted pt-2 font-size-sm">Bütün Drone'lar</div></h3>
+        </div>
+        <div class="card-toolbar">
+            
+            <a href="/admin/drone-ekle" class="btn btn-primary font-weight-bolder">
+                <i class="fas fa-plus"></i>Yeni Drone
+            </a>
+
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-separate table-head-custom table-checkable" id="kt_datatable">
+            <thead>
+                <tr>
+                    <th>Ad</th>
+                    <th>Aksiyon</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% drone.forEach(drone => { %>
+                <tr>
+                    <td class="drone-title">
+                        <a href="/teknik-servis/<%- drone.url %>" target="_blank"><%- drone.name %></a>
+                    </td>  
+                    <td class="drone-action">
+                        <a href="/admin/teknik-servis-drone-duzenle/<%- drone._id %>" class="drone-edit"><i class="far fa-edit"></i></a>
+                        <span class="drone-remove" drone-id="<%-drone._id%>"><i class="fas fa-trash-alt"></i></span>
+                    </td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>

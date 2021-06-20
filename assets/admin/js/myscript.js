@@ -320,6 +320,46 @@ $(document).on('click', '.admin-login-page .sign-in-button', function(event) {
 
 })
 
+/* TECHNIC SERVICE DRONE EDIT AJAX */
+$(document).on('click', '.technic-service-drone-edit-page .technic-service-drone-edit-button', function(event) {
+
+    event.preventDefault()
+
+    $.ajax({
+        url: '/admin/teknik-servis-drone-duzenle/',
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            _id: $('.technic-service-drone-edit-page input[name="_id"]').val(),
+            name: $('.technic-service-drone-edit-page input[name="droneName"]').val(),
+            seoText: CKEDITOR.instances.ckeditor.getData()
+        }),
+        success: function(res){
+
+            if(res.status == true) {
+                alert(res.message)
+                window.location.replace("/admin/teknik-servis");
+            } else {
+                alert(res.message)
+            }
+            
+
+        },
+        error: function(res){
+
+            if(res.status == true) {
+                alert(res.message)
+                window.location.replace("/admin/teknik-servis");
+            } else {
+                alert(res.message)
+            }
+
+        }
+
+    })
+
+})
+
 /* EDIT BLOG PAGE AJAX */
 $(document).on('click', '.blog-page .blog-page-edit-button', function(event) {
 

@@ -302,3 +302,33 @@ input.bad-form{
     }
 }
 
+/* TECHNIC SERVICE PAGE */
+
+.technic-service-page table td.drone-action{
+    width: 2.5%;
+    font-size: 0!important;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.technic-service-page table .drone-edit,
+.technic-service-page table .drone-remove{
+    display: inline-block;
+    padding: 3px;
+    margin: 1px;
+    cursor: pointer;
+}
+
+.technic-service-page table .drone-edit i,
+.technic-service-page table .drone-remove i{
+    font-size: 14px;
+}
+
+.technic-service-page table .drone-edit:hover i{
+    color: #ffae00;
+}
+
+.technic-service-page table .drone-remove:hover i{
+    color: #e85050;
+}
+

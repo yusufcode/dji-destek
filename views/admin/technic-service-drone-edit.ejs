@@ -1,0 +1,17 @@
+<div class="form-group">
+    <label>ID</label>
+    <input type="text" class="form-control" name="_id" value="<%- drone._id %>" readonly/>
+</div>
+
+<div class="form-group">
+    <label>Drone Adı</label>
+    <input type="text" class="form-control" name="droneName" value="<%- drone.name %>"/>
+</div>
+
+<div class="form-group">
+    <label>Seo Metni</label>
+    <textarea class="form-control" id="ckeditor" name="seoText"><%- drone.seoText %></textarea>
+</div>
+
+<a href="/admin/teknik-servis" class="btn btn-light">Geri</a>
+<button class="btn btn-primary technic-service-drone-edit-button">Güncelle</button>
