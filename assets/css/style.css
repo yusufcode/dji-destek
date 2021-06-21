@@ -515,6 +515,14 @@ html {}
     color: #d5d5d5;
 }
 
+.footer-top-seo-text ul{
+    padding-left: 25px;
+}
+
+.footer-top-seo-text li{
+    font-size: 12px;
+}
+
 .footer-top-seo-text .constantSeoText{
     margin-bottom: 15px;
 }
