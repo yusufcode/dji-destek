@@ -6,7 +6,9 @@ const Schema = new mongoose.Schema({
     title: {type:String},
     description: {type:String},
     keywords: {type:String},
-    code: {type:String}
+    parentName: {type:String},
+    parentUrl: {type:String},
+    seoText: {type:String}
 }, {timestamps:true})
 
 module.exports = mongoose.model('dronemodels', Schema)

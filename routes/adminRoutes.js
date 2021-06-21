@@ -2,7 +2,11 @@ const express = require('express')
 const router = express.Router()
 
 const PagesAdmin = require('../models/PagesAdmin')
+
 const DroneSeries = require('../models/DroneSeries')
+const DroneModels = require('../models/DroneModels')
+const DroneAltModels = require('../models/DroneAltModels')
+
 const PageBlog = require('../models/PageBlog')
 const Blogs = require('../models/Blogs')
 const Users = require('../models/Users')
@@ -30,7 +34,11 @@ router.get('/teknik-servis', (req, res) => {
     
     PagesAdmin.findOne({page: 'admin/technic-service'}, (err,page) => {
         DroneSeries.find({ }, (err, droneSeries) => {
-            res.render(page.page, {title: page.title, pageName: page.pageName, layout: page.layout, bodyClass: page.bodyClass, drone: droneSeries})
+            DroneModels.find({ }, (err, droneModels) => {
+                DroneAltModels.find({ }, (err, droneAltModels) => {
+                    res.render(page.page, {title: page.title, pageName: page.pageName, layout: page.layout, bodyClass: page.bodyClass, droneSeries: droneSeries, droneModels: droneModels, droneAltModels: droneAltModels})
+                })
+            })
         })
     })
 
@@ -39,10 +47,33 @@ router.get('/teknik-servis', (req, res) => {
 router.get('/teknik-servis-drone-duzenle/:droneId', (req, res) => {
 
     const droneId = req.params.droneId
+    let selectedDrone
     
     PagesAdmin.findOne({page: 'admin/technic-service-drone-edit'}, (err,page) => {
         DroneSeries.findOne({_id:droneId}, (err, droneSeries) => {
-            res.render(page.page, {title: page.title, pageName: page.pageName, layout: page.layout, bodyClass: page.bodyClass, drone: droneSeries})
+            
+            if(droneSeries){
+                selectedDrone = droneSeries
+            } 
+
+            DroneModels.findOne({_id:droneId}, (err, droneModels) => {
+                
+                if(droneModels){
+                    selectedDrone = droneModels
+                }
+                
+                DroneAltModels.findOne({_id:droneId}, (err, droneAltModels) => {
+                    
+                    if(droneAltModels){
+                        selectedDrone = droneAltModels
+                    } 
+                    
+                    res.render(page.page, {title: page.title, pageName: page.pageName, layout: page.layout, bodyClass: page.bodyClass, drone: selectedDrone})
+                    
+                })
+                
+            })
+
         })
     })
 
@@ -50,28 +81,78 @@ router.get('/teknik-servis-drone-duzenle/:droneId', (req, res) => {
 
 router.post('/teknik-servis-drone-duzenle', (req, res) => {
 
-    DroneSeries.updateOne(
-        {
-            _id: req.body._id
-        },
-        {
-            name: req.body.name,
-            seoText: req.body.seoText
-        },
-        (err,data) => {
-            if(data.n == 1){
-                res.send({
-                    status: true,
-                    message: 'Drone güncellendi'
-                })
-            }
-            else {
-                res.send({
-                    status: false,
-                    message: 'Drone güncellenemedi'
-                })
-            }
-        })
+    if(req.body.altModel){
+        DroneAltModels.updateOne(
+            {
+                _id: req.body._id
+            },
+            {
+                name: req.body.name,
+                seoText: req.body.seoText
+            },
+            (err,data) => {
+                if(data.n == 1){
+                    res.send({
+                        status: true,
+                        message: 'Drone güncellendi'
+                    })
+                }
+                else {
+                    res.send({
+                        status: false,
+                        message: 'Drone güncellenemedi'
+                    })
+                }
+            })
+    } else if (req.body.model) {
+        DroneModels.updateOne(
+            {
+                _id: req.body._id
+            },
+            {
+                name: req.body.name,
+                seoText: req.body.seoText
+            },
+            (err,data) => {
+                if(data.n == 1){
+                    res.send({
+                        status: true,
+                        message: 'Drone güncellendi'
+                    })
+                }
+                else {
+                    res.send({
+                        status: false,
+                        message: 'Drone güncellenemedi'
+                    })
+                }
+            })
+    } else {
+        DroneSeries.updateOne(
+            {
+                _id: req.body._id
+            },
+            {
+                name: req.body.name,
+                seoText: req.body.seoText
+            },
+            (err,data) => {
+                if(data.n == 1){
+                    res.send({
+                        status: true,
+                        message: 'Drone güncellendi'
+                    })
+                }
+                else {
+                    res.send({
+                        status: false,
+                        message: 'Drone güncellenemedi'
+                    })
+                }
+            })
+    }
+
+    
 
 })
 

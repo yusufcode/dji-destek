@@ -83,12 +83,15 @@ router.get('/admin-cikis-yap', (req,res) => {
     res.redirect('/admin-giris')
 })
 
-router.get('/teknik-servis/:droneSerial?/:droneModel?/:droneAltModel?', (req, res) => {
+router.get('/teknik-servis/:droneSerial?/:droneModel?/:droneAltModel?', async (req, res) => {
 
-    const droneSerial = req.params.droneSerial
-    const droneModel = req.params.droneModel
-    const droneAltModel = req.params.droneAltModel
+    const droneSerial = await req.params.droneSerial
+    const droneModel = await req.params.droneModel
+    const droneAltModel = await req.params.droneAltModel
     let seoText = ""
+
+    let droneSeriesUrl = ""
+    let droneModelsUrl = ""
 
     Pages.findOne({page: "teknik-servis"}, (err, page) => {
 
@@ -98,13 +101,17 @@ router.get('/teknik-servis/:droneSerial?/:droneModel?/:droneAltModel?', (req, re
                 res.redirect('/teknik-servis/')
             } else {
 
-                DroneModels.findOne({url: droneModel}, (err, droneModels) => {
+                if(droneModel) {droneSeriesUrl = droneSeries.url}
+                
+                DroneModels.findOne({url: droneModel, parentUrl: droneSeriesUrl}, (err, droneModels) => {
                 
                     if(droneModel && !droneModels) {
                         res.redirect('/teknik-servis/'+droneSerial)
                     } else {
 
-                        DroneAltModels.findOne({url: droneAltModel}, (err, droneAltModels) => {
+                        if(droneAltModel) {droneModelsUrl = droneModels.url}
+
+                        DroneAltModels.findOne({url: droneAltModel, bigParentUrl: droneSeriesUrl, parentUrl: droneModelsUrl}, (err, droneAltModels) => {
                             
                             if(droneAltModel && !droneAltModels) {
                                 res.redirect('/teknik-servis/'+droneSerial+'/'+droneModel)

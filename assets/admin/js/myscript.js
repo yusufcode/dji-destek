@@ -325,11 +325,26 @@ $(document).on('click', '.technic-service-drone-edit-page .technic-service-drone
 
     event.preventDefault()
 
+    let serial = false
+    let model = false
+    let altModel = false
+
+    if($('.technic-service-drone-edit-page input[name="droneModelName"]').val()) {
+        altModel = true
+    } else if ($('.technic-service-drone-edit-page input[name="droneSerialName"]').val()) {
+        model = true
+    } else {
+        serial = true
+    }
+
     $.ajax({
         url: '/admin/teknik-servis-drone-duzenle/',
         method: 'POST',
         contentType: 'application/json',
         data: JSON.stringify({
+            serial: serial,
+            model: model,
+            altModel: altModel,
             _id: $('.technic-service-drone-edit-page input[name="_id"]').val(),
             name: $('.technic-service-drone-edit-page input[name="droneName"]').val(),
             seoText: CKEDITOR.instances.ckeditor.getData()

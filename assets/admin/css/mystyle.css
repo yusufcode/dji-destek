@@ -304,6 +304,10 @@ input.bad-form{
 
 /* TECHNIC SERVICE PAGE */
 
+.technic-service-page .card-custom{
+    margin-bottom: 15px;
+}
+
 .technic-service-page table td.drone-action{
     width: 2.5%;
     font-size: 0!important;

@@ -3,10 +3,42 @@
     <input type="text" class="form-control" name="_id" value="<%- drone._id %>" readonly/>
 </div>
 
+<% if(drone.bigParentName && drone.parentName) { %>
+<div class="form-group">
+    <label>Drone Seri Adı</label>
+    <input type="text" class="form-control" name="droneSerialName" value="<%- drone.bigParentName %>" readonly/>
+</div>
+
+<div class="form-group">
+    <label>Drone Model Adı</label>
+    <input type="text" class="form-control" name="droneModelName" value="<%- drone.parentName %>" readonly/>
+</div>
+
+<div class="form-group">
+    <label>Drone Alt Model Adı</label>
+    <input type="text" class="form-control" name="droneName" value="<%- drone.name %>"/>
+</div>
+<% } %>
+
+<% if(!drone.bigParentName && drone.parentName) { %>
+<div class="form-group">
+    <label>Drone Seri Adı</label>
+    <input type="text" class="form-control" name="droneSerialName" value="<%- drone.parentName %>" readonly/>
+</div>
+
+<div class="form-group">
+    <label>Drone Model Adı</label>
+    <input type="text" class="form-control" name="droneName" value="<%- drone.name %>"/>
+</div>
+<% } %>
+
+<% if(!drone.bigParentName && !drone.parentName) { %>
 <div class="form-group">
     <label>Drone Adı</label>
     <input type="text" class="form-control" name="droneName" value="<%- drone.name %>"/>
 </div>
+<% } %>
+
 
 <div class="form-group">
     <label>Seo Metni</label>

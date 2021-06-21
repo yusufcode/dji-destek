@@ -2,7 +2,7 @@
 var KTDatatablesAdvancedColumnRendering = function() {
 
 	var init = function() {
-		var table = $('#kt_datatable');
+		var table = $('#kt_datatable, #kt_datatable1, #kt_datatable2');
 
 		// begin first table
 		table.DataTable({
