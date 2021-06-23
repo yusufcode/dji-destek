@@ -38,11 +38,11 @@ app.use('/', otherRoutes)
 
 //DB
 
-mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true }, (err) => {
+mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }, (err) => {
     if(err) {
-        console.log('ERROR! DB Connection is fault!')
+        console.log('Database: Error', err)
     } else {
-        console.log('Connected to DB!')
+        console.log('Database: Success')
     }
 });
 
@@ -50,5 +50,5 @@ mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology
 //SERVER
 const port = process.env.PORT || 5001
 const server = app.listen(port, (err) => {
-    if (err) { console.log('ERROR: ', err) } else { console.log('Server listen on port:', port) }
+    if (err) { console.log('Server: Error', err) } else { console.log('Server: Success') }
 })
