@@ -6,7 +6,8 @@ const Schema = new mongoose.Schema({
     description: {type:String},
     keywords: {type:String},
     author: {type:String},
-    bodyClass: {type:String}
+    bodyClass: {type:String},
+    seoText: {type:String}
 }, {timestamps:true})
 
 module.exports = mongoose.model('pages', Schema)

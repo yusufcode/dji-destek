@@ -23,7 +23,8 @@ const DroneAltModels = require('../models/DroneAltModels')
 router.get('/', (req, res) => {
 
     Pages.findOne({page: "index"}, (err, page) => {
-        res.render(page.page, { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass })
+        res.render(page.page, { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass, seoText: page.seoText, layout: 'layouts/layout-seoText' })
+        console.log(page.seoText)
     })
 
 })
@@ -94,6 +95,8 @@ router.get('/teknik-servis/:droneSerial?/:droneModel?/:droneAltModel?', async (r
     let droneModelsUrl = ""
 
     Pages.findOne({page: "teknik-servis"}, (err, page) => {
+
+        seoText = page.seoText
 
         DroneSeries.findOne({url: droneSerial}, (err, droneSeries) => {
 
@@ -208,7 +211,7 @@ router.post('/teknik-servis', (req, res) => {
 
 router.get('/magaza', (req, res) => {
     Pages.findOne({page: "magaza"}, (err, page) => {
-        res.render(page.page, { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass })
+        res.render(page.page, { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass, seoText: page.seoText, layout: 'layouts/layout-seoText' })
     })
 })
 
@@ -217,7 +220,7 @@ router.get('/blog', (req, res) => {
     Pages.findOne({page: "blog"}, (err, page) => {
         PageBlog.findOne({ }, (err, pageBlog) => {
             Blogs.find({blogStatus: 1}, (err, blogData) => {
-                res.render(page.page, { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass, blog: blogData, blogColumnType: pageBlog.blogColumnType, blogMobileType: pageBlog.blogMobileType })
+                res.render(page.page, { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass, blog: blogData, seoText: page.seoText, layout: 'layouts/layout-seoText', blogColumnType: pageBlog.blogColumnType, blogMobileType: pageBlog.blogMobileType })
             }) 
         }) 
     })
@@ -252,7 +255,7 @@ router.get('/blog/:blogUrl', (req, res) => {
 
 router.get('/iletisim', (req, res) => {
     Pages.findOne({page: "iletisim"}, (err, page) => {
-        res.render(page.page, { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass })
+        res.render(page.page, { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass, seoText: page.seoText, layout: 'layouts/layout-seoText' })
     })
 })
 
