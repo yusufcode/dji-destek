@@ -96,6 +96,9 @@ html {}
     width: 170px;
     height: auto;
     transition: 0.3s all;
+    image-rendering: auto;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
 }
 
 .navbar-brand .navbar-logo-white {
@@ -593,6 +596,12 @@ html {}
 
 .footer-top-bottom .footer-logo {
     display: inline-block;
+}
+
+.footer-top-bottom .footer-logo img{
+    image-rendering: auto;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
 }
 
 .footer-top-bottom-list {
