@@ -6,7 +6,7 @@ const Pages = require('../models/Pages')
 
 router.get('/404', (req, res) => {
     Pages.findOne({page: "404"}, (err, page) => {
-        res.render(page.page, { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass })
+        res.render(page.page, { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass, seoText: '' })
     })
 })
 
