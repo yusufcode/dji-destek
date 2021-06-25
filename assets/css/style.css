@@ -849,7 +849,7 @@ html {}
 
 .inner-page .content {
     margin-top: 90px;
-    min-height: calc(101vh - (90px + 260px));
+    min-height: calc(102vh - (90px + 260px));
 }
 
 .inner-page .content .container,
