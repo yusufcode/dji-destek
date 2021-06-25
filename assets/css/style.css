@@ -148,6 +148,7 @@ html {}
     font-size: 12px;
     display: inline-block;
     transition: 0.3s all;
+    cursor: pointer;
 }
 
 .navbar-menu-item.dropable.hovered::after {
@@ -157,7 +158,6 @@ html {}
 .navbar.background .navbar-menu-item.dropable::after,
 .navbar-backgrounded .navbar-menu-item.dropable::after {
     color: #111;
-    cursor: pointer;
 }
 
 .navbar-menu-item > a {
