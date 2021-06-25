@@ -241,7 +241,8 @@ router.get('/blog/:blogUrl', (req, res) => {
                     const blogCreated = moment(blog.createdAt.getTime()).locale('tr').format('DD MMMM YYYY')
                     let blogEdited = moment(blog.updatedAt.getTime()).locale('tr').format('DD MMMM YYYY')
                     if(blogCreated == blogEdited) {blogEdited = 0}
-                    res.render('blog-post', { title: blog.title, description: blog.description, keywords: blog.keywords, author: blog.author, bodyClass: blog.bodyClass, blog: blog, previousBlog: previousBlog, nextBlog: nextBlog, blogCreated: blogCreated, blogEdited: blogEdited })
+
+                    res.render('blog-post', { title: blog.title, description: blog.description, keywords: blog.keywords, author: blog.author, bodyClass: blog.bodyClass, blog: blog, seoText: blog.seoText, previousBlog: previousBlog, nextBlog: nextBlog, blogCreated: blogCreated, blogEdited: blogEdited })
                 
                 }).sort({_id: 1}).limit(1)
             }).sort({_id: -1}).limit(1)
