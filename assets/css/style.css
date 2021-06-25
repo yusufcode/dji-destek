@@ -137,6 +137,7 @@ html {}
     display: block;
     margin: 0px 2px;
     position: unset;
+    font-size: 0;
 }
 
 .navbar-menu-item.dropable::after {
@@ -156,6 +157,7 @@ html {}
 .navbar.background .navbar-menu-item.dropable::after,
 .navbar-backgrounded .navbar-menu-item.dropable::after {
     color: #111;
+    cursor: pointer;
 }
 
 .navbar-menu-item > a {
@@ -429,7 +431,7 @@ html {}
         color: #111;
         position: absolute;
         right: 25px;
-        top: 10px;
+        top: 12.5px;
     }
 
     .navbar-menu-item:last-child {
