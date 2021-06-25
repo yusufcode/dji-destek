@@ -93,7 +93,8 @@ html {}
 }
 
 .navbar-brand img {
-    width: 170px;
+    /* width: 170px; */
+    max-width: 100%;
     height: auto;
     transition: 0.3s all;
     /* image-rendering: auto;
@@ -599,6 +600,8 @@ html {}
 }
 
 .footer-top-bottom .footer-logo img{
+    max-width: 100%;
+    height: auto;
     /* image-rendering: auto;
     image-rendering: crisp-edges;
     image-rendering: pixelated; */

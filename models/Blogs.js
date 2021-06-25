@@ -12,7 +12,8 @@ const Schema = new mongoose.Schema({
     blogText: {type:String},
     blogImage: {type:String},
     blogStatus: {type:Boolean},
-    blogGeneralStatus: {type:Boolean}
+    blogGeneralStatus: {type:Boolean},
+    seoText: {type:String}
 }, {timestamps:true})
 
 module.exports = mongoose.model('blogs', Schema)
