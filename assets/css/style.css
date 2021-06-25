@@ -138,6 +138,7 @@ html {}
     margin: 0px 2px;
     position: unset;
     font-size: 0;
+    cursor: pointer;
 }
 
 .navbar-menu-item.dropable::after {
