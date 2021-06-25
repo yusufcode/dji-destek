@@ -428,7 +428,7 @@ html {}
     .navbar-menu-item.dropable::after {
         color: #111;
         position: absolute;
-        right: 15px;
+        right: 25px;
         top: 10px;
     }
 
@@ -443,7 +443,12 @@ html {}
     }
 
     .navbar-menu-item.dropable > a {
-        width: 80%;
+        width: 50%;
+        pointer-events: none;
+    }
+
+    .navbar-menu-item.dropable.hovered > a {
+        pointer-events: initial;
     }
 
     .navbar-menu-item.dropable > a::after {
