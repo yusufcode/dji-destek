@@ -57,7 +57,7 @@ html {}
 }
 
 .navbar-top .contact-addresses {
-    padding-left: 160px;
+    padding-left: 210px;
 }
 
 .navbar-top.dark .contact-addresses i,
@@ -89,12 +89,12 @@ html {}
     position: relative;
     padding: 0;
     margin: 0px;
-    width: 150px;
+    width: 200px;
 }
 
 .navbar-brand img {
-    width: 45px;
-    height: fit-content;
+    width: 170px;
+    height: auto;
     transition: 0.3s all;
 }
 
@@ -360,6 +360,10 @@ html {}
         padding-left: 5px;
     }
 
+    .navbar-brand img{
+        width: 160px;
+    }
+
     .navbar-bottom {
         padding-bottom: 1px;
     }
@@ -475,7 +479,7 @@ html {}
 /* footer-top */
 
 .footer-top {
-    padding-top: 50px;
+    padding-top: 30px;
     padding-bottom: 10px;
     border-bottom: 1px solid #999;
 }
@@ -647,7 +651,6 @@ html {}
 }
 
 .footer-bottom .developer-logo {
-    width: 30px;
     display: inline-block;
     position: absolute;
     top: 50%;
@@ -655,8 +658,13 @@ html {}
     transform: translate(-50%, -50%);
 }
 
+.footer-bottom .developer-logo a{
+    display: block;
+}
+
 .footer-bottom .developer-logo img {
-    width: 100%;
+    width: 30px;
+    height: auto;
 }
 
 @media (max-width:768px) {
@@ -669,7 +677,6 @@ html {}
     }
 
     .footer-top {
-        padding: 10px 0;
         padding-top: 25px;
     }
 
@@ -679,7 +686,8 @@ html {}
     }
 
     .footer-top-bottom .footer-logo {
-        margin: auto;
+        width: 100%;
+        text-align: center;
     }
 
     .footer-top-bottom-list {
@@ -692,7 +700,12 @@ html {}
     }
 
     .footer-top-bottom-social {
-        margin: auto;
+        width: 100%;
+        text-align: center;
+    }
+
+    .footer-top-bottom-social li{
+        float: initial;
     }
 
     .footer-bottom {
@@ -709,7 +722,6 @@ html {}
         top: auto;
         left: auto;
         transform: translate(0);
-        width: 40px;
         margin-top: 5px;
     }
 }
@@ -733,7 +745,12 @@ html {}
 .three-cards {
     width: 100%;
     font-size: 0;
-    padding: 5px;
+    padding: 5px 0;
+}
+
+.three-cards .container{
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .three-cards .part-3 {

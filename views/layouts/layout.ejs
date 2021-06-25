@@ -23,8 +23,8 @@
 
             <div class="navbar-brand">
                 <a href="/">
-                    <img class="navbar-logo-white" src="/assets/img/logo/logo-white.svg" alt="logo-white">
-                    <img class="navbar-logo-black" src="/assets/img/logo/logo-black.svg" alt="logo-black">
+                    <img class="navbar-logo-white" src="/assets/img/logo/djidestek-logo-white.png" alt="logo-white">
+                    <img class="navbar-logo-black" src="/assets/img/logo/djidestek-logo-black.png" alt="logo-black">
                 </a>
             </div>
 
@@ -197,20 +197,55 @@
         <div class="footer-top">
     
             <div class="container">
+
+                <% if(seoText) { %>
+                <div class="footer-top-seo-text">
+                    <%- seoText %>
+                </div>
+                <% } %>
         
                 <div class="footer-top-menus">
-                    <%- include('../partials/footer-top-technic-service') %>
+                    <div class="footer-top-part ">
+                        <h3>Teknik Servis</h3>
+                        <ul>
+                            <li><a href="/teknik-servis/inspire">Inspire</a></li>
+                            <li><a href="/teknik-servis/phantom">Phantom</a></li>
+                            <li><a href="/teknik-servis/mavic">Mavic</a></li>
+                            <li><a href="/teknik-servis/spark">Spark</a></li>
+                        </ul>
+                    </div>
         
-                    <%- include('../partials/footer-top-store') %>
+                    <div class="footer-top-part ">
+                        <h3>Yedek Parça & Aksesuar</h3>
+                        <ul>
+                            <li><a href="/magaza">Mağazamız yakında açılacaktır.</a></li>
+                            <!-- <li><a href="">Menzil Arttırıcı Anten</a></li>
+                            <li><a href="">VR Gözlük</a></li>
+                            <li><a href="">Özel Drone Çantası</a></li> -->
+                        </ul>
+                    </div>
         
-                    <%- include('../partials/footer-top-blog') %>
+                    <div class="footer-top-part ">
+                        <h3>Blog</h3>
+                        <ul>
+                            <li><a href="/blog/dronelar-nasil-ucar">Drone'lar Nasıl Uçar?</a></li>
+                            <li><a href="/blog/drone-nasil-ucurulur">Drone Nasıl Uçurulur?</a></li>
+                        </ul>
+                    </div>
         
-                    <%- include('../partials/footer-top-contact') %>
+                    <div class="footer-top-part ">
+                        <h3>İletişim</h3>
+                        <ul>
+                            <li><i class="fas fa-phone-alt"></i><a href="tel:+90 (533) 735 7895">+90 (533) 735 7895</a></li>
+                            <li><i class="fas fa-envelope"></i><a href="mailto:iletisim@djidestek.com">iletisim@djidestek.com</a></li>
+                            <li><i class="fas fa-map-marker-alt"></i><a href="https://goo.gl/maps/kMgBM9k615peiY687" target="_blank">Caferağa Mah. Nail Bey Sk. No:7/A KADIKÖY/İSTANBUL</a></li>
+                        </ul>
+                    </div>
                 </div>
         
                 <div class="footer-top-bottom">
                     <div class="footer-logo">
-                        <a href="/"><img src="/assets/img/logo/logo-white.svg" alt="logo-white"></a>
+                        <a href="/"><img src="/assets/img/logo/djidestek-logo-white.png" alt="logo-white"></a>
                     </div>
         
                     <ul class="footer-top-bottom-list">
@@ -240,7 +275,7 @@
         
                 <div class="developer-logo">
                     <a href="https://yusufcode.com" target="_blank">
-                        <img src="https://yusufcode.com/assets/img/logo/logo.png" alt="yusufcode-logo">
+                        <img src="https://yusufcode.com/assets/img/logo/logo.png" alt="yusufcode">
                     </a>
                 </div>
         
