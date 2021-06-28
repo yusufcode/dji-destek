@@ -10,6 +10,7 @@ const cookieParser = require('cookie-parser')
 
 //MIDDLEWARES
 const {requireAuth, checkUser} = require('./middlewares/authMiddleware')
+const favoriteBlogs = require('./middlewares/favoriteBlogsMiddleware')
 
 //MODELS
 require('./models/DroneSeries')
@@ -32,7 +33,7 @@ const adminRoutes = require('./routes/adminRoutes')
 const otherRoutes = require('./routes/otherRoutes')
 
 //USE ROUTES
-app.use('/', indexRoutes)
+app.use('/', favoriteBlogs, indexRoutes)
 app.use('/admin', requireAuth, checkUser, adminRoutes)
 app.use('/', otherRoutes)
 

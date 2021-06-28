@@ -20,12 +20,10 @@ const DroneSeries = require('../models/DroneSeries')
 const DroneModels = require('../models/DroneModels')
 const DroneAltModels = require('../models/DroneAltModels')
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
 
-    Pages.findOne({page: "index"}, (err, page) => {
-        res.render(page.page, { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass, seoText: page.seoText })
-    })
-
+    const page = await Pages.findOne({page: "index"})
+    res.render(page.page, { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass, seoText: page.seoText, favoriteBlogs: req.favoriteBlogs })
 })
 
 router.get('/admin-giris', (req, res) => {
@@ -93,66 +91,58 @@ router.get('/teknik-servis/:droneSerial?/:droneModel?/:droneAltModel?', async (r
     let droneSeriesUrl = ""
     let droneModelsUrl = ""
 
-    Pages.findOne({page: "teknik-servis"}, (err, page) => {
+    const page = await Pages.findOne({page: "teknik-servis"})
 
-        seoText = page.seoText
+    seoText = page.seoText
 
-        DroneSeries.findOne({url: droneSerial}, (err, droneSeries) => {
+    const droneSeries = await DroneSeries.findOne({url: droneSerial})
 
-            if(droneSerial && !droneSeries) {
-                res.redirect('/teknik-servis/')
-            } else {
+    if(droneSerial && !droneSeries) {
+        res.redirect('/teknik-servis/')
+    } 
 
-                if(droneModel) {droneSeriesUrl = droneSeries.url}
-                
-                DroneModels.findOne({url: droneModel, parentUrl: droneSeriesUrl}, (err, droneModels) => {
-                
-                    if(droneModel && !droneModels) {
-                        res.redirect('/teknik-servis/'+droneSerial)
-                    } else {
+    if(droneModel) {
+        droneSeriesUrl = droneSeries.url
+    }
+    
+    const droneModels = await DroneModels.findOne({url: droneModel, parentUrl: droneSeriesUrl})  
+    
+    if(droneModel && !droneModels) {
+        res.redirect('/teknik-servis/'+droneSerial)
+    }
 
-                        if(droneAltModel) {droneModelsUrl = droneModels.url}
+    if(droneAltModel) {
+        droneModelsUrl = droneModels.url
+    }
 
-                        DroneAltModels.findOne({url: droneAltModel, bigParentUrl: droneSeriesUrl, parentUrl: droneModelsUrl}, (err, droneAltModels) => {
-                            
-                            if(droneAltModel && !droneAltModels) {
-                                res.redirect('/teknik-servis/'+droneSerial+'/'+droneModel)
-                            } else {
-                                
-                                if(droneSerial && droneSeries) {
-                                    page.title = droneSeries.title
-                                    page.description = droneSeries.description
-                                    page.keywords = droneSeries.keywords
-                                    seoText = droneSeries.seoText
-                                }
-                                if(droneModel && droneModels) {
-                                    page.title = droneModels.title
-                                    page.description = droneModels.description
-                                    page.keywords = droneModels.keywords
-                                    seoText = droneModels.seoText
-                                }
-                                if(droneAltModel && droneAltModels) {
-                                    page.title = droneAltModels.title
-                                    page.description = droneAltModels.description
-                                    page.keywords = droneAltModels.keywords
-                                    seoText = droneAltModels.seoText
-                                }
-                            
-                                res.render(page.page, { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass, params: req.params, droneSerial: droneSeries, droneModel: droneModels, droneAltModel: droneAltModels, seoText: seoText  })
-
-                            }
-                            
-                        })
-
-                    }
-                    
-                })   
-
-            }        
-            
-        })
+    const droneAltModels = await DroneAltModels.findOne({url: droneAltModel, bigParentUrl: droneSeriesUrl, parentUrl: droneModelsUrl})     
         
-    })
+    if(droneAltModel && !droneAltModels) {
+        res.redirect('/teknik-servis/'+droneSerial+'/'+droneModel)
+    }
+        
+    if(droneSerial && droneSeries) {
+        page.title = droneSeries.title
+        page.description = droneSeries.description
+        page.keywords = droneSeries.keywords
+        seoText = droneSeries.seoText
+    }
+
+    if(droneModel && droneModels) {
+        page.title = droneModels.title
+        page.description = droneModels.description
+        page.keywords = droneModels.keywords
+        seoText = droneModels.seoText
+    }
+
+    if(droneAltModel && droneAltModels) {
+        page.title = droneAltModels.title
+        page.description = droneAltModels.description
+        page.keywords = droneAltModels.keywords
+        seoText = droneAltModels.seoText
+    }
+
+    res.render(page.page, { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass, params: req.params, droneSerial: droneSeries, droneModel: droneModels, droneAltModel: droneAltModels, seoText: seoText, favoriteBlogs: req.favoriteBlogs  })
 
 })
 
@@ -208,55 +198,53 @@ router.post('/teknik-servis', (req, res) => {
     
 })
 
-router.get('/magaza', (req, res) => {
-    Pages.findOne({page: "magaza"}, (err, page) => {
-        res.render(page.page, { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass, seoText: page.seoText })
-    })
+router.get('/magaza', async (req, res) => {
+
+    const page = await Pages.findOne({page: "magaza"})
+    res.render(page.page, { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass, seoText: page.seoText, favoriteBlogs: req.favoriteBlogs })
+    
 })
 
-router.get('/blog', (req, res) => {
+router.get('/blog', async (req, res) => {
 
-    Pages.findOne({page: "blog"}, (err, page) => {
-        PageBlog.findOne({ }, (err, pageBlog) => {
-            Blogs.find({blogStatus: 1}, (err, blogData) => {
-                res.render(page.page, { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass, blog: blogData, seoText: page.seoText, blogColumnType: pageBlog.blogColumnType, blogMobileType: pageBlog.blogMobileType })
-            }) 
-        }) 
-    })
+    const page = await Pages.findOne({page: "blog"})
+    const pageBlog = await PageBlog.findOne()
+    const blogData = await Blogs.find({blogStatus: 1})
+        
+    res.render(page.page, { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass, blog: blogData, seoText: page.seoText, blogColumnType: pageBlog.blogColumnType, blogMobileType: pageBlog.blogMobileType, favoriteBlogs: req.favoriteBlogs }) 
+        
 })
 
-router.get('/blog/:blogUrl', (req, res) => {
+router.get('/blog/:blogUrl', async (req, res) => {
 
-    const blogUrl = req.params.blogUrl
+    const blogUrl = await req.params.blogUrl
 
-    Blogs.findOne({url: blogUrl, blogGeneralStatus: 1}, (err, blog) => {
+    const blog = await Blogs.findOne({url: blogUrl, blogGeneralStatus: 1})
 
-        if (!blog) {
-            res.redirect('/404')
-        } else {
+    if (!blog) {
+        res.redirect('/404')
+    }
 
-            Blogs.findOne({_id: {$lt: blog._id}, blogGeneralStatus: 1}, (err, previousBlog) => {
-                Blogs.findOne({_id: {$gt: blog._id}, blogGeneralStatus: 1}, (err, nextBlog) => {
-                    
-                    const blogCreated = moment(blog.createdAt.getTime()).locale('tr').format('DD MMMM YYYY')
-                    let blogEdited = moment(blog.updatedAt.getTime()).locale('tr').format('DD MMMM YYYY')
-                    if(blogCreated == blogEdited) {blogEdited = 0}
+    const previousBlog = await Blogs.findOne({_id: {$lt: blog._id}, blogGeneralStatus: 1}).sort({_id: -1}).limit(1)
+    const nextBlog = await Blogs.findOne({_id: {$gt: blog._id}, blogGeneralStatus: 1}).sort({_id: 1}).limit(1)
+            
+    const blogCreated = moment(blog.createdAt.getTime()).locale('tr').format('DD MMMM YYYY')
+    let blogEdited = moment(blog.updatedAt.getTime()).locale('tr').format('DD MMMM YYYY')
 
-                    res.render('blog-post', { title: blog.title, description: blog.description, keywords: blog.keywords, author: blog.author, bodyClass: blog.bodyClass, blog: blog, seoText: blog.seoText, previousBlog: previousBlog, nextBlog: nextBlog, blogCreated: blogCreated, blogEdited: blogEdited })
-                
-                }).sort({_id: 1}).limit(1)
-            }).sort({_id: -1}).limit(1)
+    if(blogCreated == blogEdited) {
+        blogEdited = 0
+    }
 
-        }
+    res.render('blog-post', { title: blog.title, description: blog.description, keywords: blog.keywords, author: blog.author, bodyClass: blog.bodyClass, blog: blog, seoText: blog.seoText, previousBlog: previousBlog, nextBlog: nextBlog, blogCreated: blogCreated, blogEdited: blogEdited, favoriteBlogs: req.favoriteBlogs })
 
-    })
-
+        
 })
 
-router.get('/iletisim', (req, res) => {
-    Pages.findOne({page: "iletisim"}, (err, page) => {
-        res.render(page.page, { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass, seoText: page.seoText })
-    })
+router.get('/iletisim', async (req, res) => {
+
+    const page = await Pages.findOne({page: "iletisim"})
+    res.render(page.page, { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass, seoText: page.seoText, favoriteBlogs: req.favoriteBlogs })
+
 })
 
 router.post('/iletisim', (req, res) => {

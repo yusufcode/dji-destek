@@ -228,9 +228,9 @@
                     <div class="footer-top-part ">
                         <h3>Blog</h3>
                         <ul>
-                            <li><a href="/blog/dronelar-nasil-ucar">Drone'lar Nasıl Uçar?</a></li>
-                            <li><a href="/blog/drone-nasil-ucurulur">Drone Nasıl Uçurulur?</a></li>
-                            <li><a href="/blog/teknik-servis-islemleri">Teknik Servis İşlemleri</a></li>
+                            <% favoriteBlogs.forEach(blog => { %>
+                            <li><a href="/blog/<%- blog.blogUrl %>"><%- blog.blogTitle %></a></li>
+                            <% }) %>
                         </ul>
                     </div>
         
