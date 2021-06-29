@@ -16,6 +16,14 @@ html {}
     box-sizing: border-box;
 }
 
+a{
+    color: rgb(0, 172, 184)
+}
+
+a:hover{
+    color: rgb(0, 172, 184)
+}
+
 /* NAVBAR */
 
 .navbar {
@@ -936,6 +944,13 @@ html {}
     font-size: 24px;
     text-align: center;
     margin-bottom: 20px;
+}
+
+@media (max-width: 768px){
+    .contact-page .contact-container .contact-addresses{
+        height: initial;
+        padding-bottom: 0;
+    }
 }
 
 /* STORE PAGE */
