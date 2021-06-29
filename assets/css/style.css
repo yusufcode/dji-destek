@@ -103,6 +103,7 @@ a:hover{
 .navbar-brand img {
     width: 160px;
     transition: 0.3s all;
+    float: left;
     /* image-rendering: auto;
     image-rendering: crisp-edges;
     image-rendering: pixelated; */
