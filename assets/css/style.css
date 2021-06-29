@@ -101,7 +101,7 @@ a:hover{
 }
 
 .navbar-brand img {
-    /* width: 170px; */
+    width: 160px;
     transition: 0.3s all;
     /* image-rendering: auto;
     image-rendering: crisp-edges;
@@ -614,6 +614,7 @@ a:hover{
 }
 
 .footer-top-bottom .footer-logo img{
+    width: 160px;
     /* image-rendering: auto;
     image-rendering: crisp-edges;
     image-rendering: pixelated; */
