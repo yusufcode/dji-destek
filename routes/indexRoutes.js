@@ -19,12 +19,14 @@ const Blogs = require('../models/Blogs')
 const DroneSeries = require('../models/DroneSeries')
 const DroneModels = require('../models/DroneModels')
 const DroneAltModels = require('../models/DroneAltModels')
+const favoriteBlogsMiddleware = require('../middlewares/favoriteBlogsMiddleware')
 
-router.get('/', async (req, res) => {
+
+router.get('/', favoriteBlogsMiddleware, async (req, res) => {
 
     const page = await Pages.findOne({page: "index"})
-    const favoriteBlogs = await Blogs.find({blogStatus: true}).sort({ _id : -1 }).limit(5)
-    res.render(page.page, { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass, seoText: page.seoText, favoriteBlogs: favoriteBlogs })
+    res.render(page.page, { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass, seoText: page.seoText, favoriteBlogs: req.favoriteBlogs })
+
 })
 
 router.get('/admin-giris', (req, res) => {
@@ -82,7 +84,7 @@ router.get('/admin-cikis-yap', (req,res) => {
     res.redirect('/admin-giris')
 })
 
-router.get('/teknik-servis/:droneSerial?/:droneModel?/:droneAltModel?', async (req, res) => {
+router.get('/teknik-servis/:droneSerial?/:droneModel?/:droneAltModel?', favoriteBlogsMiddleware, async (req, res) => {
 
     const droneSerial = await req.params.droneSerial
     const droneModel = await req.params.droneModel
@@ -143,9 +145,7 @@ router.get('/teknik-servis/:droneSerial?/:droneModel?/:droneAltModel?', async (r
         seoText = droneAltModels.seoText
     }
 
-    const favoriteBlogs = await Blogs.find({blogStatus: true}).sort({ _id : -1 }).limit(5)
-
-    res.render(page.page, { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass, params: req.params, droneSerial: droneSeries, droneModel: droneModels, droneAltModel: droneAltModels, seoText: seoText, favoriteBlogs: favoriteBlogs  })
+    res.render(page.page, { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass, params: req.params, droneSerial: droneSeries, droneModel: droneModels, droneAltModel: droneAltModels, seoText: seoText, favoriteBlogs: req.favoriteBlogs  })
 
 })
 
@@ -201,32 +201,28 @@ router.post('/teknik-servis', (req, res) => {
     
 })
 
-router.get('/magaza', async (req, res) => {
+router.get('/magaza', favoriteBlogsMiddleware, async (req, res) => {
 
     const page = await Pages.findOne({page: "magaza"})
-    const favoriteBlogs = await Blogs.find({blogStatus: true}).sort({ _id : -1 }).limit(5)
-    res.render(page.page, { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass, seoText: page.seoText, favoriteBlogs: favoriteBlogs })
+    res.render(page.page, { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass, seoText: page.seoText, favoriteBlogs: req.favoriteBlogs })
     
 })
 
-router.get('/blog', async (req, res) => {
+router.get('/blog', favoriteBlogsMiddleware, async (req, res) => {
 
     const page = await Pages.findOne({page: "blog"})
     const pageBlog = await PageBlog.findOne()
     const blogData = await Blogs.find({blogStatus: 1})
-    const favoriteBlogs = await Blogs.find({blogStatus: true}).sort({ _id : -1 }).limit(5)
         
-    res.render(page.page, { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass, blog: blogData, seoText: page.seoText, blogColumnType: pageBlog.blogColumnType, blogMobileType: pageBlog.blogMobileType, favoriteBlogs: favoriteBlogs }) 
+    res.render(page.page, { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass, blog: blogData, seoText: page.seoText, blogColumnType: pageBlog.blogColumnType, blogMobileType: pageBlog.blogMobileType, favoriteBlogs: req.favoriteBlogs }) 
         
 })
 
-router.get('/blog/:blogUrl', async (req, res) => {
+router.get('/blog/:blogUrl', favoriteBlogsMiddleware, async (req, res) => {
 
     const blogUrl = await req.params.blogUrl
 
     const blog = await Blogs.findOne({url: blogUrl, blogGeneralStatus: 1})
-
-    const favoriteBlogs = await Blogs.find({blogStatus: true}).sort({ _id : -1 }).limit(5)
 
     if (!blog) {
         res.redirect('/404')
@@ -242,16 +238,16 @@ router.get('/blog/:blogUrl', async (req, res) => {
         blogEdited = 0
     }
 
-    res.render('blog-post', { title: blog.title, description: blog.description, keywords: blog.keywords, author: blog.author, bodyClass: blog.bodyClass, blog: blog, seoText: blog.seoText, previousBlog: previousBlog, nextBlog: nextBlog, blogCreated: blogCreated, blogEdited: blogEdited, favoriteBlogs: favoriteBlogs })
+    res.render('blog-post', { title: blog.title, description: blog.description, keywords: blog.keywords, author: blog.author, bodyClass: blog.bodyClass, blog: blog, seoText: blog.seoText, previousBlog: previousBlog, nextBlog: nextBlog, blogCreated: blogCreated, blogEdited: blogEdited, favoriteBlogs: req.favoriteBlogs })
 
         
 })
 
-router.get('/iletisim', async (req, res) => {
+router.get('/iletisim', favoriteBlogsMiddleware, async (req, res) => {
 
     const page = await Pages.findOne({page: "iletisim"})
     const favoriteBlogs = await Blogs.find({blogStatus: true}).sort({ _id : -1 }).limit(5)
-    res.render(page.page, { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass, seoText: page.seoText, favoriteBlogs: favoriteBlogs })
+    res.render(page.page, { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass, seoText: page.seoText, favoriteBlogs: req.favoriteBlogs })
 
 })
 

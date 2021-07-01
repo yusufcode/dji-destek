@@ -4,13 +4,13 @@ const fs = require("fs");
 
 const Pages = require('../models/Pages')
 const Blogs = require('../models/Blogs')
+const favoriteBlogsMiddleware = require('../middlewares/favoriteBlogsMiddleware')
 
 
-router.get('/404', async (req, res) => {
+router.get('/404', favoriteBlogsMiddleware, async (req, res) => {
 
     const page = await Pages.findOne({page: "404"})
-    const favoriteBlogs = await Blogs.find({blogStatus: true}).sort({ _id : -1 }).limit(5)
-    res.render(page.page, { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass, seoText: '', favoriteBlogs: favoriteBlogs})
+    res.render(page.page, { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass, seoText: '', favoriteBlogs: req.favoriteBlogs})
     
 })
 
