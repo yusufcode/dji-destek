@@ -429,6 +429,7 @@ a:hover{
 
     .navbar-menu {
         background-color: white;
+        margin-top: 70px;
         padding-left: 0;
         position: fixed;
         left: 0;
@@ -443,7 +444,7 @@ a:hover{
     }
 
     .navbar-menu-list{
-        padding-top: 70px;
+        
     }
 
     .navbar-menu.show {
