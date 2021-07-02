@@ -59,18 +59,12 @@ a:hover{
 }
 
 .navbar.background .navbar-top,
-.navbar-backgrounded .navbar-top,
-.navbar-top.dark {
+.navbar-backgrounded .navbar-top {
     border-bottom: 1px solid #f1f1f1;
 }
 
 .navbar-top .contact-addresses {
     padding-left: 210px;
-}
-
-.navbar-top.dark .contact-addresses i,
-.navbar-top.dark .contact-addresses a {
-    color: #111;
 }
 
 .navbar-top i {
@@ -91,7 +85,9 @@ a:hover{
     color: #111;
 }
 
-.navbar-bottom {}
+.navbar-bottom {
+    transition: 0.3s all;
+}
 
 .navbar-brand {
     position: relative;
@@ -117,13 +113,11 @@ a:hover{
     display: none;
 }
 
-.navbar .navbar-brand.dark .navbar-logo-white,
 .navbar.background .navbar-brand .navbar-logo-white,
 .navbar-backgrounded .navbar-brand .navbar-logo-white {
     display: none;
 }
 
-.navbar .navbar-brand.dark .navbar-logo-black,
 .navbar.background .navbar-brand .navbar-logo-black,
 .navbar-backgrounded .navbar-brand .navbar-logo-black {
     display: block;
@@ -360,6 +354,33 @@ a:hover{
         padding: 0;
     }
 
+    .navbar.collapsed .navbar-top{
+        border-bottom: 1px solid #f1f1f1;
+        background: white;
+    }
+
+    .navbar.collapsed .navbar-top .contact-addresses i,
+    .navbar.collapsed .navbar-top .contact-addresses a {
+        color: #111;
+    }
+
+    .navbar.collapsed .navbar-bottom{
+        background: white;
+        box-shadow: 0 1px 5px -1px rgba(0, 0, 0, 0.1)!important;
+    }
+
+    .navbar.collapsed .navbar-bottom .navbar-brand .navbar-logo-white {
+        display: none;
+    }
+
+    .navbar.collapsed .navbar-bottom .navbar-brand .navbar-logo-black {
+        display: block;
+    }
+
+    .navbar.collapsed .navbar-bottom .navbar-menu-collapser button {
+        color: #111;
+    }
+
     .navbar .container {
         margin: 0;
         width: 100%;
@@ -406,14 +427,9 @@ a:hover{
         color: #111;
     }
 
-    .navbar .navbar-menu-collapser.dark button {
-        color: #111;
-    }
-
     .navbar-menu {
         background-color: white;
         padding-left: 0;
-        padding-top: 85px;
         position: fixed;
         left: 0;
         top: 0;
@@ -424,6 +440,10 @@ a:hover{
         transition: 0.3s all;
         overflow: auto;
         z-index: -1;
+    }
+
+    .navbar-menu-list{
+        padding-top: 70px;
     }
 
     .navbar-menu.show {
@@ -960,6 +980,8 @@ a:hover{
 .store-page{
     background: #fefefe;
 }
+
+
 
 /* BLOG PAGE */
 

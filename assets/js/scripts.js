@@ -1,13 +1,19 @@
 /* NAVBAR */
 
-/* when scroll the page add background to navbar */
-$(document).scroll(function () {
+/* add background class to navbar */
+addBackgroundClass = function () {
     if ($('.navbar').offset().top > 1) {
         $('.navbar').addClass('background');
     } else {
         $('.navbar').removeClass('background');
     }
-});
+}
+
+/* if page's position bigger than 1 then add background to navbar */
+$(document).ready(addBackgroundClass)
+
+/* if page's position bigger than 1 then add background to navbar (while scrolling) */
+$(document).scroll(addBackgroundClass)
 
 /* when hovered to navbar-menu-item */
 $(document).on('mouseover', '.navbar-menu-item.dropable', function () {
@@ -29,16 +35,12 @@ $(document).on('mouseleave', '.navbar-menu-item.dropable', function () {
 $(document).on('click', '.navbar-menu-collapser button', function () {
 
     if (!$('.navbar-menu').hasClass('show')) {
-        $('.navbar-top').addClass('dark');
+        $('.navbar').addClass('collapsed');
         $('.navbar-menu').addClass('show');
-        $('.navbar-brand').addClass('dark');
-        $('.navbar-menu-collapser').addClass('dark');
         $('body').addClass('noscroll');
     } else {
-        $('.navbar-top').removeClass('dark');
+        $('.navbar').removeClass('collapsed');
         $('.navbar-menu').removeClass('show');
-        $('.navbar-brand').removeClass('dark');
-        $('.navbar-menu-collapser').removeClass('dark');
         $('body').removeClass('noscroll');
     }
 
@@ -63,7 +65,7 @@ const swiper = new Swiper('.swiper-container', {
     
     direction: 'horizontal',
     autoplay: {
-        delay: 3000
+        delay: 3500
       },
     scrollbar: {
       el: '.swiper-scrollbar',
