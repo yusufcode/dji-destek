@@ -978,8 +978,14 @@ a:hover{
     position: relative;
 }
 
+.footer-bottom .container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .footer-bottom .copyright-text {
     display: inline-block;
+    width: 33.33%;
 }
 
 .footer-bottom .copyright-text p {
@@ -988,21 +994,20 @@ a:hover{
     font-size: 12px;
 }
 
-.footer-bottom .developer-logo {
+.footer-bottom .developer-signature{
     display: inline-block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    width: 33.33%;
+    text-align: center;
 }
 
-.footer-bottom .developer-logo a{
-    display: block;
+.footer-bottom .developer-signature p{
+    color: #999;
+    font-size: 12px;
+    margin-bottom: 0;
 }
 
-.footer-bottom .developer-logo img {
-    width: 30px;
-    height: auto;
+.footer-bottom .developer-signature p a{
+    color: #d5d5d5;
 }
 
 @media (max-width:768px) {
