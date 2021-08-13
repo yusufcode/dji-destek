@@ -1,6 +1,81 @@
 <div class="container">
     
-    <h1>Mağaza</h1>
-    <p>Mağazamız çok yakında hizmete açılacaktır...</p>
+    <div class="store-row">
+        <div class="products-criterias">
+            
+            <div class="products-criteria drone-series checkbox">
+                <div class="products-criteria-title">
+                    <label for="">Seri</label>
+                </div>
+                <div class="products-criteria-options">
+                    <div class="products-criteria-option">
+                        <label >
+                            Inspire
+                            <input type="checkbox" value="inspire">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="products-criteria-option">
+                        <label>
+                            Phantom
+                            <input type="checkbox" value="phantom">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="products-criteria-option">
+                        <label>
+                            Mavic
+                            <input type="checkbox" value="mavic">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="products-criteria-option">
+                        <label>
+                            Spark
+                            <input type="checkbox" value="spark">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="products-criteria product-price">
+                <div class="products-criteria-title">
+                    <label for="">Fiyat</label>
+                </div>
+                <div class="products-criteria-options">
+                    <div class="products-criteria-option">
+                        <input type="number" placeholder="Min." class="product-min-price">
+                        <input type="number" placeholder="Max." class="product-max-price">
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    
+        <div class="products-column">
+            <% for (let i = 0; i < products.length; i++) { %>
+            <div class="product-cover desktop-4 notebook-3 tablet-2 mobile-2">
+                <a class="product" href="/magaza/<%- products[i].productUrl %>">
+                    <div class="product-image">
+                        <!-- <% for (let k = 0; k < products[i].productImages.length; k++) { %>
+                            <img src="/assets/img/products/<%-products[i].productImages[k].productImage%>" alt="">
+                        <% } %> -->
+                        <img src="/assets/img/products/<%-products[i].productImages[0].productImage%>" alt="<%-products[i].productImages[0].productImage%>">
+                    </div>
+                    <div class="product-title">
+                        <h3><%- products[i].productName %></h3>
+                    </div>
+                    <div class="product-price">
+                        <% if(products[i].productCurrentPrice != products[i].productOldPrice){%> <p class="product-old-price"><span class="price"><%-products[i].productOldPrice%></span><span class="sign">₺</span></p><%} %>
+                        <p class="product-current-price"><span class="price"><%-products[i].productCurrentPrice%></span><span class="sign">₺</span></p>
+                    </div>
+                </a>
+            </div>
+            <% } %>
+        </div>
+    </div>
 
 </div>

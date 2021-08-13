@@ -1,0 +1,59 @@
+<div class="container">
+    
+    <div class="product-main-card">
+
+        <div class="product-image-part">
+
+            <div class="current-image">
+                <img src="/assets/img/products/<%-product.productImages[0].productImage%>" alt="">
+                <div id="bigger-image">
+                    <% for (let i = 0; i < product.productImages.length; i++) { %>
+                    <a href="/assets/img/products/<%-product.productImages[i].productImage%>">
+                    </a>
+                    <% } %>
+                </div>
+            </div>
+
+            <div class="all-images">
+                <% for (let i = 0; i < product.productImages.length; i++) { %>
+                <div class="image <%if(product.productImages[i] == product.productImages[0]){%>active<%}%>">
+                    <img src="/assets/img/products/<%-product.productImages[i].productImage%>" alt="">
+                </div>
+                <% } %>
+            </div>
+            
+        </div>
+
+        <div class="product-details-part">
+            <div class="product-name">
+                <h1><%-product.productName%></h1>
+            </div>
+            <div class="product-price">
+                <div class="product-old-price">
+                    <% if(product.productOldPrice != product.productCurrentPrice) { %>
+                    <p><span class="price"><%-product.productOldPrice%></span><span class="sign">₺</span></p>
+                    <% } %>
+                </div>
+                <div class="product-current-price">
+                    <p><span class="price"><%-product.productCurrentPrice%></span><span class="sign">₺</span></p>
+                </div>
+            </div>
+            <div class="product-buttons">
+                <div class="add-likes-button">
+                    <button productId="<%- product._id %>">
+                        <i class="far fa-heart lined"></i>
+                        <i class="fas fa-heart filled"></i>
+                    </button>
+                </div>
+                <div class="add-cart-button">
+                    <button productId="<%- product._id %>">Sepete Ekle</button>
+                </div>
+                <div class="buy-directly-button">
+                    <button productId="<%- product._id %>">Satın Al</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

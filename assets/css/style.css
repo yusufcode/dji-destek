@@ -1221,26 +1221,38 @@ section .section-title{
 .gallery .gallery-images{
     font-size: 0;
     display: flex;
+    flex-wrap: wrap;
 }
 
 .gallery .gallery-images .image{
-    width: 33.33%;
-    height: 250px;
-    margin: 10px;
     display: inline-block;
     border-radius: 5px;
     overflow: hidden;
+    padding: 10px;
+}
+
+.gallery .gallery-images .image:hover{
+    cursor: zoom-in;
+}
+
+.gallery .gallery-images .image.col-md-4{
+    width: 33.33%;
+    height: 250px;
 }
 
 .gallery .gallery-images .image img{
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: 0.2s all;
+    border-radius: 7.5px;
 }
 
-.gallery .gallery-images .image:hover img{
-    transform: scale(1.045)
+@media(max-width: 768px){
+    .gallery .gallery-images .image.col-xs-12{
+        width: 100%;
+        height: 250px;
+        padding: 10px 0;
+    }
 }
 
 /* INNER PAGE */

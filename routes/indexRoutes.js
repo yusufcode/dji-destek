@@ -212,9 +212,7 @@ router.get('/magaza', favoriteBlogsMiddleware, async (req, res) => {
     
     const page = await Pages.findOne({page: "magaza"})
 
-    
-
-    res.render(page.page, { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass, seoText: page.seoText, favoriteBlogs: req.favoriteBlogs, products: products })
+    res.render('magaza-developing', { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass, seoText: page.seoText, favoriteBlogs: req.favoriteBlogs, products: products })
     
 })
 
