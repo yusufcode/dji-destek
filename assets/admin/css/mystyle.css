@@ -2,6 +2,21 @@
 /* rgb(0, 135, 145) */
 /* rgb(0,90,100) */
 
+/* ADMIN TEMPLATE */
+@media (min-width: 992px) {
+    .content {
+        padding: 25px;
+    }
+}
+
+.card-header{
+    padding: 25px;
+}
+
+.card.card-custom > .card-body {
+    padding: 25px;
+}
+
 body{
     background: rgb(0,135,145);
 }
@@ -334,5 +349,204 @@ input.bad-form{
 
 .technic-service-page table .drone-remove:hover i{
     color: #e85050;
+}
+
+/* DOCUMENTS PAGE */
+
+.documents-images-page .documents{
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 0;
+}
+
+.documents-images-page .documents .top-bar{
+    width: 100%;
+    display: flex;
+}
+
+.documents-images-page .documents .directory,
+.documents-images-page .documents .control{
+    font-size: 0;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+    padding: 0 5px;
+    margin-bottom: 5px;
+}
+
+.documents-images-page .documents .directory .directoryButtons,
+.documents-images-page .documents .control .controlButtons{
+    width: 30px;
+    min-width: min-content;
+    font-size: 15px;
+    height: 30px;
+    background-color: #f8f8f8;
+    border-top: 1px solid #e5e5e5;
+    border-left: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+    border-right: 0;
+}
+
+.documents-images-page .documents .directory .directoryButtons:first-child,
+.documents-images-page .documents .control .controlButtons:first-child{
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.documents-images-page .documents .directory .directoryButtons:last-child,
+.documents-images-page .documents .control .controlButtons:last-child{
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-right: 1px solid #e5e5e5;
+
+}
+
+.documents-images-page .documents .directory .directoryButtons:hover,
+.documents-images-page .documents .control .controlButtons:hover{
+    background-color: #f1f1f1;
+}
+
+.documents-images-page .documents .directory .directoryButtons i,
+.documents-images-page .documents .control .controlButtons i{
+    color: #888;
+    font-size: 14px;
+}
+
+.documents-images-page .documents .document-cover{
+    width: 90px;
+    padding: 2.5px
+}
+
+
+.documents-images-page .documents .document{
+    width: 100%;
+    height: 100%;
+    padding: 5px 0;
+}
+
+.documents-images-page .documents .document.selected{
+    background-color: rgba(150, 225, 255, 0.5)
+}
+
+.documents-images-page .documents .document.image.selected .document-image{
+    border: 1px solid #fff;
+}
+
+.documents-images-page .documents .document .document-image{
+    text-align: center;
+    width: 80px;
+    height: 80px;
+    margin: auto;
+}
+
+.documents-images-page .documents .document.image .document-image{
+    border: 1px solid #e5e5e5;
+    overflow: hidden;
+}
+
+.documents-images-page .documents .document .document-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    
+}
+
+.documents-images-page .documents .document .document-image img::selection{
+    background-color: transparent;
+}
+
+.documents-images-page .documents .document .document-name{
+    text-align: center;
+}
+
+.documents-images-page .documents .document .document-name p{
+    font-size: 12px;
+    margin: 0;
+}
+
+.documents-images-page .documents .document-popup{
+    display: none;
+    position:fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 10;
+}
+
+.documents-images-page .documents .document-popup.show{
+    display: block;
+}
+
+.documents-images-page .documents .document-popup-back{
+    background-color: rgba(0,0,0,0.6);
+    width: 100%;
+    height: 100%;
+}
+
+.documents-images-page .documents .document-popup-card{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 50%;
+    height: 80%;
+    margin: auto;
+    background-color: white;
+    border-radius: 5px;
+    overflow-y: auto;
+}
+
+.documents-images-page .documents .document-popup .document-popup-closer{
+    font-size: 30px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    width: 40px;
+    text-align: center;
+}
+
+.documents-images-page .documents .document-popup .document-popup-image{
+    width: 100%;
+    height: 70%;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.documents-images-page .documents .document-popup .document-popup-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.documents-images-page .documents .document-popup .document-popup-details{
+    padding: 10px;
+    width: 100%;
+}
+
+.documents-images-page .documents .document-popup .document-popup-detail{
+    text-align: center;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.documents-images-page .documents .document-popup .document-popup-detail label{
+    font-size: 12px;
+    margin: 0;
+}
+
+.documents-images-page .documents .document-popup .document-popup-detail input{
+    font-size: 12px;
+    width: 100%;
+}
+
+@media(max-width:768px){
+    .documents-images-page .documents .document-popup-card{
+        width: 95%;
+        height: 80%;
+    }
 }
 

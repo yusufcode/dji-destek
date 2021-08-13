@@ -574,3 +574,231 @@ $(document).on('click', '.blog-page .blog-general-status-edit', function(event) 
     })
 
 })
+
+function refreshDocuments(directory, newDirectory){
+
+    const documents = $('.documents-images-page').find('.documents')
+
+    $.ajax({
+        url: '/admin/gorseller',
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            newDirectory: newDirectory
+        }),
+        success: function(res){
+
+            if(res.status == true) {
+
+                documents.find('.document-cover').remove()
+
+                const allFiles = res.allFiles
+
+                for (let i = 0; i < allFiles.length; i++) {
+
+                    let newDocumentImage = ''
+
+                    if(allFiles[i].typeClass == 'folder') {newDocumentImage = '<div class="document-image"><img src="/assets/img/documentation/folder.png" alt=""></div>'}
+                    else if(allFiles[i].typeClass == 'image') {newDocumentImage = '<div class="document-image"><img src="'+allFiles[i].src+'" alt=""></div>'}
+                    else if(allFiles[i].typeClass == 'psd') {newDocumentImage = '<div class="document-image"><img src="/assets/img/documentation/psd.png" alt=""></div>'}
+                    
+                    let newDocumentName = '<div class="document-name"><p>'+ allFiles[i].name +'</p></div>'
+
+                    let newDocument = '<div class="document ' + allFiles[i].typeClass + '">'+ newDocumentImage + newDocumentName +'</div>'
+
+                    let newDocumentCover = '<div class="document-cover">'+newDocument+'</div>'
+
+                    documents.append(newDocumentCover)
+
+                }
+
+                directory.attr('src', res.newDirectory)
+
+            } else {
+                alert('başarısız')
+            }
+
+        }
+
+    })
+
+}
+
+/* Show Document Popup Function */
+function showDocumentPopup(documentName, documentSrc, documentHtml) {
+
+    $('.documents-images-page .document-popup').find('.document-popup-image img').attr('src', documentSrc)
+    $('.documents-images-page .document-popup').find('.document-popup-name input').val(documentName)
+    $('.documents-images-page .document-popup').find('.document-popup-src input').val(documentSrc)
+    $('.documents-images-page .document-popup').find('.document-popup-html input').val(documentHtml)
+
+    $('.documents-images-page .document-popup').addClass('show')
+
+}
+
+/* Previous Directory */
+$(document).on('click', '.documents-images-page .previousDirectory', function(){
+
+    const directory = $('.documents-images-page').find('.directory')
+    
+    const arrayDirectory = directory.attr('src').split('/')
+    arrayDirectory.splice(-2, 1)
+    const newDirectory = arrayDirectory.join('/')
+    
+    refreshDocuments(directory, newDirectory)
+
+})
+
+/* Home Directory */
+$(document).on('click', '.documents-images-page .homeDirectory', function(){
+
+    const directory = $('.documents-images-page').find('.directory')
+    
+    const newDirectory = ''
+    
+    refreshDocuments(directory, newDirectory)
+
+})
+
+/* Refresh Directory */
+$(document).on('click', '.documents-images-page .refreshDirectory', function(){
+
+    const directory = $('.documents-images-page').find('.directory')
+    
+    const newDirectory = directory.attr('src')
+    
+    refreshDocuments(directory, newDirectory)
+
+})
+
+/* Double Click Checker */
+let doubleClickTime = 0
+function doubleClickChecker(){
+    if (doubleClickTime == 0) {
+        doubleClickTime = new Date().getTime();
+        return false
+    } else {
+        if (((new Date().getTime()) - doubleClickTime) < 300) {
+            doubleClickTime = 0;
+            return true
+        } else {
+            doubleClickTime = new Date().getTime();
+            return false
+        }
+    }
+}
+
+/* Double Click to Folder Open Folder*/
+$(document).on('click', '.documents-images-page .document.folder', function(){
+
+    if(doubleClickChecker()){
+
+        const directory = $('.documents-images-page').find('.directory')
+        const documentName = $(this).find('.document-name p').text()
+        
+        const newDirectory = directory.attr('src') + documentName + '/'
+        
+        refreshDocuments(directory, newDirectory)
+
+    }
+
+})
+
+/* Double Click to Image Show Document Popup*/
+$(document).on('click', '.documents-images-page .document.image', function(){
+
+    if(doubleClickChecker()){
+
+        const documentName = $(this).find('.document-name p').text()
+        const documentSrc = $(this).find('.document-image img').attr('src')
+        const documentHtml = '<img src="' + documentSrc + '" alt="' + documentName + '">' 
+
+        showDocumentPopup(documentName, documentSrc, documentHtml)
+
+    }
+
+})
+
+/* Close Document Popup Function */
+$(document).on('click', '.documents-images-page .documents .document-popup-closer', function() {
+
+    $('.document-popup').removeClass('show')
+
+})
+
+/* Select Document */
+$(document).on('click', '.documents-images-page .document', function(){
+
+    const thisDocument = $(this)
+    const selectedDocuments = $('.documents-images-page .document.selected')
+
+    if(!ctrlPressed){
+        selectedDocuments.removeClass('selected')
+    } 
+
+    thisDocument.addClass('selected')
+
+})
+
+/* Multi Select Document When Press CTRL */
+let ctrlPressed = false
+$(document).on('keydown', function(event) {
+    
+    if(event.which == '17'){
+        ctrlPressed = true
+    }
+
+})
+
+$(document).on('keyup', function(event) {
+    
+    if(event.which == '17'){
+        ctrlPressed = false
+    }
+
+})
+
+/* Unselect Document When Click Outside */
+$(document).on('click', '.documents-images-page', function(event){
+
+    const selectedDocuments = $('.documents-images-page').find('.document.selected')
+
+    if (!selectedDocuments.has(event.target).length) {
+        selectedDocuments.removeClass('selected')
+    }
+
+})
+
+$(document).on('click', '.documents-images-page .removeDocument', function() {
+
+    const directory = $('.documents-images-page .directory')
+    const newDirectory = directory.attr('src')
+
+    let selectedDocuments = $('.documents-images-page .document.selected')
+
+    let removeDocuments = []
+
+    for (let i = 0; i < selectedDocuments.length; i++) {
+        let nameSelectedDocuments = selectedDocuments.eq(i).find('.document-name p').text()
+        removeDocuments[i] = '/assets/img/' + directory.attr('src') + nameSelectedDocuments 
+    }
+
+    $.ajax({
+        url: '/admin/dosya-sil',
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            removeDocuments: removeDocuments
+        }),
+        success: function(res){
+            
+            if(res.status == true){
+                refreshDocuments(directory, newDirectory)
+            } else {
+                alert(res.message)
+            }
+
+        }
+    })
+
+})

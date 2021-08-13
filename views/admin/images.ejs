@@ -1,0 +1,73 @@
+<div class="card card-custom">
+
+    <div class="card-header">
+        <div class="card-title">
+            <h3 class="card-label">Görseller
+            <div class="text-muted pt-2 font-size-sm">Bütün resim dosyaları</div></h3>
+        </div>
+    </div>
+
+    <div class="card-body">
+        <div class="documents">
+            <div class="top-bar">
+                <div class="directory" src="<%- directory %>">
+                    <button class="directoryButtons previousDirectory" title="Geri"><i class="fas fa-angle-left"></i></button>
+                    <button class="directoryButtons homeDirectory" title="Anasayfa"><i class="fas fa-home"></i></button>
+                    <button class="directoryButtons refreshDirectory" title="Yenile"><i class="fas fa-redo"></i></button>
+                </div>
+
+                <div class="control">
+                    <button class="controlButtons removeDocument" title="Sil"><i class="fas fa-trash-alt"></i></button>
+                    <button class="controlButtons editDocument" title="Düzenle"><i class="far fa-edit"></i></button>
+                    <button class="controlButtons addNewFolder" title="Yeni Klasör"><i class="fas fa-folder-plus"></i></button>
+                    <button class="controlButtons addNewFile" title="Yeni Dosya"><i class="fas fa-plus"></i></button>
+                </div>
+            </div>
+            <% for (let i = 0; i < allFiles.length; i++) { %>
+                <div class="document-cover">
+                    <div class="document <%- allFiles[i].typeClass %>">
+                        <div class="document-image">
+                            <% if(allFiles[i].typeClass == 'folder') { %>
+                            <img src="/assets/img/documentation/folder.png">
+                            <% } else if(allFiles[i].typeClass == 'image') { %>
+                            <img src="<%- allFiles[i].src %>" alt="">
+                            <% } else if(allFiles[i].typeClass == 'psd') { %>
+                            <img src="/assets/img/documentation/psd.png">
+                            <% } %>
+                        </div>
+                        <div class="document-name">
+                            <p><%- allFiles[i].name %></p>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+            <div class="document-popup">
+                
+                <div class="document-popup-card">
+                    <div class="document-popup-closer">&times;</div>
+                    <div class="document-popup-image">
+                        <img src="">
+                    </div>
+                    <div class="document-popup-details">
+                        <div class="document-popup-detail document-popup-name">
+                            <label for="">Dosya Adı</label>
+                            <input type="text" value="">
+                        </div>
+                        <div class="document-popup-detail document-popup-src">
+                            <label for="">Dosya Yolu</label>
+                            <input type="text" value="">
+                        </div>
+                        <div class="document-popup-detail document-popup-html">
+                            <label for="">Dosya HTML</label>
+                            <input type="text" value="">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="document-popup-back"></div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

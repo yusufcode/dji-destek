@@ -1,5 +1,7 @@
 const express = require('express')
 const router = express.Router()
+const fs = require('fs');
+const path = require('path');
 
 const PagesAdmin = require('../models/PagesAdmin')
 
@@ -9,7 +11,10 @@ const DroneAltModels = require('../models/DroneAltModels')
 
 const PageBlog = require('../models/PageBlog')
 const Blogs = require('../models/Blogs')
-const Users = require('../models/Users')
+const Users = require('../models/Users');
+const { dir } = require('console');
+const { dirname } = require('path');
+const { send } = require('process');
 
 router.get('/', (req, res) => {
 
@@ -27,6 +32,111 @@ router.get('/', (req, res) => {
     PagesAdmin.findOne({page: 'admin/index'}, (err,page) => {
         res.render(page.page, {title: page.title, pageName: page.pageName, layout: page.layout, bodyClass: page.bodyClass})
     })
+
+})
+
+async function provideDocuments(realDirectory, allFilesDefault, allFiles){
+
+    for (let i = 0; i < allFilesDefault.length; i++) {
+
+        let name = allFilesDefault[i]
+
+        let typeClass = await path.extname(allFilesDefault[i])
+        if(!typeClass) {typeClass = 'folder'}
+        else if(typeClass == '.jpg' || typeClass == '.png' || typeClass == '.jpeg' || typeClass == '.gif' || typeClass == '.webp' || typeClass == '.svg') {typeClass = 'image'}
+        else if(typeClass == '.psd') {typeClass = 'psd'}
+
+        let src = await ''
+        if(typeClass == 'folder') {src = await realDirectory + allFilesDefault[i] + '/'}
+        else {src = await realDirectory + allFilesDefault[i]}
+
+        allFiles[i] = await {name: name, typeClass: typeClass, src: src}
+
+    }
+
+}
+
+router.get('/gorseller', async (req, res) => {
+
+    const page = await PagesAdmin.findOne({page: 'admin/images'})
+
+    const constDirectory = await '/assets/img/'
+    let currentDirectory = await ''
+    let realDirectory = await constDirectory + currentDirectory
+    let directory = await '.' + realDirectory
+
+    let allFilesDefault = await fs.readdirSync(directory);
+    let allFiles = await []
+
+    await provideDocuments(realDirectory, allFilesDefault, allFiles)
+    
+    res.render(page.page, {title: page.title, pageName: page.pageName, layout: page.layout, bodyClass: page.bodyClass, allFiles: allFiles, directory: currentDirectory})
+
+})
+
+router.post('/gorseller', async (req,res) => {
+
+    const newDirectory = await req.body.newDirectory
+
+    if(newDirectory){
+
+        const constDirectory = await '/assets/img/'
+        let realDirectory = await constDirectory + newDirectory
+        let directory = await '.' + realDirectory
+
+        let allFilesDefault = await fs.readdirSync(directory);
+        let allFiles = await []
+
+        await provideDocuments(realDirectory, allFilesDefault, allFiles)
+
+        res.send({
+            status: true,
+            allFiles: allFiles,
+            newDirectory: newDirectory
+        })
+
+    } else{
+        
+        const constDirectory = await '/assets/img/'
+        let realDirectory = await constDirectory
+        let directory = await '.' + realDirectory
+
+        let allFilesDefault = await fs.readdirSync(directory);
+        let allFiles = await []
+
+        await provideDocuments(realDirectory, allFilesDefault, allFiles)
+
+        res.send({
+            status: true,
+            allFiles: allFiles,
+            newDirectory: newDirectory
+        })
+
+    }
+
+})
+
+router.post('/dosya-sil', async (req, res) => {
+
+    const removeDocuments = await req.body.removeDocuments
+
+    if(removeDocuments){
+
+        for (let i = 0; i < removeDocuments.length; i++) {
+            fs.rmSync('.' + removeDocuments[i], {recursive: true})
+        }
+
+        res.send({
+            status: true,
+            message: 'Seçilen dosyalar silindi.'
+        })
+
+    } else{
+        res.send({
+            status: false,
+            message: 'Silinecek dosyaları seçin.'
+        })
+    }
 
 })
 

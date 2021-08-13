@@ -9,7 +9,7 @@ const createToken = (id) => {
 }
 
 const ejs = require('ejs')
-const fs = require("fs");
+const fs = require('fs');
 const nodeMailer = require('nodemailer')
 
 const Users = require('../models/Users')
@@ -19,12 +19,13 @@ const Blogs = require('../models/Blogs')
 const DroneSeries = require('../models/DroneSeries')
 const DroneModels = require('../models/DroneModels')
 const DroneAltModels = require('../models/DroneAltModels')
+const Products = require('../models/Products')
 const favoriteBlogsMiddleware = require('../middlewares/favoriteBlogsMiddleware')
 
 
 router.get('/', favoriteBlogsMiddleware, async (req, res) => {
 
-    const page = await Pages.findOne({page: "index"})
+    const page = await Pages.findOne({page: "index"}) 
     res.render(page.page, { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass, seoText: page.seoText, favoriteBlogs: req.favoriteBlogs })
 
 })
@@ -39,6 +40,7 @@ router.get('/admin-giris', (req, res) => {
 
 })
 
+/* sign up to admin panel */
 router.post('/admin-kayit-ol', (req,res) => {
 
     const newUser = new Users({
@@ -60,6 +62,7 @@ router.post('/admin-kayit-ol', (req,res) => {
 
 })
 
+/* login to admin panel */
 router.post('/admin-giris-yap', async (req,res) => {
 
     const {email, password} = req.body
@@ -149,6 +152,7 @@ router.get('/teknik-servis/:droneSerial?/:droneModel?/:droneAltModel?', favorite
 
 })
 
+/* send mail in teknik servis page */
 router.post('/teknik-servis', (req, res) => {
  
     const transporter = nodeMailer.createTransport({
@@ -203,9 +207,77 @@ router.post('/teknik-servis', (req, res) => {
 
 router.get('/magaza', favoriteBlogsMiddleware, async (req, res) => {
 
-    const page = await Pages.findOne({page: "magaza"})
-    res.render(page.page, { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass, seoText: page.seoText, favoriteBlogs: req.favoriteBlogs })
     
+    const products = await Products.find({})
+    
+    const page = await Pages.findOne({page: "magaza"})
+
+    
+
+    res.render(page.page, { title: page.title, description: page.description, keywords: page.keywords, author: page.author, bodyClass: page.bodyClass, seoText: page.seoText, favoriteBlogs: req.favoriteBlogs, products: products })
+    
+})
+
+/* magaza product refresh */
+router.post('/magaza', async (req, res) => {
+
+    let productDroneSeries = await req.body.productDroneSeries
+    let productMinPrice = await req.body.productMinPrice
+    let productMaxPrice = await req.body.productMaxPrice
+
+    if(!productDroneSeries[0]){
+        const droneSeries = await DroneSeries.find({})
+        for (let i = 0; i < droneSeries.length; i++) {
+            productDroneSeries[i] = await droneSeries[i].url
+        }
+    }
+
+    if(!productMinPrice){
+        productMinPrice = await 0
+    }
+
+    if(!productMaxPrice){
+        productMaxPrice = await 999999
+    }
+
+    let products = await Products.find({productDroneSeries: {$in: productDroneSeries}, productCurrentPrice: {$gt: productMinPrice, $lt: productMaxPrice}})
+
+    res.send({
+         status: true,
+         products: products
+    })
+
+})
+
+router.post('/productAddCart', async (req, res)=>{
+
+    const productId = await req.body.productId
+    const product = await Products.findOne({_id:productId})
+
+    res.send({
+        status: true,
+        product: product
+    })
+
+})
+
+router.get('/magaza/:productUrl', favoriteBlogsMiddleware, async (req, res) => {
+
+    let dynamicSeoText = await ''
+
+    const productUrl = await req.params.productUrl
+
+    const product = await Products.findOne({productUrl:productUrl})
+
+    if(!product){res.redirect('/magaza')}
+
+    const page = await Pages.findOne({page: "urun-detay"})
+
+    if(product.productSeoText) {dynamicSeoText = product.productSeoText}
+    if(!product.productSeoText) {dynamicSeoText = page.seoText}
+
+    res.render(page.page, { title: product.pageTitle, description: product.pageDescription, keywords: product.pageKeywords, author: page.author, bodyClass: page.bodyClass, seoText: dynamicSeoText, favoriteBlogs: req.favoriteBlogs, product: product })
+
 })
 
 router.get('/blog', favoriteBlogsMiddleware, async (req, res) => {
@@ -251,6 +323,7 @@ router.get('/iletisim', favoriteBlogsMiddleware, async (req, res) => {
 
 })
 
+/* send mail in iletisim page */
 router.post('/iletisim', (req, res) => {
  
     const transporter = nodeMailer.createTransport({
