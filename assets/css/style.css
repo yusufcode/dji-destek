@@ -752,6 +752,10 @@ a:hover{
         padding: 13px 7.5px
     }
 
+    .navbar-menu-item.dropable.hovered::after{
+        padding: 13px 7.5px
+    }
+
     .navbar-menu-item:last-child {
         border-bottom: 1px solid #f1f1f1;
     }
