@@ -1060,12 +1060,9 @@ a:hover{
         text-align: center;
     }
 
-    .footer-bottom .developer-logo {
-        position: relative;
-        top: auto;
-        left: auto;
-        transform: translate(0);
-        margin-top: 5px;
+    .footer-bottom .developer-signature {
+        width: 100%;
+        text-align: center;
     }
 }
 
