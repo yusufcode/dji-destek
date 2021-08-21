@@ -157,6 +157,16 @@ router.post('/teknik-servis', async (req, res) => {
 
     let mailInfo = await [req.body]
 
+    function nameRevise(name){
+        const nameToArray = name.split(' ')
+        let nameUppercased = []
+        for (let i = 0; i < nameToArray.length; i++) {
+            nameUppercased[i] = nameToArray[i].charAt(0).toUpperCase() + nameToArray[i].slice(1)
+        }
+        const nameRevised = nameUppercased.join(' ')
+        return nameRevised
+    }
+
     const transporter = nodeMailer.createTransport({
         host: "djidestek.com",
         port:465,
@@ -177,27 +187,20 @@ router.post('/teknik-servis', async (req, res) => {
             html: data
         }
 
-        transporter.sendMail(mail, async (err, data) => {
-
-            const nameArray = req.body.costomerName.split(' ')
-            let nameUppercased = []
-            for (let i = 0; i < nameArray.length; i++) {
-                nameUppercased[i] = nameArray[i].charAt(0).toUpperCase() + nameArray[i].slice(1)
-            }
-            const nameRevised = nameUppercased.join(' ')
+        transporter.sendMail(mail, (err, data) => {
             
             if(err){
                 res.send({
                     status: false,
-                    message: "Sevgili müşterimiz " + nameRevised + ", mesajınız bir nedenden dolayı gönderilememiştir. Daha sonra tekrar deneyerek ya da telefon numaramızı arayarak bizlere ulaşabilirsiniz. Bizi tercih ettiğiniz için teşekkür ederiz."
+                    message: "Sevgili müşterimiz " + nameRevise(req.body.costomerName) + ", mesajınız bir nedenden dolayı gönderilememiştir. Daha sonra tekrar deneyerek ya da telefon numaramızı arayarak bizlere ulaşabilirsiniz. Bizi tercih ettiğiniz için teşekkür ederiz."
                 })
             } else{
                 res.send({
                     status: true,
-                    message: "Sevgili müşterimiz " + nameRevised + ", mesajınız başarılı bir şekilde iletilmiştir. En kısa zamanda sizlere ulaşacağız. Bizi tercih ettiğiniz için teşekkür ederiz."
+                    message: "Sevgili müşterimiz " + nameRevise(req.body.costomerName) + ", mesajınız başarılı bir şekilde iletilmiştir. En kısa zamanda sizlere ulaşacağız. Bizi tercih ettiğiniz için teşekkür ederiz."
                 })
             }
-        }) 
+        })
         
     });
     
