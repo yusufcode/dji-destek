@@ -1,0 +1,42 @@
+<div class="card card-custom">
+    <div class="card-header flex-wrap py-5">
+        <div class="card-title">
+            <h3 class="card-label">Ürünler
+            <div class="text-muted pt-2 font-size-sm">Tüm Ürün Kayıtları</div></h3>
+        </div>
+        <div class="card-toolbar">
+            
+            <a href="/admin/urun-ekle" class="btn btn-primary font-weight-bolder">
+                <i class="fas fa-plus"></i>Yeni Ürün
+            </a>
+
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-separate table-head-custom table-checkable" id="kt_datatable">
+            <thead>
+                <tr>
+                    <th>Ad</th>
+                    <th>Kategori</th>
+                    <th>Aksiyon</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% products.forEach(product => { %>
+                <tr>
+                    <td class="table-title">
+                        <a href="/magaza/<%- product.productUrl %>" target="_blank"><%- product.productName %></a>
+                    </td>
+                    <td class="table-title">
+                        <a href="/magaza/?<%- product.categoryUrl %>" target="_blank"><%- product.categoryName %></a>
+                    </td>
+                    <td class="table-action">
+                        <a href="/admin/urun-duzenle/<%- product._id %>" class="row-edit"><i class="far fa-edit"></i></a>
+                        <span class="row-remove" row-id="<%- product._id %>"><i class="fas fa-trash-alt"></i></span>
+                    </td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>

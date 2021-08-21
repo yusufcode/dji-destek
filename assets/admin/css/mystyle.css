@@ -219,6 +219,93 @@ input.bad-form{
     display: block!important;
 }
 
+/* DATATABLE */
+
+#kt_datatable td{
+    font-size: 12px!important;
+}
+
+#kt_datatable td.table-id{
+    width: 2.5%;
+}
+
+#kt_datatable td.table-image{
+    width: 2.5%;
+}
+
+#kt_datatable td.table-image img{
+    width: 75px!important;
+    height: 60px!important;
+    object-fit: cover;
+}
+
+#kt_datatable .dataTables_wrapper .child .dtr-details > li .dtr-data img{
+    width: 50px!important;
+    height: 40px!important;
+    object-fit: cover;
+}
+
+#kt_datatable td.table-title{
+    width: 20%
+}
+
+#kt_datatable td.table-title a{
+    color: #777;
+    font-weight: 600;
+}
+
+#kt_datatable td.table-title a:hover{
+    text-decoration: underline!important;
+}
+
+#kt_datatable td.table-status{
+    width: 2.5%;
+    text-align: center;
+}
+
+#kt_datatable .row-status-edit,
+#kt_datatable .row-general-status-edit{
+    outline: none;
+}
+
+#kt_datatable td.table-action{
+    width: 2.5%;
+    font-size: 0!important;
+    white-space: nowrap;
+    text-align: center;
+}
+
+#kt_datatable .row-edit,
+#kt_datatable .row-remove{
+    display: inline-block;
+    padding: 3px;
+    margin: 1px;
+    cursor: pointer;
+}
+
+#kt_datatable .row-edit i,
+#kt_datatable .row-remove i{
+    font-size: 14px;
+}
+
+#kt_datatable .row-edit:hover i{
+    color: #ffae00;
+}
+
+#kt_datatable .row-remove:hover i{
+    color: #e85050;
+}
+
+@media(max-width:768px){
+    #kt_datatable .dataTables_length{
+        text-align: left!important;
+    }
+
+    #kt_datatable .dataTables_filter{
+        text-align: left!important;
+    }
+}
+
 /* BLOG PAGE */
 
 .blog-page .card-custom{
@@ -233,122 +320,10 @@ input.bad-form{
     background-color: transparent;
 }
 
-.blog-page table td{
-    font-size: 12px!important;
-}
-
-.blog-page table td.blog-id{
-    width: 2.5%;
-}
-
-.blog-page table td.blog-image{
-    width: 2.5%;
-}
-
-.blog-page table td.blog-image img{
-    width: 75px!important;
-    height: 60px!important;
-    object-fit: cover;
-}
-
-.dataTables_wrapper .child .dtr-details > li .dtr-data img{
-    width: 50px!important;
-    height: 40px!important;
-    object-fit: cover;
-}
-
-.blog-page table td.blog-title{
-    width: 20%
-}
-
-.blog-page table td.blog-title a{
-    color: #777;
-    font-weight: 600;
-}
-
-.blog-page table td.blog-title a:hover{
-    text-decoration: underline!important;
-}
-
-.blog-page table td.blog-status{
-    width: 2.5%;
-    text-align: center;
-}
-
-.blog-page table .blog-status-edit,
-.blog-page table .blog-general-status-edit{
-    outline: none;
-}
-
-.blog-page table td.blog-action{
-    width: 2.5%;
-    font-size: 0!important;
-    white-space: nowrap;
-    text-align: center;
-}
-
-.blog-page table .blog-edit,
-.blog-page table .blog-remove{
-    display: inline-block;
-    padding: 3px;
-    margin: 1px;
-    cursor: pointer;
-}
-
-.blog-page table .blog-edit i,
-.blog-page table .blog-remove i{
-    font-size: 14px;
-}
-
-.blog-page table .blog-edit:hover i{
-    color: #ffae00;
-}
-
-.blog-page table .blog-remove:hover i{
-    color: #e85050;
-}
-
-@media(max-width:768px){
-    .dataTables_length{
-        text-align: left!important;
-    }
-    .dataTables_filter{
-        text-align: left!important;
-    }
-}
-
 /* TECHNIC SERVICE PAGE */
 
 .technic-service-page .card-custom{
     margin-bottom: 15px;
-}
-
-.technic-service-page table td.drone-action{
-    width: 2.5%;
-    font-size: 0!important;
-    white-space: nowrap;
-    text-align: center;
-}
-
-.technic-service-page table .drone-edit,
-.technic-service-page table .drone-remove{
-    display: inline-block;
-    padding: 3px;
-    margin: 1px;
-    cursor: pointer;
-}
-
-.technic-service-page table .drone-edit i,
-.technic-service-page table .drone-remove i{
-    font-size: 14px;
-}
-
-.technic-service-page table .drone-edit:hover i{
-    color: #ffae00;
-}
-
-.technic-service-page table .drone-remove:hover i{
-    color: #e85050;
 }
 
 /* DOCUMENTS PAGE */

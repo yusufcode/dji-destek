@@ -1,72 +1,69 @@
 <div class="container">
     
     <div class="contact-card">
-        <form action="/teknik-servis" method="POST">
 
-            <div class="card-header">
-                Teknik Servis Bilgileri
+        <div class="card-header">
+            Teknik Servis Bilgileri
+        </div>
+
+        <div class="card-body">
+            <% if(params.droneSerial && droneSerial) {%>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Drone Serisi</label>
+                <input type="text" class="form-control droneSerial" value="<%=droneSerial.name%>" readonly="readonly">
+            </div>
+            <% } %>
+
+            <% if(params.droneModel && droneModel) {%>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Drone Modeli</label>
+                <input type="text" class="form-control droneModel" value="<%=droneModel.name%>" readonly="readonly">
+            </div>
+            <% } %>
+
+            <% if(params.droneAltModel && droneAltModel) {%>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Drone Alt Modeli</label>
+                <input type="text" class="form-control droneAltModel" value="<%=droneAltModel.name%>" readonly="readonly">
+            </div>
+            <% } %>
+
+            <div class="form-group">
+                <label>Problem Başlığı</label>
+                <input type="text" class="form-control problemTitle" placeholder="Problem Nedir?">
             </div>
 
-            <div class="card-body">
-
-                <% if(params.droneSerial && droneSerial) {%>
-                <div class="form-group">
-                    <label for="exampleFormControlSelect1">Drone Serisi</label>
-                    <input type="text" name="droneSerialName" class="form-control" value="<%=droneSerial.name%>" readonly="readonly">
-                </div>
-                <% } %>
-
-                <% if(params.droneModel && droneModel) {%>
-                    <div class="form-group">
-                        <label for="exampleFormControlSelect1">Drone Modeli</label>
-                        <input type="text" name="droneModelName" class="form-control" value="<%=droneModel.name%>" readonly="readonly">
-                    </div>
-                <% } %>
-
-                <% if(params.droneAltModel && droneAltModel) {%>
-                    <div class="form-group">
-                        <label for="exampleFormControlSelect1">Drone Alt Modeli</label>
-                        <input type="text" name="droneAltModelName" class="form-control" value="<%=droneAltModel.name%>" readonly="readonly">
-                    </div>
-                <% } %>
-
-                <div class="form-group">
-                    <label for="exampleFormControlSelect3">Problem Başlığı</label>
-                    <input name="problemTitle" type="text" class="form-control" id="exampleFormControlInput1"  placeholder="Problem Başlığı Giriniz...">
-                </div>
-
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Problem Açıklaması</label>
-                    <textarea name="problemText" class="form-control" id="exampleFormControlTextarea1" placeholder="Probleminizi Anlatınız..." rows="5" ></textarea>
-                </div>
+            <div class="form-group">
+                <label>Problem Açıklaması</label>
+                <textarea class="form-control problemDesc" placeholder="Probleminizi ayrıntılı bir şekilde anlatınız..." rows="5" ></textarea>
             </div>
+        </div>
 
-            <div class="card-header">
-                İletişim Bilgileriniz
-            </div>
+        <div class="card-header">
+            İletişim Bilgileriniz
+        </div>
 
-            <div class="card-body">
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Ad Soyad</label>
-                    <input name="contactName" type="text" class="form-control" id="exampleFormControlInput1"  placeholder="Adınızı ve Soyadınızı Giriniz...">
-                </div>
-                
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Telefon Numarası</label>
-                    <input name="contactNumber" type="tel" class="form-control" id="exampleFormControlInput1"  placeholder="Telefon Numaranızı Giriniz...">
-                </div>
-                
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Email Adresi (İsteğe Bağlı)</label>
-                    <input name="contactEmail" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Email Adresinizi Giriniz...">
-                </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label>Ad Soyad</label>
+                <input type="text" class="form-control costomerName" placeholder="Adınızı ve Soyadınızı Giriniz...">
             </div>
+            
+            <div class="form-group">
+                <label>Telefon Numarası</label>
+                <input type="tel" class="form-control costomerNumber" placeholder="Telefon Numaranızı Giriniz...">
+            </div>
+            
+            <div class="form-group">
+                <label>Email Adresi (İsteğe Bağlı)</label>
+                <input type="email" class="form-control costomerEmail" placeholder="Email Adresinizi Giriniz...">
+            </div>
+        </div>
 
-            <div class="card-footer">
-                <button type="submit" class="btn btn-primary">Gönder</button>
-            </div>
-        </form>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Gönder</button>
+        </div>
+
     </div>
-
 
 </div>

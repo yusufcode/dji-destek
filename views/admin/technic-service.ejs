@@ -23,34 +23,34 @@
             <tbody>
                 <% droneSeries.forEach(drone => { %>
                 <tr>
-                    <td class="drone-title">
+                    <td class="table-title">
                         <a href="/teknik-servis/<%- drone.url %>" target="_blank"><%- drone.name %></a>
                     </td>  
-                    <td class="drone-action">
-                        <a href="/admin/teknik-servis-drone-duzenle/<%- drone._id %>" class="drone-edit"><i class="far fa-edit"></i></a>
-                        <span class="drone-remove" drone-id="<%-drone._id%>"><i class="fas fa-trash-alt"></i></span>
+                    <td class="table-action">
+                        <a href="/admin/teknik-servis-drone-duzenle/<%- drone._id %>" class="row-edit"><i class="far fa-edit"></i></a>
+                        <span class="row-remove" row-id="<%-drone._id%>"><i class="fas fa-trash-alt"></i></span>
                     </td>
                 </tr>
                 <% }) %>
                 <% droneModels.forEach(drone => { %>
                     <tr>
-                        <td class="drone-title">
+                        <td class="table-title">
                             <a href="/teknik-servis/<%- drone.parentUrl %>/<%- drone.url %>" target="_blank"><%- drone.parentName %> -> <%- drone.name %></a>
                         </td>  
-                        <td class="drone-action">
-                            <a href="/admin/teknik-servis-drone-duzenle/<%- drone._id %>" class="drone-edit"><i class="far fa-edit"></i></a>
-                            <span class="drone-remove" drone-id="<%-drone._id%>"><i class="fas fa-trash-alt"></i></span>
+                        <td class="table-action">
+                            <a href="/admin/teknik-servis-drone-duzenle/<%- drone._id %>" class="row-edit"><i class="far fa-edit"></i></a>
+                            <span class="row-remove" row-id="<%-drone._id%>"><i class="fas fa-trash-alt"></i></span>
                         </td>
                     </tr>
                 <% }) %>
                 <% droneAltModels.forEach(drone => { %>
                     <tr>
-                        <td class="drone-title">
+                        <td class="table-title">
                             <a href="/teknik-servis/<%- drone.bigParentUrl %>/<%- drone.parentUrl %>/<%- drone.url %>" target="_blank"><%- drone.bigParentName %> -> <%- drone.parentName %> -> <%- drone.name %></a>
                         </td>  
-                        <td class="drone-action">
-                            <a href="/admin/teknik-servis-drone-duzenle/<%- drone._id %>" class="drone-edit"><i class="far fa-edit"></i></a>
-                            <span class="drone-remove" drone-id="<%-drone._id%>"><i class="fas fa-trash-alt"></i></span>
+                        <td class="table-action">
+                            <a href="/admin/teknik-servis-drone-duzenle/<%- drone._id %>" class="row-edit"><i class="far fa-edit"></i></a>
+                            <span class="row-remove" row-id="<%-drone._id%>"><i class="fas fa-trash-alt"></i></span>
                         </td>
                     </tr>
                 <% }) %>

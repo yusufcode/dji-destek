@@ -17,6 +17,8 @@ const Schema = new mongoose.Schema({
     productDroneModel: {type:Boolean},
     productDroneAltModel: {type:Boolean},
     productSeoText: {type:String},
+    categoryName: {type:String},
+    categoryUrl: {type:String},
     pageTitle: {type:String},
     pageDescription: {type:String},
     pageKeywords: {type:String},

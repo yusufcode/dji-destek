@@ -9,6 +9,8 @@ const DroneSeries = require('../models/DroneSeries')
 const DroneModels = require('../models/DroneModels')
 const DroneAltModels = require('../models/DroneAltModels')
 
+const Products = require('../models/Products')
+
 const PageBlog = require('../models/PageBlog')
 const Blogs = require('../models/Blogs')
 const Users = require('../models/Users');
@@ -440,6 +442,17 @@ router.post('/blog-genel-durum/:blogId', (req, res) => {
         }
 
         
+    })
+
+})
+
+/* RENDER -> /ADMIN/URUNLER  */
+router.get('/urunler', (req, res) => {
+    
+    PagesAdmin.findOne({page: 'admin/products'}, (err,page) => {
+        Products.find({ }, (err, products) => {
+            res.render(page.page, {title: page.title, pageName: page.pageName, layout: page.layout, bodyClass: page.bodyClass, products: products})
+        })
     })
 
 })

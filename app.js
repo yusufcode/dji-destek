@@ -21,7 +21,7 @@ app.set('layout', 'layouts/layout');
 
 //USE
 app.use('/assets', express.static('assets'))
-app.use('/node_modules', express.static('node_modules'))
+app.use('/assets', express.static('node_modules'))
 app.use(expressLayouts)
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())

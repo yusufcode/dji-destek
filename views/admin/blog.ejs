@@ -65,17 +65,17 @@
             <tbody>
                 <% blog.forEach(blog => { %>
                 <tr>
-                    <td class="blog-image"><img src="/assets/img/blog/<%- blog.blogImage %>" alt=""></td>
-                    <td class="blog-title">
+                    <td class="table-image"><img src="/assets/img/blog/<%- blog.blogImage %>" alt=""></td>
+                    <td class="table-title">
                         <a href="/blog/<%- blog.url %>" target="_blank"><%- blog.blogTitle %></a>
                     </td>  
-                    <td class="blog-status">
-                        <input type="checkbox" class="blog-status-edit" blog-id="<%-blog._id%>" <% if(blog.blogStatus){%> checked <%}%>>
-                        <input type="checkbox" class="blog-general-status-edit" blog-id="<%-blog._id%>" <% if(blog.blogGeneralStatus){%> checked <%}%>>
+                    <td class="table-status">
+                        <input type="checkbox" class="row-status-edit" row-id="<%-blog._id%>" <% if(blog.blogStatus){%> checked <%}%>>
+                        <input type="checkbox" class="row-general-status-edit" row-id="<%-blog._id%>" <% if(blog.blogGeneralStatus){%> checked <%}%>>
                     </td>
-                    <td class="blog-action">
-                        <a href="/admin/blog-duzenle/<%- blog._id %>" class="blog-edit"><i class="far fa-edit"></i></a>
-                        <span class="blog-remove" blog-id="<%-blog._id%>"><i class="fas fa-trash-alt"></i></span>
+                    <td class="table-action">
+                        <a href="/admin/blog-duzenle/<%- blog._id %>" class="row-edit"><i class="far fa-edit"></i></a>
+                        <span class="row-remove" row-id="<%-blog._id%>"><i class="fas fa-trash-alt"></i></span>
                     </td>
                 </tr>
                 <% }) %>

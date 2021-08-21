@@ -375,7 +375,7 @@ $(document).on('click', '.technic-service-drone-edit-page .technic-service-drone
 
 })
 
-/* EDIT BLOG PAGE AJAX */
+/* BLOG EDIT PAGE AJAX */
 $(document).on('click', '.blog-page .blog-page-edit-button', function(event) {
 
     event.preventDefault()
@@ -486,12 +486,12 @@ $(document).on('click', '.blog-edit-page .blog-edit-button', function(event) {
 })
 
 /* REMOVE-BLOG AJAX */
-$(document).on('click', '.blog-page .blog-remove', function(event) {
+$(document).on('click', '.blog-page .row-remove', function(event) {
 
     event.preventDefault()
 
     $this = $(this)
-    const id = $this.attr('blog-id')
+    const id = $this.attr('row-id')
 
     if(confirm('Blog silinecek. Onaylıyor musunuz?')){
 
@@ -516,10 +516,10 @@ $(document).on('click', '.blog-page .blog-remove', function(event) {
 })
 
 /* EDIT-BLOG-STATUS AJAX */
-$(document).on('click', '.blog-page .blog-status-edit', function(event) {
+$(document).on('click', '.blog-page .row-status-edit', function(event) {
 
     $this = $(this)
-    const id = $this.attr('blog-id')
+    const id = $this.attr('row-id')
 
     $.ajax({
         url: '/admin/blog-durum/'+id+'',
@@ -546,10 +546,10 @@ $(document).on('click', '.blog-page .blog-status-edit', function(event) {
 })
 
 /* EDIT-BLOG-GENERAL-STATUS AJAX */
-$(document).on('click', '.blog-page .blog-general-status-edit', function(event) {
+$(document).on('click', '.blog-page .row-general-status-edit', function(event) {
 
     $this = $(this)
-    const id = $this.attr('blog-id')
+    const id = $this.attr('row-id')
 
     $.ajax({
         url: '/admin/blog-genel-durum/'+id+'',

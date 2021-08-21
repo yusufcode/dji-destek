@@ -153,8 +153,10 @@ router.get('/teknik-servis/:droneSerial?/:droneModel?/:droneAltModel?', favorite
 })
 
 /* send mail in teknik servis page */
-router.post('/teknik-servis', (req, res) => {
- 
+router.post('/teknik-servis', async (req, res) => {
+
+    let mailInfo = await [req.body]
+
     const transporter = nodeMailer.createTransport({
         host: "djidestek.com",
         port:465,
@@ -165,42 +167,38 @@ router.post('/teknik-servis', (req, res) => {
         },
         tls: {rejectUnauthorized: false}
     })
-
-    let mailInfo = [{
-        droneSerialName: req.body.droneSerialName,
-        droneModelName: req.body.droneModelName,
-        droneAltModelName: req.body.droneAltModelName,
-        problemTitle: req.body.problemTitle,
-        problemText: req.body.problemText,
-        contactName: req.body.contactName,
-        contactNumber: req.body.contactNumber,
-        contactEmail: req.body.contactEmail
-    }]
-
-    console.log(mailInfo)
     
-    ejs.renderFile("./views/layouts/layout-mail.ejs", { mailInfo: mailInfo }, (err, data) => {
-        if (err) {
-            console.log(err)
-        } else {
-            const mail = {
-                from: "teknikservis@djidestek.com",
-                to: "yusuf1akbaba@gmail.com",
-                subject: "Teknik Servis Başvurusu",
-                html: data
-            }
-
-            transporter.sendMail(mail, (err) => {
-                if (err) {
-                    console.log('Mail could not send! Error:' + err)
-                    res.redirect('/?mail=failed')
-                } else {
-                    console.log('Mail sent!')
-                    res.redirect('/?mail=sent')
-                }
-            })
-
+    ejs.renderFile("./views/layouts/layout-mail.ejs", { mailInfo: mailInfo }, async (err, data) => {
+        
+        const mail = await {
+            from: "teknikservis@djidestek.com",
+            to: "yusuf1code@gmail.com",
+            subject: "Teknik Servis Başvurusu: " + mailInfo.problemTitle + "",
+            html: data
         }
+
+        transporter.sendMail(mail, async (err, data) => {
+
+            const nameArray = req.body.costomerName.split(' ')
+            let nameUppercased = []
+            for (let i = 0; i < nameArray.length; i++) {
+                nameUppercased[i] = nameArray[i].charAt(0).toUpperCase() + nameArray[i].slice(1)
+            }
+            const nameRevised = nameUppercased.join(' ')
+            
+            if(err){
+                res.send({
+                    status: false,
+                    message: "Sevgili müşterimiz " + nameRevised + ", mesajınız bir nedenden dolayı gönderilememiştir. Daha sonra tekrar deneyerek ya da telefon numaramızı arayarak bizlere ulaşabilirsiniz. Bizi tercih ettiğiniz için teşekkür ederiz."
+                })
+            } else{
+                res.send({
+                    status: true,
+                    message: "Sevgili müşterimiz " + nameRevised + ", mesajınız başarılı bir şekilde iletilmiştir. En kısa zamanda sizlere ulaşacağız. Bizi tercih ettiğiniz için teşekkür ederiz."
+                })
+            }
+        }) 
+        
     });
     
 })
