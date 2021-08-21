@@ -173,7 +173,7 @@ router.post('/teknik-servis', async (req, res) => {
         const mail = await {
             from: "teknikservis@djidestek.com",
             to: "yusuf1code@gmail.com",
-            subject: "Teknik Servis Başvurusu: " + mailInfo.problemTitle + "",
+            subject: "Teknik Servis Başvurusu: " + req.body.problemTitle + "",
             html: data
         }
 
