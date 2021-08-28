@@ -18,32 +18,29 @@
         <div class="send-message">
 
             <h2>Mesaj Gönderin</h2>
-
-            <form action="/iletisim" method="POST">
         
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Ad Soyad</label>
-                    <input name="contactName" type="text" class="form-control" id="exampleFormControlInput1"  placeholder="Adınızı ve Soyadınızı Giriniz...">
-                </div>
-    
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Numara</label>
-                    <input name="contactNumber" type="tel" class="form-control" id="exampleFormControlInput1"  placeholder="Numaranızı Giriniz...">
-                </div>
-    
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">E-Mail</label>
-                    <input name="contactEmail" type="mail" class="form-control" id="exampleFormControlInput1"  placeholder="Mail Adresinizi Giriniz...">
-                </div>
-    
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Mesajınız</label>
-                    <textarea name="contactMessage" class="form-control" id="exampleFormControlTextarea1" placeholder="Mesajınızı Giriniz..." rows="5" ></textarea>
-                </div>
+            <div class="form-group">
+                <label>Ad Soyad</label>
+                <input  type="text" class="form-control costomerName" placeholder="Adınızı ve Soyadınızı Giriniz...">
+            </div>
 
-                <button type="submit" class="btn btn-primary">Gönder</button>
-    
-            </form>
+            <div class="form-group">
+                <label>Numara</label>
+                <input type="tel" class="form-control costomerNumber" placeholder="Numaranızı Giriniz...">
+            </div>
+
+            <div class="form-group">
+                <label>E-Mail</label>
+                <input type="mail" class="form-control costomerEmail" placeholder="Mail Adresinizi Giriniz...">
+            </div>
+
+            <div class="form-group">
+                <label>Mesajınız</label>
+                <textarea class="form-control costomerMessage" placeholder="Mesajınızı Giriniz..." rows="5" ></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Gönder</button>
+
         </div>
 
     </div>

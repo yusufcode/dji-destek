@@ -13,20 +13,16 @@
 </head>
 <body>
 
-    <% mailInfo.forEach(info => { %>
-
-        <p><b>Drone Serisi: </b><%= info.droneSerial%></p>
-        <p><b>Drone Modeli: </b><%= info.droneModel%></p>
-        <p><b>Drone Alt Modeli: </b><%= info.droneAltModel%></p>
-        <br>
-        <p><b>Problem Başlığı: </b><%= info.problemTitle%></p>
-        <p><b>Problem Açıklaması: </b><%= info.problemDesc%></p>
-        <br>
-        <p><b>Ad Soyad: </b><%= info.costomerName%></p>
-        <p><b>Numara: </b><%= info.costomerNumber%></p>
-        <p><b>Email: </b><%= info.costomerEmail%></p>
-
-    <%})%>
+    <p><b>Drone Serisi: </b><%= mailInfo.droneSerial%></p>
+    <p><b>Drone Modeli: </b><%= mailInfo.droneModel%></p>
+    <p><b>Drone Alt Modeli: </b><%= mailInfo.droneAltModel%></p>
+    <br>
+    <p><b>Problem Başlığı: </b><%= mailInfo.problemTitle%></p>
+    <p><b>Problem Açıklaması: </b><%= mailInfo.problemDesc%></p>
+    <br>
+    <p><b>Ad Soyad: </b><%= mailInfo.costomerName%></p>
+    <p><b>Numara: </b><%= mailInfo.costomerNumber%></p>
+    <p><b>Email: </b><%= mailInfo.costomerEmail%></p>
     
 </body>
 </html>

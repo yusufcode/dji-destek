@@ -50,5 +50,5 @@ mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology
 //SERVER
 const port = process.env.PORT || 5001
 const server = app.listen(port, (err) => {
-    if (err) { console.log('Server: Error', err) } else { console.log('Server: Success') }
+    if (err) { console.log('Server: Error', err) } else { console.log('Server:', port) }
 })

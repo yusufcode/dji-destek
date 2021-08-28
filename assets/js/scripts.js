@@ -180,17 +180,35 @@ $(document).on('click', '.product-page .add-cart-button button', function(){
 
 })
 
-/* SLIDER */
-const swiper = new Swiper('.swiper-container', {
+/* SWIPER SLIDER */
+const swipers = document.querySelectorAll('.swiper')
+for (let i = 0; i < swipers.length; i++) {
+
+    const swiper = new Swiper(swipers[i], {
+        direction: 'horizontal',
+        autoplay: {
+            delay: 3500
+          },
+        scrollbar: {
+          el: '.swiper-scrollbar'
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        }
+      })
     
-    direction: 'horizontal',
-    autoplay: {
-        delay: 3500
-      },
-    scrollbar: {
-      el: '.swiper-scrollbar',
-    }
-  });
+}
+
+/* LIGHT GALLERY */
+const lightGalleries = document.querySelectorAll('.lightGallery')
+for (let i = 0; i < lightGalleries.length; i++) {
+    lightGallery(lightGalleries[i], {
+        download: false,
+        zoom: true,
+        plugins: [lgZoom]
+    })
+}
 
 /* SEO TEXT */
 $(document).ready(function() {
@@ -241,21 +259,6 @@ $(document).on('click', '.product-page .all-images img', function(){
     thisImage.closest('.image').addClass('active')
 
 })
-
-/* LIGHT GALLERY */
-lightGallery(document.getElementById('bigger-image'), {
-    download: false,
-    thumbnail: true,
-    zoom: true,
-    plugins: [lgZoom, lgThumbnail]
-});
-
-lightGallery(document.getElementById('lightGallery'), {
-    download: false,
-    thumbnail: true,
-    zoom: true,
-    plugins: [lgZoom, lgThumbnail]
-});
 
 /* REFRESH PRODUCTS FUNCTION*/
 function refreshProducts() {

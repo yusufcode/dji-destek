@@ -13,14 +13,10 @@
 </head>
 <body>
 
-    <% mailInfo.forEach(info => { %>
-
-        <p><b>Ad Soyad: </b><%= info.contactName%></p>
-        <p><b>Numara: </b><%= info.contactNumber%></p>
-        <p><b>Email: </b><%= info.contactEmail%></p>
-        <p><b>Mesaj: </b><%= info.contactMessage%></p>
-
-    <%})%>
+    <p><b>Ad Soyad: </b><%= mailInfo.costomerName%></p>
+    <p><b>Numara: </b><%= mailInfo.costomerNumber%></p>
+    <p><b>Email: </b><%= mailInfo.costomerEmail%></p>
+    <p><b>Mesaj: </b><%= mailInfo.costomerMessage%></p>
     
 </body>
 </html>

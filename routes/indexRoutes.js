@@ -155,7 +155,7 @@ router.get('/teknik-servis/:droneSerial?/:droneModel?/:droneAltModel?', favorite
 /* send mail in teknik servis page */
 router.post('/teknik-servis', async (req, res) => {
 
-    let mailInfo = await [req.body]
+    let mailInfo = await req.body
 
     function nameRevise(name){
         const nameToArray = name.split(' ')
@@ -192,12 +192,12 @@ router.post('/teknik-servis', async (req, res) => {
             if(err){
                 res.send({
                     status: false,
-                    message: "Sevgili müşterimiz " + nameRevise(req.body.costomerName) + ", mesajınız bir nedenden dolayı gönderilememiştir. Daha sonra tekrar deneyerek ya da telefon numaramızı arayarak bizlere ulaşabilirsiniz. Bizi tercih ettiğiniz için teşekkür ederiz."
+                    message: "Sevgili müşterimiz " + nameRevise(req.body.costomerName) + ", teknik servis başvurunuz bir nedenden dolayı gönderilememiştir. Daha sonra tekrar deneyerek ya da telefon numaramızı arayarak bizlere ulaşabilirsiniz. Bizi tercih ettiğiniz için teşekkür ederiz."
                 })
             } else{
                 res.send({
                     status: true,
-                    message: "Sevgili müşterimiz " + nameRevise(req.body.costomerName) + ", mesajınız başarılı bir şekilde iletilmiştir. En kısa zamanda sizlere ulaşacağız. Bizi tercih ettiğiniz için teşekkür ederiz."
+                    message: "Sevgili müşterimiz " + nameRevise(req.body.costomerName) + ", teknik servis başvurunuz tarafımıza başarılı bir şekilde iletilmiştir. En kısa zamanda sizlere ulaşacağız. Bizi tercih ettiğiniz için teşekkür ederiz."
                 })
             }
         })
@@ -323,7 +323,19 @@ router.get('/iletisim', favoriteBlogsMiddleware, async (req, res) => {
 })
 
 /* send mail in iletisim page */
-router.post('/iletisim', (req, res) => {
+router.post('/iletisim', async (req, res) => {
+
+    let mailInfo = await req.body
+
+    function nameRevise(name){
+        const nameToArray = name.split(' ')
+        let nameUppercased = []
+        for (let i = 0; i < nameToArray.length; i++) {
+            nameUppercased[i] = nameToArray[i].charAt(0).toUpperCase() + nameToArray[i].slice(1)
+        }
+        const nameRevised = nameUppercased.join(' ')
+        return nameRevised
+    }
  
     const transporter = nodeMailer.createTransport({
         host: "djidestek.com",
@@ -335,38 +347,31 @@ router.post('/iletisim', (req, res) => {
         },
         tls: {rejectUnauthorized: false}
     })
-
-    let mailInfo = [{
-        contactName: req.body.contactName,
-        contactNumber: req.body.contactNumber,
-        contactEmail: req.body.contactEmail,
-        contactMessage: req.body.contactMessage
-    }]
-
-    console.log(mailInfo)
     
-    ejs.renderFile("./views/layouts/layout-mail2.ejs", { mailInfo: mailInfo }, (err, data) => {
-        if (err) {
-            console.log(err)
-        } else {
-            const mail = {
-                from: "iletisim@djidestek.com",
-                to: "yusuf1akbaba@gmail.com",
-                subject: "Yeni Mesaj",
-                html: data
-            }
-
-            transporter.sendMail(mail, (err) => {
-                if (err) {
-                    console.log('Mail could not send! Error:' + err)
-                    res.redirect('/?mail=failed')
-                } else {
-                    console.log('Mail sent!')
-                    res.redirect('/?mail=sent')
-                }
-            })
-
+    ejs.renderFile("./views/layouts/layout-mail2.ejs", { mailInfo: mailInfo }, async (err, data) => {
+        
+        const mail = await {
+            from: "iletisim@djidestek.com",
+            to: "yusuf1code@gmail.com",
+            subject: "Yeni Mesaj",
+            html: data
         }
+
+        transporter.sendMail(mail, (err, data) => {
+            
+            if(err){
+                res.send({
+                    status: false,
+                    message: "Sevgili müşterimiz " + nameRevise(req.body.costomerName) + ", mesajınız bir nedenden dolayı gönderilememiştir. Daha sonra tekrar deneyerek ya da telefon numaramızı arayarak bizlere ulaşabilirsiniz. Bizi tercih ettiğiniz için teşekkür ederiz."
+                })
+            } else{
+                res.send({
+                    status: true,
+                    message: "Sevgili müşterimiz " + nameRevise(req.body.costomerName) + ", mesajınız tarafımıza başarılı bir şekilde iletilmiştir. En kısa zamanda sizlere ulaşacağız. Bizi tercih ettiğiniz için teşekkür ederiz."
+                })
+            }
+        })
+        
     });
     
 })
